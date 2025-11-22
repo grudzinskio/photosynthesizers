@@ -1,0 +1,11 @@
+flask
+flask-cors
+pandas
+openpyxl
+ollama
+pillow
+requests
+# The following are only needed if you want to run the Jupyter Notebook
+jupyter
+notebook
+matplotlib
