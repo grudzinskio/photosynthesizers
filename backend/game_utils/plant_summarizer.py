@@ -19,7 +19,7 @@ class PlantSummarizer:
         )
         
         self.api_key = openai_api_key or os.getenv("OPENAI_API_KEY")
-        self.api_url = "https://api.openai.com/v1/chat/completions""
+        self.api_url = "https://api.openai.com/v1/chat/completions"
 
 
     """
@@ -112,17 +112,74 @@ class PlantSummarizer:
     WHEN THE USER ASKS A FOLLOW UP QUESTION
     """
     
-    def follow_up_question(self, question):
+    def follow_up_question(self, plant, question, model="gpt-4o-mini", max_tokens=500):
         """
-        Generate a response to a follow up question.
+        Answer a follow-up question about a plant using Tavily search and OpenAI.
+        
+        Args:
+            plant: Name of the plant
+            question: User's question about the plant
+            model: OpenAI model to use (e.g., "gpt-4o-mini", "gpt-4o")
+            max_tokens: Maximum tokens in the response
+            
+        Returns:
+            str: Answer to the user's question
         """
-        prompt = f"""Based on the following information about {plant}, provide a comprehensive answer to the question: {question}.
+        # Search for information related to the specific question
+        search_query = f"{plant} {question}"
+        search_results = self.tavily_client.search(
+            query=search_query,
+            search_depth="advanced",
+            max_results=5
+        )
+        
+        # Extract relevant context
+        context = self._extract_context(search_results)
+        
+        # Generate answer using OpenAI
+        answer = self._generate_follow_up_answer(plant, question, context, model, max_tokens)
+        
+        return answer
+    
+    def _generate_follow_up_answer(self, plant, question, context, model, max_tokens):
+        """Generate an answer to a follow-up question using OpenAI."""
+        prompt = f"""Based on the following information about {plant}, provide a clear and helpful answer to this question: {question}
 
         Information:
         {context}
 
-        Please provide a clear, informative summary of the plant for users in a botanical garden to help them learn more about it."""
-        pass
+        Please provide an accurate, informative response that directly addresses the user's question."""
+
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json"
+        }
+        
+        payload = {
+            "model": model,
+            "messages": [
+                {
+                    "role": "system",
+                    "content": "You are a helpful botanical expert who answers questions about plants clearly and accurately."
+                },
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            "max_tokens": max_tokens,
+            "temperature": 0.7
+        }
+        
+        response = requests.post(
+            self.api_url,
+            headers=headers,
+            json=payload
+        )
+        response.raise_for_status()
+        
+        result = response.json()
+        return result['choices'][0]['message']['content']
 
 
 # Example usage
@@ -136,3 +193,10 @@ if __name__ == "__main__":
     
     print(f"Summary of {plant_name}:")
     print(summary)
+    
+    # Ask a follow-up question
+    question = "How often should I water it?"
+    answer = summarizer.follow_up_question(plant_name, question)
+    
+    print(f"\nQuestion: {question}")
+    print(f"Answer: {answer}")
