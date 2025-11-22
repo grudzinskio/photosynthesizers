@@ -52,8 +52,8 @@ class PlantGame:
                     "message": "Oops! The image does not match the plant"
                 }
         
-            # Upload the image to the database
-            self.database_handler.add_plant_image(self.current_plant, image)
+            # Upload the user's image to the user_plant_images table in the database
+            self.database_handler.upload_user_plant_image(self.current_plant, image)
             return {
                 "success": True,
                 "message": "Image verified and uploaded successfully"
