@@ -1,4 +1,5 @@
 import random
+from game_utils.database_handler import DatabaseHandler
 from game_utils.plant_summarizer import PlantSummarizer
 from game_utils.plant_classifier import PlantClassifier
 
@@ -8,11 +9,17 @@ class PlantGame:
     """
 
     def __init__(self):
-        self.all_plants = self.load_plants()
+        self.database_handler = DatabaseHandler()
+        self.all_plants = self.database_handler.get_all_plants()
         self.current_plant = None
         self.summarizer = PlantSummarizer()
         self.plant_classifier = PlantClassifier()
 
+    def load_plant_scientific_names(self) -> list[str]:
+        """
+        Load the names of the plants from the database.
+        """
+        return [plant["scientific_name"] for plant in self.database_handler.get_all_plants_by_scientific_name()]
 
     def get_random_plant(self) -> str:
         """
@@ -25,12 +32,6 @@ class PlantGame:
         self.current_plant = plant
         return plant
 
-    def load_plants(self) -> list[str]:
-        """
-        Load the names of the plants from the database.
-        Will be replaced with a database in the future.
-        """
-        return ["Plant 1", "Plant 2", "Plant 3"]
 
     def verify_and_process(self, plant_id, image, filename):
         return {}
