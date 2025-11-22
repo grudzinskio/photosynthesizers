@@ -6,10 +6,13 @@ interface LoadingSpinnerProps {
 
 export function LoadingSpinner({ message = "Analyzing..." }: LoadingSpinnerProps) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div className="flex flex-col items-center gap-6 rounded-xl bg-background p-8 sm:p-10 shadow-2xl border border-border mx-4 max-w-sm">
-        <Loader2 className="size-16 sm:size-20 animate-spin text-primary" />
-        <p className="text-lg sm:text-xl font-semibold text-center">{message}</p>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md">
+      <div className="flex flex-col items-center gap-8 rounded-2xl bg-card/95 backdrop-blur-sm p-10 sm:p-12 shadow-2xl border-4 border-green-300 dark:border-green-700 mx-4 max-w-sm">
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full blur-2xl opacity-40 animate-pulse" />
+          <Loader2 className="relative size-20 sm:size-24 animate-spin text-green-600 dark:text-green-400" />
+        </div>
+        <p className="text-xl sm:text-2xl font-bold text-center text-green-800 dark:text-green-200">{message}</p>
       </div>
     </div>
   );

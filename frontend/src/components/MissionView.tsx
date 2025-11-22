@@ -3,6 +3,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Camera, ArrowLeft } from 'lucide-react';
+import insideDomeImg from "@/assets/inside_dome.webp";
 
 interface MissionViewProps {
   mission: Mission;
@@ -13,17 +14,25 @@ interface MissionViewProps {
 
 export function MissionView({ mission, domeName, onFoundIt, onChangeDome }: MissionViewProps) {
   return (
-    <div className="flex flex-col min-h-svh p-4 sm:p-6 bg-background">
+    <div className="relative flex flex-col min-h-svh p-4 sm:p-6 lg:p-8 overflow-hidden">
+      {/* Background image with overlay */}
+      <div 
+        className="absolute inset-0 bg-cover bg-bottom opacity-60"
+        style={{ backgroundImage: `url(${insideDomeImg})` }}
+        role="presentation"
+        aria-hidden="true"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/30 to-background/40" aria-hidden="true" />
       {/* Header with dome badge */}
-      <div className="flex items-center justify-between mb-6 gap-2">
-        <Badge variant="secondary" className="text-sm sm:text-base px-4 py-2 font-medium">
+      <div className="relative z-10 flex items-center justify-between mb-8 gap-2 max-w-3xl mx-auto w-full">
+        <Badge variant="secondary" className="text-sm sm:text-base px-5 py-2.5 font-semibold bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100 border border-green-300 dark:border-green-700">
           {domeName}
         </Badge>
         <Button
           variant="ghost"
           size="sm"
           onClick={onChangeDome}
-          className="gap-2 min-h-[44px] px-3"
+          className="gap-2 min-h-[44px] px-4 hover:bg-green-100 dark:hover:bg-green-900"
         >
           <ArrowLeft className="size-4" />
           <span className="hidden sm:inline">Change Dome</span>
@@ -32,43 +41,46 @@ export function MissionView({ mission, domeName, onFoundIt, onChangeDome }: Miss
       </div>
 
       {/* Mission Card */}
-      <Card className="flex-1 flex flex-col max-w-2xl mx-auto w-full shadow-md">
-        <CardHeader className="pb-4">
-          <CardTitle className="text-xl sm:text-2xl font-bold">Your Mission</CardTitle>
+      <Card className="relative z-10 flex-1 flex flex-col max-w-3xl mx-auto w-full shadow-2xl border-2 border-green-200 dark:border-green-800 bg-card/95 backdrop-blur-sm">
+        <CardHeader className="pb-6 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 border-b-2 border-green-200 dark:border-green-800">
+          <CardTitle className="text-2xl sm:text-3xl font-bold text-green-800 dark:text-green-200">Your Mission</CardTitle>
         </CardHeader>
 
-        <CardContent className="flex-1 flex flex-col gap-6 px-4 sm:px-6">
+        <CardContent className="flex-1 flex flex-col gap-8 px-6 sm:px-8 py-8">
           {/* Riddle Text */}
-          <div className="text-base sm:text-lg leading-relaxed text-foreground p-4 bg-muted/50 rounded-lg border border-border">
-            {mission.riddle}
+          <div className="text-base sm:text-lg leading-relaxed text-foreground p-6 bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-950 dark:to-yellow-950 rounded-xl border-2 border-amber-200 dark:border-amber-800 shadow-md">
+            <p className="italic font-medium">{mission.riddle}</p>
           </div>
 
           {/* Reference Image */}
           {mission.referenceImage && (
-            <div className="flex flex-col gap-3">
-              <p className="text-sm sm:text-base text-muted-foreground font-semibold">
+            <div className="flex flex-col gap-4">
+              <p className="text-sm sm:text-base text-muted-foreground font-bold uppercase tracking-wide">
                 Reference Image:
               </p>
-              <img
-                src={mission.referenceImage}
-                alt="Plant reference"
-                className="w-full rounded-lg object-cover max-h-[300px] sm:max-h-[400px] shadow-md border border-border"
-                onError={(e) => {
-                  e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23f0f0f0" width="400" height="300"/%3E%3Ctext fill="%23999" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3EImage unavailable%3C/text%3E%3C/svg%3E';
-                }}
-              />
+              <div className="relative group">
+                <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+                <img
+                  src={mission.referenceImage}
+                  alt="Plant reference"
+                  className="relative w-full rounded-xl object-cover max-h-[350px] sm:max-h-[450px] shadow-xl border-4 border-green-200 dark:border-green-800"
+                  onError={(e) => {
+                    e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23f0f0f0" width="400" height="300"/%3E%3Ctext fill="%23999" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3EImage unavailable%3C/text%3E%3C/svg%3E';
+                  }}
+                />
+              </div>
             </div>
           )}
         </CardContent>
 
-        <CardFooter className="flex flex-col gap-2 pt-6 px-4 sm:px-6 pb-6">
+        <CardFooter className="flex flex-col gap-2 pt-6 px-6 sm:px-8 pb-8 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 border-t-2 border-green-200 dark:border-green-800">
           {/* Primary Action Button */}
           <Button
             onClick={onFoundIt}
             size="lg"
-            className="w-full min-h-[56px] text-base sm:text-lg font-semibold gap-3 hover:scale-[1.02] transition-all"
+            className="w-full min-h-[60px] text-base sm:text-lg font-bold gap-3 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-200"
           >
-            <Camera className="size-5 sm:size-6" />
+            <Camera className="size-6 sm:size-7" />
             Found it!
           </Button>
         </CardFooter>

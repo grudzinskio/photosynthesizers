@@ -117,4 +117,46 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Ensure consistent viewport sizing across devices */
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
+  /* Smooth scrolling for better UX */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  /* Custom text shadow utility for better readability */
+  .text-shadow-glow {
+    text-shadow: 0 2px 8px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.8);
+  }
+  
+  /* Smooth hover transitions */
+  .transition-smooth {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Ensure images scale consistently */
+  .dome-image-container {
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 1;
+  }
+  
+  @media (min-width: 640px) {
+    .dome-image-container {
+      max-width: 300px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .dome-image-container {
+      max-width: 320px;
+    }
+  }
 }
