@@ -10,7 +10,7 @@ class PlantGame:
 
     def __init__(self):
         self.database_handler = DatabaseHandler()
-        self.all_plants = self.database_handler.get_all_plants()
+        self.all_plants = self.load_plant_scientific_names()
         self.current_plant = None
         self.summarizer = PlantSummarizer()
         self.plant_classifier = PlantClassifier()
@@ -33,8 +33,36 @@ class PlantGame:
         return plant
 
 
-    def verify_and_process(self, plant_id, image, filename):
-        return {}
+    def verify_and_upload_image(self, image):
+        """
+        Verify an image and upload it to the database.
+        """
+        try:
+            # Verify the image
+            result = self.plant_classifier.classify_image(image)
+            if not result.get("success"):
+                return {
+                    "success": False,
+                    "message": "Failed to classify image"
+                }
+            # Does the image match the user's current_plant?
+            if result.get("plant_name") != self.current_plant:
+                return {
+                    "success": False,
+                    "message": "Oops! The image does not match the plant"
+                }
+        
+            # Upload the image to the database
+            self.database_handler.add_plant_image(self.current_plant, image)
+            return {
+                "success": True,
+                "message": "Image verified and uploaded successfully"
+            }
+        except Exception as e:
+            return {
+                "success": False,
+                "message": f"Error verifying and uploading image: {str(e)}"
+            }
 
     def summarize_plant(self, plant_name=None):
         """
