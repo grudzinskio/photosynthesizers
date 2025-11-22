@@ -1,22 +1,25 @@
 from fastapi import APIRouter, HTTPException, UploadFile, File, Form
 from schemas import SummaryRequest, SummaryResponse, QuestionRequest, QuestionResponse
 from plant_game import PlantGame
+from game_utils.database_handler import DatabaseHandler
 
 # Create router
 router = APIRouter(prefix="/api/game", tags=["plant-game"])
 
 # Initialize the game service
 game = PlantGame()
-
+database_handler = DatabaseHandler()
 
 @router.get("/random-plant")
 async def get_random_plant():
     """
     Get a random plant for the user to find.
+    Get an image of the plant from the database.
     This sets the current plant in the game.
     """
     try:
         plant_name = game.get_random_plant()
+        plant = database_handler.get_plant_by_scientific_name(plant_name)
         return {
             "plant_name": plant_name,
             "success": True
@@ -29,10 +32,7 @@ async def get_random_plant():
 
 
 @router.post("/submit-image")
-async def submit_plant_image(
-    plant_id: int = Form(...),
-    image: UploadFile = File(...)
-):
+async def submit_plant_image(image: UploadFile = File(...)):
     """
     Submit plant image for verification.
     Classifies the image and returns success if it matches the target plant.
@@ -42,21 +42,10 @@ async def submit_plant_image(
         image_bytes = await image.read()
         
         # Process through game logic
-        result = game.verify_and_process(plant_id, image_bytes, image.filename)
-        
-        # Handle errors
-        if not result.get("success"):
-            raise HTTPException(status_code=404, detail=result.get("error"))
-        
+        result = game.verify_and_upload_image(image_bytes, image.filename)
         return result
-        
-    except HTTPException:
-        raise
     except Exception as e:
-        raise HTTPException(
-            status_code=500,
-            detail=f"Error processing image: {str(e)}"
-        )
+        raise HTTPException(status_code=500, detail=f"Error processing image: {str(e)}")
 
 
 @router.post("/summarize", response_model=SummaryResponse)

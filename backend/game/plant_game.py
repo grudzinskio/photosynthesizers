@@ -1,4 +1,5 @@
 import random
+from game_utils.database_handler import DatabaseHandler
 from game_utils.plant_summarizer import PlantSummarizer
 from game_utils.plant_classifier import PlantClassifier
 
@@ -8,11 +9,17 @@ class PlantGame:
     """
 
     def __init__(self):
-        self.all_plants = self.load_plants()
+        self.database_handler = DatabaseHandler()
+        self.all_plants = self.load_plant_scientific_names()
         self.current_plant = None
         self.summarizer = PlantSummarizer()
         self.plant_classifier = PlantClassifier()
 
+    def load_plant_scientific_names(self) -> list[str]:
+        """
+        Load the names of the plants from the database.
+        """
+        return [plant["scientific_name"] for plant in self.database_handler.get_all_plants_by_scientific_name()]
 
     def get_random_plant(self) -> str:
         """
@@ -25,15 +32,37 @@ class PlantGame:
         self.current_plant = plant
         return plant
 
-    def load_plants(self) -> list[str]:
-        """
-        Load the names of the plants from the database.
-        Will be replaced with a database in the future.
-        """
-        return ["Plant 1", "Plant 2", "Plant 3"]
 
-    def verify_and_process(self, plant_id, image, filename):
-        return {}
+    def verify_and_upload_image(self, image):
+        """
+        Verify an image and upload it to the database.
+        """
+        try:
+            # Verify the image
+            result = self.plant_classifier.classify_image(image)
+            if not result.get("success"):
+                return {
+                    "success": False,
+                    "message": "Failed to classify image"
+                }
+            # Does the image match the user's current_plant?
+            if result.get("plant_name") != self.current_plant:
+                return {
+                    "success": False,
+                    "message": "Oops! The image does not match the plant"
+                }
+        
+            # Upload the user's image to the user_plant_images table in the database
+            self.database_handler.upload_user_plant_image(self.current_plant, image)
+            return {
+                "success": True,
+                "message": "Image verified and uploaded successfully"
+            }
+        except Exception as e:
+            return {
+                "success": False,
+                "message": f"Error verifying and uploading image: {str(e)}"
+            }
 
     def summarize_plant(self, plant_name=None):
         """

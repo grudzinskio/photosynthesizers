@@ -1,5 +1,6 @@
-flask
-flask-cors
+fastapi
+uvicorn[standard]
+python-multipart
 pandas
 openpyxl
 ollama
@@ -10,3 +11,4 @@ jupyter
 notebook
 matplotlib
 supabase
+python-dotenv
