@@ -5,7 +5,7 @@ from api.schemas import (
     PlantDataResponse, 
     PlantSearchResponse
 )
-from game_utils.excel_loader_service import ExcelLoaderService
+from excel_loader_service import ExcelLoaderService
 
 # Create router
 router = APIRouter(prefix="/api/excel", tags=["excel-loader"])
