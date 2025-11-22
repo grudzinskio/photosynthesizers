@@ -1,6 +1,9 @@
 import os
 import requests
 from tavily import TavilyClient
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class PlantSummarizer:
     def __init__(self, tavily_api_key=None, openai_api_key=None):
@@ -16,7 +19,12 @@ class PlantSummarizer:
         )
         
         self.api_key = openai_api_key or os.getenv("OPENAI_API_KEY")
-        self.api_url = "https://api.openai.com/v1/chat/completions"
+        self.api_url = "https://api.openai.com/v1/chat/completions""
+
+
+    """
+    WHEN THE USER GETS THE PLANT NAME CORRECTLY, THEN WE WILL GET THE SUMMARY OF THE PLANT.
+    """
         
     def summarize(self, plant, model="gpt-4o-mini", max_tokens=500):
         """
@@ -31,7 +39,7 @@ class PlantSummarizer:
             str: Summary of the plant
         """
         # Search for plant information using Tavily
-        search_query = f"{plant} plant care growing information"
+        search_query = f"{plant} plant information"
         search_results = self.tavily_client.search(
             query=search_query,
             search_depth="advanced",
@@ -63,12 +71,11 @@ class PlantSummarizer:
         - Basic description and characteristics
         - Growing conditions (light, water, soil)
         - Care requirements
-        - Common uses or benefits
 
         Information:
         {context}
 
-        Please provide a clear, informative summary:"""
+        Please provide a clear, informative summary of the plant for users in a botanical garden to help them learn more about it."""
 
         headers = {
             "Authorization": f"Bearer {self.api_key}",
@@ -100,6 +107,22 @@ class PlantSummarizer:
         
         result = response.json()
         return result['choices'][0]['message']['content']
+
+    """
+    WHEN THE USER ASKS A FOLLOW UP QUESTION
+    """
+    
+    def follow_up_question(self, question):
+        """
+        Generate a response to a follow up question.
+        """
+        prompt = f"""Based on the following information about {plant}, provide a comprehensive answer to the question: {question}.
+
+        Information:
+        {context}
+
+        Please provide a clear, informative summary of the plant for users in a botanical garden to help them learn more about it."""
+        pass
 
 
 # Example usage
