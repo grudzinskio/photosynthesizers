@@ -1,13 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from api import routes as game_routes
-from api import excel_routes
 import uvicorn
 
 # Create FastAPI app
 app = FastAPI(
-    title="Plant Game API",
-    description="API for the HacksGiving 2025 Plant Game",
+    title="Plant Game Admin API",
+    description="API for the HacksGiving 2025 Plant Game Admin",
     version="1.0.0"
 )
 
@@ -22,21 +21,6 @@ app.add_middleware(
 
 # Include routers
 app.include_router(game_routes.router)
-app.include_router(excel_routes.router)
-
-
-@app.get("/")
-async def root():
-    """Root endpoint"""
-    return {
-        "message": "Plant Game API",
-        "version": "1.0.0",
-        "endpoints": {
-            "game": "/api/game",
-            "excel": "/api/excel"
-        }
-    }
-
 
 @app.get("/health")
 async def health_check():
@@ -44,4 +28,4 @@ async def health_check():
     return {"status": "healthy"}
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="localhost", port=8001)
+    uvicorn.run(app, host="localhost", port=8003)
