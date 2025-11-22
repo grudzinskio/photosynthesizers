@@ -1,8 +1,5 @@
-from fastapi import APIRouter, HTTPException
-from schemas import PlantRequest, PlantResponse
-from plant_summarizer import PlantSummarizer
 from fastapi import APIRouter, HTTPException, UploadFile, File, Form
-
+from schemas import SummaryRequest, SummaryResponse, QuestionRequest, QuestionResponse
 from plant_game import PlantGame
 
 # Create router
@@ -11,23 +8,35 @@ router = APIRouter(prefix="/api/game", tags=["plant-game"])
 # Initialize the game service
 game = PlantGame()
 
+
 @router.get("/random-plant")
 async def get_random_plant():
-    """Get a random plant for the user to find"""
+    """
+    Get a random plant for the user to find.
+    This sets the current plant in the game.
+    """
     try:
-        return game.get_random_plant()
+        plant_name = game.get_random_plant()
+        return {
+            "plant_name": plant_name,
+            "success": True
+        }
     except Exception as e:
         raise HTTPException(
             status_code=500,
             detail=f"Error getting random plant: {str(e)}"
         )
 
+
 @router.post("/submit-image")
 async def submit_plant_image(
     plant_id: int = Form(...),
     image: UploadFile = File(...)
 ):
-    """Submit plant image for verification"""
+    """
+    Submit plant image for verification.
+    Classifies the image and returns success if it matches the target plant.
+    """
     try:
         # Read image bytes
         image_bytes = await image.read()
@@ -36,7 +45,7 @@ async def submit_plant_image(
         result = game.verify_and_process(plant_id, image_bytes, image.filename)
         
         # Handle errors
-        if not result["success"]:
+        if not result.get("success"):
             raise HTTPException(status_code=404, detail=result.get("error"))
         
         return result
@@ -49,31 +58,60 @@ async def submit_plant_image(
             detail=f"Error processing image: {str(e)}"
         )
 
-@router.post("/summarize", response_model=PlantResponse)
-async def summarize_plant(request: PlantRequest):
+
+@router.post("/summarize", response_model=SummaryResponse)
+async def summarize_plant(request: SummaryRequest):
     """
-    Get a summary of a plant based on its name.
-    
-    Args:
-        request: PlantRequest containing plant_name, optional model and max_tokens
-        
-    Returns:
-        PlantResponse with the plant summary
+    Get a summary of a plant.
+    If plant_name is provided, summarizes that plant.
+    Otherwise, summarizes the current plant from the game.
     """
     try:
-        summary = summarizer.summarize(
-            plant=request.plant_name,
-            model=request.model,
-            max_tokens=request.max_tokens
-        )
+        result = game.summarize_plant(request.plant_name)
         
-        return PlantResponse(
-            plant_name=request.plant_name,
-            summary=summary,
+        if not result.get("success"):
+            raise HTTPException(
+                status_code=400,
+                detail=result.get("error", "Failed to summarize plant")
+            )
+        
+        return SummaryResponse(
+            plant_name=result["plant_name"],
+            summary=result["summary"],
             success=True
         )
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(
             status_code=500,
             detail=f"Error generating summary: {str(e)}"
+        )
+
+
+@router.post("/ask-question", response_model=QuestionResponse)
+async def ask_plant_question(request: QuestionRequest):
+    """
+    Ask a follow-up question about the current plant.
+    The game must have a current plant set (from get_random_plant).
+    """
+    try:
+        result = game.answer_plant_question(request.question)
+        
+        if not result.get("success"):
+            raise HTTPException(
+                status_code=400,
+                detail=result.get("error", "Failed to answer question")
+            )
+        
+        return QuestionResponse(
+            answer=result["answer"],
+            success=True
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error answering question: {str(e)}"
         )

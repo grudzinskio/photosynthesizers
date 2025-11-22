@@ -1,4 +1,4 @@
-import pydantic
+from pydantic import BaseModel
 from typing import Optional
 
 
@@ -6,10 +6,10 @@ from typing import Optional
 SCHEMAS FOR SUMMARIZING A PLANT 
 """
 
-def SummaryRequest(BaseModel):
-    plant_name: str
+class SummaryRequest(BaseModel):
+    plant_name: Optional[str] = None
 
-def SummaryResponse(BaseModel):
+class SummaryResponse(BaseModel):
     plant_name: str
     summary: str
     success: bool
@@ -17,22 +17,9 @@ def SummaryResponse(BaseModel):
 """
 SCHEMAS FOR ANSWERING A PLANT FOLLOW UP QUESTION
 """
-def FollowUpRequest(BaseModel):
+class QuestionRequest(BaseModel):
     question: str
 
-def FollowUpResponse(BaseModel):
+class QuestionResponse(BaseModel):
     answer: str
     success: bool
-
-"""
-SCHEMAS FOR VERIFYING A PLANT IMAGE
-"""
-
-def VerifyImageRequest(BaseModel):
-    image: bytes
-    filename: str
-
-def VerifyImageResponse(BaseModel):
-    success: bool
-    error: Optional[str] = None
-
