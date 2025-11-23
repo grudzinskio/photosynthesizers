@@ -2,7 +2,7 @@ import open_clip
 import torch
 from PIL import Image
 import io
-from game_utils.database_handler import DatabaseHandler
+from game_utils.supabase_handler import SupabaseHandler
 
 class PlantClassifier:
     # Class-level cache to avoid reloading model for each instance
@@ -57,7 +57,7 @@ class PlantClassifier:
         print("Loading plants from database...")
         
         # Get all plants from database
-        db_handler = DatabaseHandler()
+        db_handler = SupabaseHandler()
         all_plants = db_handler.get_all_plants_by_scientific_name()
         
         # Extract scientific names
