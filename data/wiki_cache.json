@@ -1,0 +1,2298 @@
+{
+  "Adiantum peruvianum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Adiantum_peruvianum-2.jpg/1000px-Adiantum_peruvianum-2.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Adiantum_peruvianum.jpg",
+    "title": ""
+  },
+  "Adiantum raddianum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Starr_030807-0143_Adiantum_raddianum.jpg/1000px-Starr_030807-0143_Adiantum_raddianum.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Adiantum_raddianum.jpg",
+    "title": ""
+  },
+  "Adiantum ternerum": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Adiantum trapeziforme": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Adiantum_trapeziforme.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Adiantum_trapeziforme.jpg",
+    "title": ""
+  },
+  "Aechmea": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Aechmea_fasciata_inflorescence.jpg/1000px-Aechmea_fasciata_inflorescence.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aechmea.jpg",
+    "title": ""
+  },
+  "Aechmea blanchetiana": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Aechmea_blanchetiana_20090111.jpg/1000px-Aechmea_blanchetiana_20090111.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aechmea_blanchetiana.jpg",
+    "title": ""
+  },
+  "Aechmea chantinii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Aechmea_chantinii_Variegata_BotGardBln1105a.jpg/1000px-Aechmea_chantinii_Variegata_BotGardBln1105a.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aechmea_chantinii.jpg",
+    "title": ""
+  },
+  "Aechmea fasciata": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Aechmea_fasciata2.jpg/1000px-Aechmea_fasciata2.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aechmea_fasciata.jpg",
+    "title": ""
+  },
+  "Aechmea fulgens": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/1/13/Aechmeafulgens.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aechmea_fulgens.jpg",
+    "title": ""
+  },
+  "Aechmea gamosepala": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/9/90/Aechmea_gamosepala.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aechmea_gamosepala.jpg",
+    "title": ""
+  },
+  "Aechmea miniata": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Aechmea_miniata_discolor_HabitusInflorescence_BotGardBln0906.jpg/1000px-Aechmea_miniata_discolor_HabitusInflorescence_BotGardBln0906.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aechmea_miniata.jpg",
+    "title": ""
+  },
+  "Alocasia baginda": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PXL_20220721_201128151.jpg/1000px-PXL_20220721_201128151.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Alocasia_baginda.jpg",
+    "title": ""
+  },
+  "Alocasia heterophylla": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Alocasia_heterophylla_%28Philippines%29_0003.jpg/1000px-Alocasia_heterophylla_%28Philippines%29_0003.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Alocasia_heterophylla.jpg",
+    "title": ""
+  },
+  "Alocasia reginula": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Alocasia_reginula_%28Philippines%29_01.jpg/1000px-Alocasia_reginula_%28Philippines%29_01.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Alocasia_reginula.jpg",
+    "title": ""
+  },
+  "Alocasia zebrina": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Alocasia_zebrina_4zz.jpg/1000px-Alocasia_zebrina_4zz.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Alocasia_zebrina.jpg",
+    "title": ""
+  },
+  "Alpinia vittata": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Amorphophallus bulbifer": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Amorphophallus_bulbifer_%28scott.zona%29_001.jpg/1000px-Amorphophallus_bulbifer_%28scott.zona%29_001.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Amorphophallus_bulbifer.jpg",
+    "title": ""
+  },
+  "Amorphophallus konjac": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Amorphophallus_konjac_CBM.png/1000px-Amorphophallus_konjac_CBM.png",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Amorphophallus_konjac.jpg",
+    "title": ""
+  },
+  "Amorphophallus titanum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Amorphophallus_titanum_%28corpse_flower%29_-_2.jpg/1000px-Amorphophallus_titanum_%28corpse_flower%29_-_2.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Amorphophallus_titanum.jpg",
+    "title": ""
+  },
+  "Anthurium": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Anthurium3.JPG/1000px-Anthurium3.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Anthurium.jpg",
+    "title": ""
+  },
+  "Anthurium andraeanum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/AnthuriumAndraenum.jpg/1000px-AnthuriumAndraenum.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Anthurium_andraeanum.jpg",
+    "title": ""
+  },
+  "Anthurium atropurpureum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Anthurium3.JPG/1000px-Anthurium3.JPG",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Anthurium_atropurpureum.jpg",
+    "title": ""
+  },
+  "Anthurium clarinervium": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Anthurium_clarinervium.jpg/1000px-Anthurium_clarinervium.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Anthurium_clarinervium.jpg",
+    "title": ""
+  },
+  "Anthurium ensifolium": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Anthurium3.JPG/1000px-Anthurium3.JPG",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Anthurium_ensifolium.jpg",
+    "title": ""
+  },
+  "Anthurium forgetii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Anthurium_forgetii_potted.jpg/1000px-Anthurium_forgetii_potted.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Anthurium_forgetii.jpg",
+    "title": ""
+  },
+  "Anthurium gracile": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Anthurium_gracile_IMG_1673.jpg/1000px-Anthurium_gracile_IMG_1673.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Anthurium_gracile.jpg",
+    "title": ""
+  },
+  "Anthurium grandifolium": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Anthurium3.JPG/1000px-Anthurium3.JPG",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Anthurium_grandifolium.jpg",
+    "title": ""
+  },
+  "Anthurium hybrid": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Anthurium3.JPG/1000px-Anthurium3.JPG",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Anthurium_hybrid.jpg",
+    "title": ""
+  },
+  "Anthurium magnificum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Anthurium_magnificum_a1.jpg/1000px-Anthurium_magnificum_a1.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Anthurium_magnificum.jpg",
+    "title": ""
+  },
+  "Anthurium pedatoradiatum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/%E9%B5%9D%E6%8E%8C%E8%8A%B1%E7%87%AD20190805183546_02.jpg/1000px-%E9%B5%9D%E6%8E%8C%E8%8A%B1%E7%87%AD20190805183546_02.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Anthurium_pedatoradiatum.jpg",
+    "title": ""
+  },
+  "Anthurium pentaphyllum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Anthurium_pentaphyllum_%28Aubl.%29_G._Don_%2812477367715%29.jpg/1000px-Anthurium_pentaphyllum_%28Aubl.%29_G._Don_%2812477367715%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Anthurium_pentaphyllum.jpg",
+    "title": ""
+  },
+  "Anthurium podophyllum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Anthurium_podophyllum_in_Veracruz_Mexico.jpg/1000px-Anthurium_podophyllum_in_Veracruz_Mexico.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Anthurium_podophyllum.jpg",
+    "title": ""
+  },
+  "Anthurium veitchii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Anthurium_veitchii_03.jpg/1000px-Anthurium_veitchii_03.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Anthurium_veitchii.jpg",
+    "title": ""
+  },
+  "Anthurium vittarifolium": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/%E5%9E%82%E8%91%89%E8%8A%B1%E7%87%AD_Anthurium_wendlingeri_20190806183918_12.jpg/1000px-%E5%9E%82%E8%91%89%E8%8A%B1%E7%87%AD_Anthurium_wendlingeri_20190806183918_12.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Anthurium_vittarifolium.jpg",
+    "title": ""
+  },
+  "Anthurium willdenowii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Anthurium3.JPG/1000px-Anthurium3.JPG",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Anthurium_willdenowii.jpg",
+    "title": ""
+  },
+  "Arachniodes simplicior": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Starr_080117-1775_Arachniodes_simplicior.jpg/1000px-Starr_080117-1775_Arachniodes_simplicior.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Arachniodes_simplicior.jpg",
+    "title": ""
+  },
+  "Artocarpus altilis": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Artocarpus_altilis_%28fruit%29.jpg/1000px-Artocarpus_altilis_%28fruit%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Artocarpus_altilis.jpg",
+    "title": ""
+  },
+  "Asparagus": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Aspidistra elatior": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Aspidistra_elatior1.jpg/1000px-Aspidistra_elatior1.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aspidistra_elatior.jpg",
+    "title": ""
+  },
+  "Begonia cleopatrae": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Begonia_obliqua00.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Begonia_cleopatrae.jpg",
+    "title": ""
+  },
+  "Begonia": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Begonia_obliqua00.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Begonia.jpg",
+    "title": ""
+  },
+  "Bignonia argyreoviolascens": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Billbergia": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Billbergia_amoena_imported_from_iNaturalist_photo_103342988_on_28_November_2023.jpg/1000px-Billbergia_amoena_imported_from_iNaturalist_photo_103342988_on_28_November_2023.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Billbergia.jpg",
+    "title": ""
+  },
+  "Billbergia chlorostica": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Billbergia_amoena_imported_from_iNaturalist_photo_103342988_on_28_November_2023.jpg/1000px-Billbergia_amoena_imported_from_iNaturalist_photo_103342988_on_28_November_2023.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Billbergia_chlorostica.jpg",
+    "title": ""
+  },
+  "Billbergia nutans": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Billbergia_nutans1SHSU.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Billbergia_nutans.jpg",
+    "title": ""
+  },
+  "Billbergia pyramidalis": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Billbergia_pyramidalis_in_Hyderabad_Nursery_W_IMG_0425.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Billbergia_pyramidalis.jpg",
+    "title": ""
+  },
+  "Bosenbergia rotunda": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Caladium": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Caladium_schomburgkii_changjur-1-yercaud-salem-India.JPG/1000px-Caladium_schomburgkii_changjur-1-yercaud-salem-India.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Caladium.jpg",
+    "title": ""
+  },
+  "Caladium praetermissum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Caladium_praetermissum_kz01.jpg/1000px-Caladium_praetermissum_kz01.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Caladium_praetermissum.jpg",
+    "title": ""
+  },
+  "Goeppertia bella": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Calathea_bella_kz1.jpg/1000px-Calathea_bella_kz1.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Goeppertia_bella.jpg",
+    "title": ""
+  },
+  "Calathea crotalifera": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Starr_080716-9470_Calathea_crotalifera.jpg/1000px-Starr_080716-9470_Calathea_crotalifera.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Calathea_crotalifera.jpg",
+    "title": ""
+  },
+  "Goeppertia majestica": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/%E7%B7%9A%E7%B4%8B%E7%AB%B9%E8%8A%8B_Calathea_majestica_-%E6%96%B0%E5%8A%A0%E5%9D%A1%E6%A4%8D%E7%89%A9%E5%9C%92_Singapore_Botanic_Gardens-_%289255248072%29.jpg/1000px-%E7%B7%9A%E7%B4%8B%E7%AB%B9%E8%8A%8B_Calathea_majestica_-%E6%96%B0%E5%8A%A0%E5%9D%A1%E6%A4%8D%E7%89%A9%E5%9C%92_Singapore_Botanic_Gardens-_%289255248072%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Goeppertia_majestica.jpg",
+    "title": ""
+  },
+  "Campyloneurum aglaolepis": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Cananga odorata": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Cananga_odorata_01.JPG/1000px-Cananga_odorata_01.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Cananga_odorata.jpg",
+    "title": ""
+  },
+  "Ceratozamia mexicana": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/5/52/Ceratozamia_Mexicana_400pix_-_in_Czechia.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Ceratozamia_mexicana.jpg",
+    "title": ""
+  },
+  "Ceratozamia robusta": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Ceratozamia_robusta-IMG_9662.JPG/1000px-Ceratozamia_robusta-IMG_9662.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Ceratozamia_robusta.jpg",
+    "title": ""
+  },
+  "Chamaedorea metallica": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/ChamaedoreaMetallica.jpg/1000px-ChamaedoreaMetallica.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Chamaedorea_metallica.jpg",
+    "title": ""
+  },
+  "Chondrodendron tomentosum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/R._Bentley_%26_H._Trimen%2C_Medicinal_Plants_Wellcome_L0019166.jpg/1000px-R._Bentley_%26_H._Trimen%2C_Medicinal_Plants_Wellcome_L0019166.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Chondrodendron_tomentosum.jpg",
+    "title": ""
+  },
+  "Citrus medica": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Chinesische_Zedrat_Zitrone.jpg/1000px-Chinesische_Zedrat_Zitrone.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Citrus_medica.jpg",
+    "title": ""
+  },
+  "Citrus sinensis": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/b/b0/OrangeBloss_wb.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Citrus_sinensis.jpg",
+    "title": ""
+  },
+  "Clerodendrum quadriloculare": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Clerodendrum_quadriloculare.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Clerodendrum_quadriloculare.jpg",
+    "title": ""
+  },
+  "Cola acuminata": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Cola_acuminata%2C_flower_of_the_Kola_Nut_tree_%289906050364%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Cola_acuminata.jpg",
+    "title": ""
+  },
+  "Colocasia": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Taimo_Okinawa.jpg/1000px-Taimo_Okinawa.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Colocasia.jpg",
+    "title": ""
+  },
+  "Colocasia fallax": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Colocasia_fallax_1zz.jpg/1000px-Colocasia_fallax_1zz.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Colocasia_fallax.jpg",
+    "title": ""
+  },
+  "Costus guanaiensis": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Costus afer": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Costus_afer_%28Flower%29.jpg/1000px-Costus_afer_%28Flower%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Costus_afer.jpg",
+    "title": ""
+  },
+  "Cubanola domingensis": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Gardenology.org-IMG_1978_hunt08sep.jpg/1000px-Gardenology.org-IMG_1978_hunt08sep.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Cubanola_domingensis.jpg",
+    "title": ""
+  },
+  "Curcuma alismatifolia": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/7/74/Siam_Tulip.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Curcuma_alismatifolia.jpg",
+    "title": ""
+  },
+  "Curcuma longa": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Turmeric_inflorescence.jpg/1000px-Turmeric_inflorescence.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Curcuma_longa.jpg",
+    "title": ""
+  },
+  "Derris elliptica": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Starr_010425-0043_Derris_elliptica.jpg/1000px-Starr_010425-0043_Derris_elliptica.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Derris_elliptica.jpg",
+    "title": ""
+  },
+  "Disocactus anguliger": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/4/47/Epiphyllum_anguliger1Emma_Lindahl.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Disocactus_anguliger.jpg",
+    "title": ""
+  },
+  "Disocactus": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Disocactus_biformis_%28Phyllocactus_biformis%29_1.34.jpg/1000px-Disocactus_biformis_%28Phyllocactus_biformis%29_1.34.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Disocactus.jpg",
+    "title": ""
+  },
+  "Dracaena angolensis": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Sansevieria_cylindrica_flowers_7.jpg/1000px-Sansevieria_cylindrica_flowers_7.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Dracaena_angolensis.jpg",
+    "title": ""
+  },
+  "Epipremnum pinnatum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Wild_Epipremnum_pinnatum_%28tibatib%29_-_Misamis_Oriental%2C_Philippines_04.jpg/1000px-Wild_Epipremnum_pinnatum_%28tibatib%29_-_Misamis_Oriental%2C_Philippines_04.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Epipremnum_pinnatum.jpg",
+    "title": ""
+  },
+  "Urceolina caucana": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Eucomis comosa": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Eucomis_punctata_913.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Eucomis_comosa.jpg",
+    "title": ""
+  },
+  "Ficus montana": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Ficus_montana_kz3.jpg/1000px-Ficus_montana_kz3.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Ficus_montana.jpg",
+    "title": ""
+  },
+  "Ficus pumila": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Ficus_pumila_%28Leafs%29.jpg/1000px-Ficus_pumila_%28Leafs%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Ficus_pumila.jpg",
+    "title": ""
+  },
+  "Ficus villosa": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Ficus_villosa.jpg/1000px-Ficus_villosa.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Ficus_villosa.jpg",
+    "title": ""
+  },
+  "Gardenia jasminoides": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Gardenia_jasminoides_flower_Argentina.jpg/1000px-Gardenia_jasminoides_flower_Argentina.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Gardenia_jasminoides.jpg",
+    "title": ""
+  },
+  "Gonatopus boivinii": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Goudaea ospinae": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Guzmania": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/8/80/DirkvdM_red-white-stripe_flower.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Guzmania.jpg",
+    "title": ""
+  },
+  "Guzmania lingulata": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/8/84/Bromeliaceae03.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Guzmania_lingulata.jpg",
+    "title": ""
+  },
+  "Hedychium": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Starr_020803-0036_Hedychium_coronarium.jpg/1000px-Starr_020803-0036_Hedychium_coronarium.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Hedychium.jpg",
+    "title": ""
+  },
+  "Hibiscus clayi": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Malvaceae_-_Hibiscus_clayi.JPG/1000px-Malvaceae_-_Hibiscus_clayi.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Hibiscus_clayi.jpg",
+    "title": ""
+  },
+  "Hippeastrum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Hippeastrum_reginae.jpg/1000px-Hippeastrum_reginae.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Hippeastrum.jpg",
+    "title": ""
+  },
+  "Hohenbergia catingae": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/6/64/Hohenbergia_catingae_%2819458009719%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Hohenbergia_catingae.jpg",
+    "title": ""
+  },
+  "Hohenbergia lemei": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Hohenbergia rosea": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Homalocladium platycladum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Gardenology.org-IMG_0025_rbgm10dec.jpg/1000px-Gardenology.org-IMG_0025_rbgm10dec.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Homalocladium_platycladum.jpg",
+    "title": ""
+  },
+  "Hoya carnosa": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/NKN-2007-06-13_114250_Hoya_Carnosa_%28Yvan_Leduc_author_for_Wikipedia%29.jpg/1000px-NKN-2007-06-13_114250_Hoya_Carnosa_%28Yvan_Leduc_author_for_Wikipedia%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Hoya_carnosa.jpg",
+    "title": ""
+  },
+  "Pombalia communis": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Pombalia prunifolia": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Selenicereus undatus": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Pitaya_cross_section_ed2.jpg/1000px-Pitaya_cross_section_ed2.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Selenicereus_undatus.jpg",
+    "title": ""
+  },
+  "Hymenocallis caribaea": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Hymenocallis_caribaea_%28as_Pancratium_angustum%29_3.221.jpg/1000px-Hymenocallis_caribaea_%28as_Pancratium_angustum%29_3.221.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Hymenocallis_caribaea.jpg",
+    "title": ""
+  },
+  "Kaempferia pulchra": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Kaempferia_pulchra2.jpg/1000px-Kaempferia_pulchra2.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Kaempferia_pulchra.jpg",
+    "title": ""
+  },
+  "Medinilla magnifica": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Medinilla_magnifica_flor.jpg/1000px-Medinilla_magnifica_flor.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Medinilla_magnifica.jpg",
+    "title": ""
+  },
+  "Microsorum musifolium": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Microsorum punctatum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Microsorum_punctatum.jpg/1000px-Microsorum_punctatum.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Microsorum_punctatum.jpg",
+    "title": ""
+  },
+  "Monstera deliciosa": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Monstera_deliciosa2.jpg/1000px-Monstera_deliciosa2.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Monstera_deliciosa.jpg",
+    "title": ""
+  },
+  "Monstera obliqua": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Obiqula.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Monstera_obliqua.jpg",
+    "title": ""
+  },
+  "Murraya paniculata": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Murraya_paniculata_05.jpg/1000px-Murraya_paniculata_05.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Murraya_paniculata.jpg",
+    "title": ""
+  },
+  "Nematanthus": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Nematanthuswettsteinii1.jpg/1000px-Nematanthuswettsteinii1.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Nematanthus.jpg",
+    "title": ""
+  },
+  "Neoregelia": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/5/57/Neoregelia-sp.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Neoregelia.jpg",
+    "title": ""
+  },
+  "Nerium oleander": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Nerium_oleander_flowers_leaves.jpg/1000px-Nerium_oleander_flowers_leaves.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Nerium_oleander.jpg",
+    "title": ""
+  },
+  "Oncidium sphacelatum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Oncidium_sphacelatum03.jpg/1000px-Oncidium_sphacelatum03.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Oncidium_sphacelatum.jpg",
+    "title": ""
+  },
+  "Pandanus tectorius": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Pandanus_tectorius.jpg/1000px-Pandanus_tectorius.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Pandanus_tectorius.jpg",
+    "title": ""
+  },
+  "Pavonia": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Peperomia prostrata": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Peperomia_prostrata_kz01.jpg/1000px-Peperomia_prostrata_kz01.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Peperomia_prostrata.jpg",
+    "title": ""
+  },
+  "Peperomia rotundifolia": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Peperomia_rotundifolia_var._rotundifolia.jpg/1000px-Peperomia_rotundifolia_var._rotundifolia.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Peperomia_rotundifolia.jpg",
+    "title": ""
+  },
+  "Philodendron": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Philodendron_giganteum_-_Laeken_Royal_Greenhouses_-_Royal_Castle_of_Laeken_-_Brussels%2C_Belgium_-_DSC07236.jpg/1000px-Philodendron_giganteum_-_Laeken_Royal_Greenhouses_-_Royal_Castle_of_Laeken_-_Brussels%2C_Belgium_-_DSC07236.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Philodendron.jpg",
+    "title": ""
+  },
+  "Philodendron billietiae": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Philodendron_billietiae_4zz.jpg/1000px-Philodendron_billietiae_4zz.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Philodendron_billietiae.jpg",
+    "title": ""
+  },
+  "Philodendron burle-marxii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/6/63/Philodendron_burle-marxii_G.M.Barroso.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Philodendron_burle-marxii.jpg",
+    "title": ""
+  },
+  "Philodendron copense": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Philodendron_giganteum_-_Laeken_Royal_Greenhouses_-_Royal_Castle_of_Laeken_-_Brussels%2C_Belgium_-_DSC07236.jpg/1000px-Philodendron_giganteum_-_Laeken_Royal_Greenhouses_-_Royal_Castle_of_Laeken_-_Brussels%2C_Belgium_-_DSC07236.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Philodendron_copense.jpg",
+    "title": ""
+  },
+  "Philodendron gloriosum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Philodendron_gloriosum_%2829587099650%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Philodendron_gloriosum.jpg",
+    "title": ""
+  },
+  "Philodendron hastatum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Philodendron_hastatum_kz1.jpg/1000px-Philodendron_hastatum_kz1.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Philodendron_hastatum.jpg",
+    "title": ""
+  },
+  "Philodendron martianum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/PhilodendronMartianum.jpg/1000px-PhilodendronMartianum.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Philodendron_martianum.jpg",
+    "title": ""
+  },
+  "Philodendron melanochrysum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/PhilodendronMelanochrysum.jpg/1000px-PhilodendronMelanochrysum.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Philodendron_melanochrysum.jpg",
+    "title": ""
+  },
+  "Philodendron pastazanum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Philodendron_pastazanum.jpg/1000px-Philodendron_pastazanum.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Philodendron_pastazanum.jpg",
+    "title": ""
+  },
+  "Philodendron plowmanii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Philodendron_giganteum_-_Laeken_Royal_Greenhouses_-_Royal_Castle_of_Laeken_-_Brussels%2C_Belgium_-_DSC07236.jpg/1000px-Philodendron_giganteum_-_Laeken_Royal_Greenhouses_-_Royal_Castle_of_Laeken_-_Brussels%2C_Belgium_-_DSC07236.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Philodendron_plowmanii.jpg",
+    "title": ""
+  },
+  "Philodendron warscewiczii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Philodendron_giganteum_-_Laeken_Royal_Greenhouses_-_Royal_Castle_of_Laeken_-_Brussels%2C_Belgium_-_DSC07236.jpg/1000px-Philodendron_giganteum_-_Laeken_Royal_Greenhouses_-_Royal_Castle_of_Laeken_-_Brussels%2C_Belgium_-_DSC07236.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Philodendron_warscewiczii.jpg",
+    "title": ""
+  },
+  "Pilea peperomioides": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Pilea_peperomioides_Chinese_money_plant.jpg/1000px-Pilea_peperomioides_Chinese_money_plant.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Pilea_peperomioides.jpg",
+    "title": ""
+  },
+  "Piper nigrum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Piper_nigrum_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-107.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Piper_nigrum.jpg",
+    "title": ""
+  },
+  "Piper unguiculatum": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Platycerium alcicorne": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Platycerium_alcicorne_-_Berlin_Botanical_Garden_-_IMG_8687.JPG/1000px-Platycerium_alcicorne_-_Berlin_Botanical_Garden_-_IMG_8687.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Platycerium_alcicorne.jpg",
+    "title": ""
+  },
+  "Plinia cauliflora": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Jabuticaba_%28do_tupi_%C3%AEabotikaba%2C_%27gordura_de_jabuti%27%29_07.jpg/1000px-Jabuticaba_%28do_tupi_%C3%AEabotikaba%2C_%27gordura_de_jabuti%27%29_07.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Plinia_cauliflora.jpg",
+    "title": ""
+  },
+  "Plumeria rubra": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Champa_tree_with_pink_flowers_in_Islamabad%2C_Pakistan.jpg/1000px-Champa_tree_with_pink_flowers_in_Islamabad%2C_Pakistan.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Plumeria_rubra.jpg",
+    "title": ""
+  },
+  "Polyscias guilfoylei": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Polyscias_guilfoylei.jpg/1000px-Polyscias_guilfoylei.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Polyscias_guilfoylei.jpg",
+    "title": ""
+  },
+  "Portea": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Portea.JPG/1000px-Portea.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Portea.jpg",
+    "title": ""
+  },
+  "Pseuderanthemum laxiflorum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/5/57/Pseuderanthemum_laxiflorum_-Purple_Dazzler-.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Pseuderanthemum_laxiflorum.jpg",
+    "title": ""
+  },
+  "Psilotum nudum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Psilotum.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Psilotum_nudum.jpg",
+    "title": ""
+  },
+  "Quesnelia marmorata": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Quesnelia_marmorata.jpg/1000px-Quesnelia_marmorata.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Quesnelia_marmorata.jpg",
+    "title": ""
+  },
+  "Rhaphidophora tetrasperma": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/d/db/Rhaphidophora_tetrasperma.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Rhaphidophora_tetrasperma.jpg",
+    "title": ""
+  },
+  "Rhipsalis pilocarpa": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Rhipsalis_pilocarpa_cutting_with_flowers_02.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Rhipsalis_pilocarpa.jpg",
+    "title": ""
+  },
+  "Ruellia prostrata": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Ruellia_prostrata_in_Talakona_forest%2C_AP_W_IMG_8317.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Ruellia_prostrata.jpg",
+    "title": ""
+  },
+  "Ruellia simplex": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Ruellia_Simplex_2024.jpg/1000px-Ruellia_Simplex_2024.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Ruellia_simplex.jpg",
+    "title": ""
+  },
+  "Saccharum officinarum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/1/11/Saccharum_officinarum%2C_Mozambique.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Saccharum_officinarum.jpg",
+    "title": ""
+  },
+  "Sauromatum venosum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Flore_des_serres_v13_079a.jpg/1000px-Flore_des_serres_v13_079a.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Sauromatum_venosum.jpg",
+    "title": ""
+  },
+  "Selenicereus anthonyanus": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Selenicereus_anthonyanus.jpg/1000px-Selenicereus_anthonyanus.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Selenicereus_anthonyanus.jpg",
+    "title": ""
+  },
+  "Tapeinochilos ananassae": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Tapeinochilos_ananassae2.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Tapeinochilos_ananassae.jpg",
+    "title": ""
+  },
+  "Wallisia cyanea": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/6/65/Tillandsia_cyanea1.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Wallisia_cyanea.jpg",
+    "title": ""
+  },
+  "Tillandsia xerographica": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Tillandsia_xerographica_20081016.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Tillandsia_xerographica.jpg",
+    "title": ""
+  },
+  "Typhonodorum lindleyanum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Typhonodorum_lindleyanum1.jpg/1000px-Typhonodorum_lindleyanum1.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Typhonodorum_lindleyanum.jpg",
+    "title": ""
+  },
+  "Vanilla planifolia": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Vanilla_planifolia_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-278.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Vanilla_planifolia.jpg",
+    "title": ""
+  },
+  "Vriesea": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Vriesea_duvaliana_HabitusInflorescence_BotGardBln0906.jpg/1000px-Vriesea_duvaliana_HabitusInflorescence_BotGardBln0906.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Vriesea.jpg",
+    "title": ""
+  },
+  "Vriesea imperialis green": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Vriesea_duvaliana_HabitusInflorescence_BotGardBln0906.jpg/1000px-Vriesea_duvaliana_HabitusInflorescence_BotGardBln0906.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Vriesea_imperialis_green.jpg",
+    "title": ""
+  },
+  "Vriesea simplex": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Vriesea_duvaliana_HabitusInflorescence_BotGardBln0906.jpg/1000px-Vriesea_duvaliana_HabitusInflorescence_BotGardBln0906.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Vriesea_simplex.jpg",
+    "title": ""
+  },
+  "Vriesea splendens": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Bromelia1.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Vriesea_splendens.jpg",
+    "title": ""
+  },
+  "Zamia furfuraceae": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Zamioculcas zamiifolia": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Zamioculcas_zamiifolia_1.jpg/1000px-Zamioculcas_zamiifolia_1.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Zamioculcas_zamiifolia.jpg",
+    "title": ""
+  },
+  "Zapoteca portoricensis": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Zingiber officianale": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Zingiber zerumbet": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Zingiber_zerumbet_03.JPG/1000px-Zingiber_zerumbet_03.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Zingiber_zerumbet.jpg",
+    "title": ""
+  },
+  "Agave angustifolia": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Agave_angustifolia-_plants_near_Yagul_Oaxaca.jpg/1000px-Agave_angustifolia-_plants_near_Yagul_Oaxaca.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Agave_angustifolia.jpg",
+    "title": ""
+  },
+  "Agave schottii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Agave_schottii_-_Flickr_-_aspidoscelis_%281%29.jpg/1000px-Agave_schottii_-_Flickr_-_aspidoscelis_%281%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Agave_schottii.jpg",
+    "title": ""
+  },
+  "Agave stricta": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Agave_stricta_Monaco.jpg/1000px-Agave_stricta_Monaco.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Agave_stricta.jpg",
+    "title": ""
+  },
+  "Aloe": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Aloe_arborescens_on_Monte_Vumba_%284387600468%29.jpg/1000px-Aloe_arborescens_on_Monte_Vumba_%284387600468%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aloe.jpg",
+    "title": ""
+  },
+  "Drimiopsis maculata": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/8/81/%22Arya%22_Drimiopsis_maculata_-_kordiana_dian.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Drimiopsis_maculata.jpg",
+    "title": ""
+  },
+  "Euphorbia abyssinica": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Teguise_Guatiza_-_Jardin_-_Euphorbia_abyssinica_06_ies.jpg/1000px-Teguise_Guatiza_-_Jardin_-_Euphorbia_abyssinica_06_ies.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Euphorbia_abyssinica.jpg",
+    "title": ""
+  },
+  "Euphorbia": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Euphorbia_February_2008-2.jpg/1000px-Euphorbia_February_2008-2.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Euphorbia.jpg",
+    "title": ""
+  },
+  "Ferocactus emoryi": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Saguaro_National_Park_1989_12.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Ferocactus_emoryi.jpg",
+    "title": ""
+  },
+  "Ferocactus": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Ferocactus_glaucescens_Prg1.jpg/1000px-Ferocactus_glaucescens_Prg1.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Ferocactus.jpg",
+    "title": ""
+  },
+  "Fouquieria formosa": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Addisonia_%28PLATE_008%29_%288574240891%29.jpg/1000px-Addisonia_%28PLATE_008%29_%288574240891%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Fouquieria_formosa.jpg",
+    "title": ""
+  },
+  "Gasteraloe": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Gastrolea_beguinii-yercaud-salem-India.JPG/1000px-Gastrolea_beguinii-yercaud-salem-India.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Gasteraloe.jpg",
+    "title": ""
+  },
+  "Gasteria hybrid": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Gasteria_pillansii_var_pillansii_1.jpg/1000px-Gasteria_pillansii_var_pillansii_1.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Gasteria_hybrid.jpg",
+    "title": ""
+  },
+  "Gasteria": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Gasteria_pillansii_var_pillansii_1.jpg/1000px-Gasteria_pillansii_var_pillansii_1.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Gasteria.jpg",
+    "title": ""
+  },
+  "Gasteria species": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Gasteria_pillansii_var_pillansii_1.jpg/1000px-Gasteria_pillansii_var_pillansii_1.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Gasteria_species.jpg",
+    "title": ""
+  },
+  "Gasterworthia": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Graptopetalum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Graptopetalum_amethystinum_3.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Graptopetalum.jpg",
+    "title": ""
+  },
+  "Graptoveria #2(?)": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Graptoveria #3(?)": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Gymnocalycium possibly saglione": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/8/80/Gymnocalcium_baldianium.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Gymnocalycium_possibly_saglione.jpg",
+    "title": ""
+  },
+  "Gymnocalycium": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/8/80/Gymnocalcium_baldianium.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Gymnocalycium.jpg",
+    "title": ""
+  },
+  "Haworthia": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Haworthia_cymbiformis_1.jpg/1000px-Haworthia_cymbiformis_1.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Haworthia.jpg",
+    "title": ""
+  },
+  "Haworthiopsis attenuata": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Winterbourne_-_Haworthia_attenuata_%286120983526%29.jpg/1000px-Winterbourne_-_Haworthia_attenuata_%286120983526%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Haworthiopsis_attenuata.jpg",
+    "title": ""
+  },
+  "Hectia argentea": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Hectia": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Juttadinteria suavissima": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Mammillaria": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Mammillaria_tayloriorum.jpg/1000px-Mammillaria_tayloriorum.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Mammillaria.jpg",
+    "title": ""
+  },
+  "Opuntia": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Opuntia_littoralis_var_vaseyi_4.jpg/1000px-Opuntia_littoralis_var_vaseyi_4.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Opuntia.jpg",
+    "title": ""
+  },
+  "Raphianacme flanaganii": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Sedum pachyphyllum": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Senecio crassisimus": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Unknown": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Adenium boehmianum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Adenium_boehmianum.jpg/1000px-Adenium_boehmianum.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Adenium_boehmianum.jpg",
+    "title": ""
+  },
+  "Aloe cameronii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Aloe_cameronii_2.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aloe_cameronii.jpg",
+    "title": ""
+  },
+  "Aloe harlana": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Gardenology-IMG_5376_hunt10mar.jpg/1000px-Gardenology-IMG_5376_hunt10mar.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aloe_harlana.jpg",
+    "title": ""
+  },
+  "Aloe jacksonii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Aloe_arborescens_on_Monte_Vumba_%284387600468%29.jpg/1000px-Aloe_arborescens_on_Monte_Vumba_%284387600468%29.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aloe_jacksonii.jpg",
+    "title": ""
+  },
+  "Aloe jucunda": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Aloe_jucunda04.jpg/1000px-Aloe_jucunda04.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aloe_jucunda.jpg",
+    "title": ""
+  },
+  "Aloe maculata": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Aloe_saponaria_2.jpg/1000px-Aloe_saponaria_2.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aloe_maculata.jpg",
+    "title": ""
+  },
+  "Aloe munchii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Aloe_arborescens_on_Monte_Vumba_%284387600468%29.jpg/1000px-Aloe_arborescens_on_Monte_Vumba_%284387600468%29.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aloe_munchii.jpg",
+    "title": ""
+  },
+  "Aloe rivae": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Aloe_arborescens_on_Monte_Vumba_%284387600468%29.jpg/1000px-Aloe_arborescens_on_Monte_Vumba_%284387600468%29.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aloe_rivae.jpg",
+    "title": ""
+  },
+  "Aloe rivierei": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Aloe_arborescens_on_Monte_Vumba_%284387600468%29.jpg/1000px-Aloe_arborescens_on_Monte_Vumba_%284387600468%29.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aloe_rivierei.jpg",
+    "title": ""
+  },
+  "Dracaena serpenta": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Dracaena": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Euphorbia tirucalli": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/2/22/Euphorbia_tirucalli_in_the_wild_by_tonrulkens.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Euphorbia_tirucalli.jpg",
+    "title": ""
+  },
+  "Gasteria obliqua": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Gasteria_bicolor_var_bicolor_3.jpg/1000px-Gasteria_bicolor_var_bicolor_3.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Gasteria_obliqua.jpg",
+    "title": ""
+  },
+  "Tephrocactus articulatus": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Tephrocactus_articulatus_%288414960765%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Tephrocactus_articulatus.jpg",
+    "title": ""
+  },
+  "STETSONIA CORYNE": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Carnegiea gigantea": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Carnegiea_gigantea_in_Saguaro_National_Park_near_Tucson%2C_Arizona_during_November_%2858%29.jpg/1000px-Carnegiea_gigantea_in_Saguaro_National_Park_near_Tucson%2C_Arizona_during_November_%2858%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Carnegiea_gigantea.jpg",
+    "title": ""
+  },
+  "Yucca elata": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Yucca_elata_blooming.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Yucca_elata.jpg",
+    "title": ""
+  },
+  "Brachychiton rupestris": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/5/59/Queensland_Bottle_Tree_2.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Brachychiton_rupestris.jpg",
+    "title": ""
+  },
+  "Brachychiton": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Illawarra_Flame_Tree_%28Brachychiton_acerifolius%29.jpg/1000px-Illawarra_Flame_Tree_%28Brachychiton_acerifolius%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Brachychiton.jpg",
+    "title": ""
+  },
+  "Hohenbergia magnispina": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Aloe deltoideodonta": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Aloe_deltoideodonta_-_2025-0063-3.png/1000px-Aloe_deltoideodonta_-_2025-0063-3.png",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aloe_deltoideodonta.jpg",
+    "title": ""
+  },
+  "Calibanus hookeri": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Calibanus_hookeri1_ies.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Calibanus_hookeri.jpg",
+    "title": ""
+  },
+  "Cephalocereus senilis": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Cephalocereus_senilis.jpg/1000px-Cephalocereus_senilis.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Cephalocereus_senilis.jpg",
+    "title": ""
+  },
+  "Copiapoa gigantea": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Copiapoa_gigantea_21.jpg/1000px-Copiapoa_gigantea_21.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Copiapoa_gigantea.jpg",
+    "title": ""
+  },
+  "Dracaena ballyi": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Sansevieria_ballyi.JPG/1000px-Sansevieria_ballyi.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Dracaena_ballyi.jpg",
+    "title": ""
+  },
+  "Agave": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Agave_americana_R01.jpg/1000px-Agave_americana_R01.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Agave.jpg",
+    "title": ""
+  },
+  "Aloe arborescens": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Aloe_arborescens_Compton.JPG/1000px-Aloe_arborescens_Compton.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aloe_arborescens.jpg",
+    "title": ""
+  },
+  "Dracaena pethera": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Sansevieria_kirkii_-_Pemba_Bay_%288626399339%29.jpg/1000px-Sansevieria_kirkii_-_Pemba_Bay_%288626399339%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Dracaena_pethera.jpg",
+    "title": ""
+  },
+  "Dracaena trifasciata": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Snake_Plant_%28Sansevieria_trifasciata_%27Laurentii%27%29.jpg/1000px-Snake_Plant_%28Sansevieria_trifasciata_%27Laurentii%27%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Dracaena_trifasciata.jpg",
+    "title": ""
+  },
+  "Gasteria batesiana": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Gasteria_batesiana_1.jpg/1000px-Gasteria_batesiana_1.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Gasteria_batesiana.jpg",
+    "title": ""
+  },
+  "Nopalea cochenillifera": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "FEROCACTUS GLAUCESCENS": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Pilosocereus palmeri": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Cereus_senilis_%283%29.jpg/1000px-Cereus_senilis_%283%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Pilosocereus_palmeri.jpg",
+    "title": ""
+  },
+  "Opuntia echios": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Opuntia_echios_3.jpg/1000px-Opuntia_echios_3.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Opuntia_echios.jpg",
+    "title": ""
+  },
+  "Euphorbia buruana": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Euphorbia_February_2008-2.jpg/1000px-Euphorbia_February_2008-2.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Euphorbia_buruana.jpg",
+    "title": ""
+  },
+  "Aloe acutissima": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Aloe_arborescens_on_Monte_Vumba_%284387600468%29.jpg/1000px-Aloe_arborescens_on_Monte_Vumba_%284387600468%29.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aloe_acutissima.jpg",
+    "title": ""
+  },
+  "Aloe conifera": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Aloe_arborescens_on_Monte_Vumba_%284387600468%29.jpg/1000px-Aloe_arborescens_on_Monte_Vumba_%284387600468%29.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aloe_conifera.jpg",
+    "title": ""
+  },
+  "Aloe erythrophylla": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Aloe_erythrophylla.png/1000px-Aloe_erythrophylla.png",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aloe_erythrophylla.jpg",
+    "title": ""
+  },
+  "Aloe rauhii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/2/26/Aloe_rauhii.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aloe_rauhii.jpg",
+    "title": ""
+  },
+  "Didieria madagascariensis": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Euphorbia aff croizatii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Euphorbia_February_2008-2.jpg/1000px-Euphorbia_February_2008-2.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Euphorbia_aff_croizatii.jpg",
+    "title": ""
+  },
+  "Euphorbia betrokana": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Euphorbia_February_2008-2.jpg/1000px-Euphorbia_February_2008-2.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Euphorbia_betrokana.jpg",
+    "title": ""
+  },
+  "Euphorbia capsaintemariensis": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/7/74/Euphorbia_capsaintemariensis2_ies.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Euphorbia_capsaintemariensis.jpg",
+    "title": ""
+  },
+  "Euphorbia croizatii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Euphorbia_croizatii_-_Palmengarten_Frankfurt_-_DSC01694.JPG/1000px-Euphorbia_croizatii_-_Palmengarten_Frankfurt_-_DSC01694.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Euphorbia_croizatii.jpg",
+    "title": ""
+  },
+  "Euphorbia decaryi": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Euphorbia_decaryi_var._spirosticha.jpg/1000px-Euphorbia_decaryi_var._spirosticha.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Euphorbia_decaryi.jpg",
+    "title": ""
+  },
+  "Euphorbia duranii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Euphorbia_duranii_BG_Meise_38002.JPG/1000px-Euphorbia_duranii_BG_Meise_38002.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Euphorbia_duranii.jpg",
+    "title": ""
+  },
+  "Euphorbia genoudiana": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Euphorbia_February_2008-2.jpg/1000px-Euphorbia_February_2008-2.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Euphorbia_genoudiana.jpg",
+    "title": ""
+  },
+  "Euphorbia hedyotoides": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/01/Euphorbia_hedyotoides2_ies.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Euphorbia_hedyotoides.jpg",
+    "title": ""
+  },
+  "Euphorbia millii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Euphorbia_February_2008-2.jpg/1000px-Euphorbia_February_2008-2.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Euphorbia_millii.jpg",
+    "title": ""
+  },
+  "Euphorbia platyclada": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/4/4d/E_platyclada_platyclada.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Euphorbia_platyclada.jpg",
+    "title": ""
+  },
+  "Kalanchoe beauverdii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Comparison_of_leaves_and_stems_of_representatives_of_Kalanchoe_ser._Vilana.png/1000px-Comparison_of_leaves_and_stems_of_representatives_of_Kalanchoe_ser._Vilana.png",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Kalanchoe_beauverdii.jpg",
+    "title": ""
+  },
+  "Kalanchoe beharensis": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Kalanchoe_beharensis_serres_du_Jardin_du_Luxembourg.JPG/1000px-Kalanchoe_beharensis_serres_du_Jardin_du_Luxembourg.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Kalanchoe_beharensis.jpg",
+    "title": ""
+  },
+  "Kalanchoe bracteata": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Kalanchoe dinklagei": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Kalanchoe orgyalis": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Starr-110218-1538-Kalanchoe_orgyalis-leaves-Ulana_St_Makawao-Maui_%2824708814049%29.jpg/1000px-Starr-110218-1538-Kalanchoe_orgyalis-leaves-Ulana_St_Makawao-Maui_%2824708814049%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Kalanchoe_orgyalis.jpg",
+    "title": ""
+  },
+  "Kalanchoe rhombopilosa": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Kalanchoe_rhombopilosa_02.jpg/1000px-Kalanchoe_rhombopilosa_02.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Kalanchoe_rhombopilosa.jpg",
+    "title": ""
+  },
+  "Kalanchoe viguieri": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Kleinia madagascariensis": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Kleinia_madagascariensis.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Kleinia_madagascariensis.jpg",
+    "title": ""
+  },
+  "SENECIO DESCOINGSII": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Senna meridionalis": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Agave albopilosa": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Agave_americana_R01.jpg/1000px-Agave_americana_R01.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Agave_albopilosa.jpg",
+    "title": ""
+  },
+  "Agave americana": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Agave_July_2011-1.jpg/1000px-Agave_July_2011-1.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Agave_americana.jpg",
+    "title": ""
+  },
+  "Agave attenuata": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Agave_attenuata_001.JPG/1000px-Agave_attenuata_001.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Agave_attenuata.jpg",
+    "title": ""
+  },
+  "Agave attenuata variegata": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Agave_americana_R01.jpg/1000px-Agave_americana_R01.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Agave_attenuata_variegata.jpg",
+    "title": ""
+  },
+  "Agave bovicornuta": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Agave_bovicornuta_Plant_1935px.jpg/1000px-Agave_bovicornuta_Plant_1935px.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Agave_bovicornuta.jpg",
+    "title": ""
+  },
+  "Agave bracteosa": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Agave_bracteosa.jpg/1000px-Agave_bracteosa.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Agave_bracteosa.jpg",
+    "title": ""
+  },
+  "Agave mitis": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Agave_mitis.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Agave_mitis.jpg",
+    "title": ""
+  },
+  "Agave polianthiflora": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/3/34/Agave_polianthiflora_mit_Knospenansatz_nahe_Cumbres_de_Majalca_in_Chihuahua_in_Mexiko.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Agave_polianthiflora.jpg",
+    "title": ""
+  },
+  "Agave potatorum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Agave_Potatorum%2C_San_Tan_Valley%2C_AZ.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Agave_potatorum.jpg",
+    "title": ""
+  },
+  "Agave tequilana": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Agave_tequilana_1.jpg/1000px-Agave_tequilana_1.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Agave_tequilana.jpg",
+    "title": ""
+  },
+  "Agave titanota": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Agave_titanota_1zz.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Agave_titanota.jpg",
+    "title": ""
+  },
+  "Agave victoriae-reginae": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Agave_victoriae-reginae_lv_2.jpg/1000px-Agave_victoriae-reginae_lv_2.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Agave_victoriae-reginae.jpg",
+    "title": ""
+  },
+  "Astrophytum myriostigma": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Astrophytum_myriostigma_Lem.png/1000px-Astrophytum_myriostigma_Lem.png",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Astrophytum_myriostigma.jpg",
+    "title": ""
+  },
+  "Astrophytum ornatum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Astrophytum_ornatum5.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Astrophytum_ornatum.jpg",
+    "title": ""
+  },
+  "Beaucarnea recurvata": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Beaucarnea_recurvata%2C_Ocampo%2C_Tamaulipas%2C_Mexico_1.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Beaucarnea_recurvata.jpg",
+    "title": ""
+  },
+  "Echeveria carnicolor": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Echeveria_carnicolor_1.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Echeveria_carnicolor.jpg",
+    "title": ""
+  },
+  "Echinocereus brandegeei": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Echinocereus_brandegeei_pm_1.JPG/1000px-Echinocereus_brandegeei_pm_1.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Echinocereus_brandegeei.jpg",
+    "title": ""
+  },
+  "Echinocereus pentalophus": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/4/46/Caryophyllales_-_Echinocereus_pentalophus_-_1.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Echinocereus_pentalophus.jpg",
+    "title": ""
+  },
+  "Euphorbia lomelii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/6/62/Euphorbia_lomelii_ies.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Euphorbia_lomelii.jpg",
+    "title": ""
+  },
+  "Ferocactus hystrix": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Ferocactus_glaucescens_Prg1.jpg/1000px-Ferocactus_glaucescens_Prg1.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Ferocactus_hystrix.jpg",
+    "title": ""
+  },
+  "Ferocactus pilosus": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/5/55/Ferocactus_pilosus1.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Ferocactus_pilosus.jpg",
+    "title": ""
+  },
+  "Ferocactus rectispinus": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Ferocactus_glaucescens_Prg1.jpg/1000px-Ferocactus_glaucescens_Prg1.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Ferocactus_rectispinus.jpg",
+    "title": ""
+  },
+  "Graptopetalum amethystinum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Graptopetalum_amethystinum_3.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Graptopetalum_amethystinum.jpg",
+    "title": ""
+  },
+  "Graptopetalum paraguayense": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/%28MHNT%29_Graptopetalum_paraguayense_-_leaves.jpg/1000px-%28MHNT%29_Graptopetalum_paraguayense_-_leaves.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Graptopetalum_paraguayense.jpg",
+    "title": ""
+  },
+  "Hamatocactus hamatacanthus": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Ferocactus_hamatacanthus_pm.JPG/1000px-Ferocactus_hamatacanthus_pm.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Hamatocactus_hamatacanthus.jpg",
+    "title": ""
+  },
+  "Leuchtenbergia principis": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/2/24/Leuchtenbergia_principis.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Leuchtenbergia_principis.jpg",
+    "title": ""
+  },
+  "Lophocereus schottii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Pachycereus_schottii_%285782222323%29.jpg/1000px-Pachycereus_schottii_%285782222323%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Lophocereus_schottii.jpg",
+    "title": ""
+  },
+  "Mammillaria decipiens": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Mammillaria_tayloriorum.jpg/1000px-Mammillaria_tayloriorum.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Mammillaria_decipiens.jpg",
+    "title": ""
+  },
+  "Mammillaria geminispina": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Mammillaria_geminispina_2.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Mammillaria_geminispina.jpg",
+    "title": ""
+  },
+  "Mammillaria hahniana": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Mammillaria_hahniana.jpg/1000px-Mammillaria_hahniana.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Mammillaria_hahniana.jpg",
+    "title": ""
+  },
+  "Mammillaria parkinsonii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Mammillaria_parkinsonii_%2870369%29.jpg/1000px-Mammillaria_parkinsonii_%2870369%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Mammillaria_parkinsonii.jpg",
+    "title": ""
+  },
+  "Mammillaria petterssonii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Mammillaria_pettersonii_%285723146770%29.jpg/1000px-Mammillaria_pettersonii_%285723146770%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Mammillaria_petterssonii.jpg",
+    "title": ""
+  },
+  "Mammillaria vetula": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Mammillaria_gracilis_02.jpg/1000px-Mammillaria_gracilis_02.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Mammillaria_vetula.jpg",
+    "title": ""
+  },
+  "Lophocereus marginatus": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Cactus_Path.JPG/1000px-Cactus_Path.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Lophocereus_marginatus.jpg",
+    "title": ""
+  },
+  "Opuntia aciculata": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Opuntia17_filtered.jpg/1000px-Opuntia17_filtered.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Opuntia_aciculata.jpg",
+    "title": ""
+  },
+  "Opuntia robusta": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Opuntia_robusta_%28Cactaceae%29.jpg/1000px-Opuntia_robusta_%28Cactaceae%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Opuntia_robusta.jpg",
+    "title": ""
+  },
+  "Pachycereus": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/FH030008.jpg/1000px-FH030008.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Pachycereus.jpg",
+    "title": ""
+  },
+  "PACHYPHYTUM BRACTEOSUM": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Sedum adolphii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Crassulaceae%CB%90_Sedum_nussbaumerianum.JPG/1000px-Crassulaceae%CB%90_Sedum_nussbaumerianum.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Sedum_adolphii.jpg",
+    "title": ""
+  },
+  "Sedum morganianum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Donkey%27s_tail_in_bloom_March_06.jpg/1000px-Donkey%27s_tail_in_bloom_March_06.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Sedum_morganianum.jpg",
+    "title": ""
+  },
+  "Cleistocactus hyalacanthus": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Cleistocactus_hyalacanthus_1.jpg/1000px-Cleistocactus_hyalacanthus_1.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Cleistocactus_hyalacanthus.jpg",
+    "title": ""
+  },
+  "Fouquieria splendens": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Ocotillo_GB.jpg/1000px-Ocotillo_GB.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Fouquieria_splendens.jpg",
+    "title": ""
+  },
+  "Ariocarpus fissuratus": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Ariocarpus_fissuratus-IMG_4228.jpg/1000px-Ariocarpus_fissuratus-IMG_4228.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Ariocarpus_fissuratus.jpg",
+    "title": ""
+  },
+  "ADENIA SPINOSA": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Aloe alooides": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Aloe_arborescens_on_Monte_Vumba_%284387600468%29.jpg/1000px-Aloe_arborescens_on_Monte_Vumba_%284387600468%29.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aloe_alooides.jpg",
+    "title": ""
+  },
+  "Aloe broomii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Aloe_broomii_var_tarkaensis_1.jpg/1000px-Aloe_broomii_var_tarkaensis_1.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aloe_broomii.jpg",
+    "title": ""
+  },
+  "Aloe ferox": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Aloe_Ferox_between_Cofimvaba_and_Ngcobo.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aloe_ferox.jpg",
+    "title": ""
+  },
+  "Aloe krapohliana": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Aloe_arborescens_on_Monte_Vumba_%284387600468%29.jpg/1000px-Aloe_arborescens_on_Monte_Vumba_%284387600468%29.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aloe_krapohliana.jpg",
+    "title": ""
+  },
+  "Aloiampelos ciliaris": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Aloe_ciliaris_11.jpg/1000px-Aloe_ciliaris_11.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aloiampelos_ciliaris.jpg",
+    "title": ""
+  },
+  "Boophane disticha": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Bowiea volubilis": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Bowiea_volubilis_volubilis_15296001.jpg/1000px-Bowiea_volubilis_volubilis_15296001.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Bowiea_volubilis.jpg",
+    "title": ""
+  },
+  "Crassula arborescens": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Crassula_arborescens.jpg/1000px-Crassula_arborescens.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Crassula_arborescens.jpg",
+    "title": ""
+  },
+  "Crassula ovata": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Crassula_ovata_700.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Crassula_ovata.jpg",
+    "title": ""
+  },
+  "Cyphostemma juttae": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Young_Cyphostemma_juttae.jpg/1000px-Young_Cyphostemma_juttae.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Cyphostemma_juttae.jpg",
+    "title": ""
+  },
+  "Euphorbia horrida": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Euphorbia_horrida_1.jpg/1000px-Euphorbia_horrida_1.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Euphorbia_horrida.jpg",
+    "title": ""
+  },
+  "Euphorbia obesa": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Euphorbia_obesa_obesa_15102244.jpg/1000px-Euphorbia_obesa_obesa_15102244.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Euphorbia_obesa.jpg",
+    "title": ""
+  },
+  "Gasteria excelsa": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Gasteria_excelsa_-_KNBG-_Cape_Town.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Gasteria_excelsa.jpg",
+    "title": ""
+  },
+  "Haemanthus albiflos": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Haemanthus_albiflos1C2000.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Haemanthus_albiflos.jpg",
+    "title": ""
+  },
+  "Lithops geyeri": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Geyeri-080911.jpg/1000px-Geyeri-080911.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Lithops_geyeri.jpg",
+    "title": ""
+  },
+  "Lithops hookeri": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Lithops_hookeri.png/1000px-Lithops_hookeri.png",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Lithops_hookeri.jpg",
+    "title": ""
+  },
+  "Pachypodium saundersii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Pachypodium_saundersii.jpg/1000px-Pachypodium_saundersii.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Pachypodium_saundersii.jpg",
+    "title": ""
+  },
+  "Curio ficoides": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Curio_ficoides_1DS-II_3-6436.jpg/1000px-Curio_ficoides_1DS-II_3-6436.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Curio_ficoides.jpg",
+    "title": ""
+  },
+  "Kleinia stapeliiformis": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Senecio_stapeliiformis_minor_01_ies.jpg/1000px-Senecio_stapeliiformis_minor_01_ies.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Kleinia_stapeliiformis.jpg",
+    "title": ""
+  },
+  "Strelitzia juncea": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Strelitzia_juncea_flower.jpg/1000px-Strelitzia_juncea_flower.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Strelitzia_juncea.jpg",
+    "title": ""
+  },
+  "Tylecodon paniculatus": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Tylecodon_paniculatus_Rooiberg_Nature_Reserve.jpg/1000px-Tylecodon_paniculatus_Rooiberg_Nature_Reserve.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Tylecodon_paniculatus.jpg",
+    "title": ""
+  },
+  "Welwitschia mirabilis": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Welwitschia_mirabilis%282%29.jpg/1000px-Welwitschia_mirabilis%282%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Welwitschia_mirabilis.jpg",
+    "title": ""
+  },
+  "Begonia ruhlandiana": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Begonia_obliqua00.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Begonia_ruhlandiana.jpg",
+    "title": ""
+  },
+  "Bromelia balansae": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Bromelia_balansae.jpg/1000px-Bromelia_balansae.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Bromelia_balansae.jpg",
+    "title": ""
+  },
+  "Cleistocactus": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Cleistocactus_strausii_Woolly_Torch%2C_Huntington_Desert_Garden.jpg/1000px-Cleistocactus_strausii_Woolly_Torch%2C_Huntington_Desert_Garden.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Cleistocactus.jpg",
+    "title": ""
+  },
+  "Copiapoa coquimbana": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Copiapoa_coquimbana_20.jpg/1000px-Copiapoa_coquimbana_20.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Copiapoa_coquimbana.jpg",
+    "title": ""
+  },
+  "Copiapoa hypogaea": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Copiapoa_hypogaea_pm1.jpg/1000px-Copiapoa_hypogaea_pm1.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Copiapoa_hypogaea.jpg",
+    "title": ""
+  },
+  "Copiapoa lembeckei": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Dyckia": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Dyckia_maracasensis_Habitus_BotGardBln0906b.JPG/1000px-Dyckia_maracasensis_Habitus_BotGardBln0906b.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Dyckia.jpg",
+    "title": ""
+  },
+  "Echinopsis huascha": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/2008_07_Botanical_Garden_Meran_71610R0413.jpg/1000px-2008_07_Botanical_Garden_Meran_71610R0413.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Echinopsis_huascha.jpg",
+    "title": ""
+  },
+  "Echinopsis": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Echinopsis_oxygona_%283535885623%29.jpg/1000px-Echinopsis_oxygona_%283535885623%29.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Echinopsis.jpg",
+    "title": ""
+  },
+  "Gymnocalycium saglionis": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Gymnocalycium_Saglionis.JPG/1000px-Gymnocalycium_Saglionis.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Gymnocalycium_saglionis.jpg",
+    "title": ""
+  },
+  "Parodia magnifica": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Eriocactus_magnificus_JPG.jpg/1000px-Eriocactus_magnificus_JPG.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Parodia_magnifica.jpg",
+    "title": ""
+  },
+  "Oreocereus trollii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Ses_Salines_-_Botanicactus_-_Oreocereus_trollii_03_ies.jpg/1000px-Ses_Salines_-_Botanicactus_-_Oreocereus_trollii_03_ies.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Oreocereus_trollii.jpg",
+    "title": ""
+  },
+  "Pilosocereus": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Pilosocereus_catingicola_EARMLucena2007.png",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Pilosocereus.jpg",
+    "title": ""
+  },
+  "Ubelmannia pectinifera": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Aloe macrocarpa": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Aloe_arborescens_on_Monte_Vumba_%284387600468%29.jpg/1000px-Aloe_arborescens_on_Monte_Vumba_%284387600468%29.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aloe_macrocarpa.jpg",
+    "title": ""
+  },
+  "Aloidendron dichotomum": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/QuiverTree-Namibia-2015.JPG/1000px-QuiverTree-Namibia-2015.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Aloidendron_dichotomum.jpg",
+    "title": ""
+  },
+  "Crassula": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Crassula_capitella_2.jpg/1000px-Crassula_capitella_2.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Crassula.jpg",
+    "title": ""
+  },
+  "Dracaena hallii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Dracaena_hallii_175704743.jpg/1000px-Dracaena_hallii_175704743.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Dracaena_hallii.jpg",
+    "title": ""
+  },
+  "Fockea edulis": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Fockea_edulis_001.jpg/1000px-Fockea_edulis_001.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Fockea_edulis.jpg",
+    "title": ""
+  },
+  "Haworthiopsis limifolia": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Haworthia_limifolia_-_Atlanta_Botanical_Garden.JPG/1000px-Haworthia_limifolia_-_Atlanta_Botanical_Garden.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Haworthiopsis_limifolia.jpg",
+    "title": ""
+  },
+  "Parodia leninghausii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Parodia_leninghausii.jpg/1000px-Parodia_leninghausii.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Parodia_leninghausii.jpg",
+    "title": ""
+  },
+  "Hemionitis bradburyi": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Pelargonium carnosum": {
+    "thumbnail": "",
+    "fetch_method": null
+  },
+  "Yucca baccata": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/9/96/Yucca_baccata_whole.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Yucca_baccata.jpg",
+    "title": ""
+  },
+  "Leucophyllum frutescens": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Leucophyllum_frutescens_%28Purple_Sage%29_W2_IMG_1125.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Leucophyllum_frutescens.jpg",
+    "title": ""
+  },
+  "Agave lechuguilla": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Agave_lechuguilla.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Agave_lechuguilla.jpg",
+    "title": ""
+  },
+  "Cylindropuntia": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Cylindropuntia_kleiniae.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Cylindropuntia.jpg",
+    "title": ""
+  },
+  "Larrea tridentata": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Larrea_tridentata_Furnace_Creek.jpg/1000px-Larrea_tridentata_Furnace_Creek.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Larrea_tridentata.jpg",
+    "title": ""
+  },
+  "Opuntia phaecantha": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Opuntia_phaeacantha_kz2.jpg/1000px-Opuntia_phaeacantha_kz2.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Opuntia_phaecantha.jpg",
+    "title": ""
+  },
+  "Opuntia santa-rita": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Opuntia_gosseliniana.JPG/1000px-Opuntia_gosseliniana.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Opuntia_santa-rita.jpg",
+    "title": ""
+  },
+  "Simmondsia chinensis": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jojoba1343.JPG/1000px-Jojoba1343.JPG",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Simmondsia_chinensis.jpg",
+    "title": ""
+  },
+  "Yucca faxoniana": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Yucca_torreyi_fh_1180.18_TX_B.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Yucca_faxoniana.jpg",
+    "title": ""
+  },
+  "Opuntia basilaris": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Wild_Opuntia_basilaris.jpg/1000px-Wild_Opuntia_basilaris.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Opuntia_basilaris.jpg",
+    "title": ""
+  },
+  "Opuntia basilaris hyb.": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Opuntia_littoralis_var_vaseyi_4.jpg/1000px-Opuntia_littoralis_var_vaseyi_4.jpg",
+    "fetch_method": "batch_genus",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Opuntia_basilaris_hyb_.jpg",
+    "title": ""
+  },
+  "Agave parrasana": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Agave_parrasana.jpg/1000px-Agave_parrasana.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Agave_parrasana.jpg",
+    "title": ""
+  },
+  "Chilopsis linearis": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Chilopsis_linearis_flower_2.jpg/1000px-Chilopsis_linearis_flower_2.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Chilopsis_linearis.jpg",
+    "title": ""
+  },
+  "Euphorbia antisyphilitica": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/6/61/Euphorbia_antisyphilitica2_ies.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Euphorbia_antisyphilitica.jpg",
+    "title": ""
+  },
+  "Euphorbia milii": {
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Euphorbia_Milii_flowers.jpg/1000px-Euphorbia_Milii_flowers.jpg",
+    "fetch_method": "batch",
+    "downloaded": true,
+    "local_path": "data/wiki_images\\Euphorbia_milii.jpg",
+    "title": ""
+  }
+}

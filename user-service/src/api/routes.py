@@ -21,8 +21,7 @@ async def create_game(dome_type: str):
         # No longer using database images, using Wikipedia instead
         return {
             "success": True,
-            "plant_name": plant_name,
-            "plant_image": ""
+            "plant_name": plant_name
         }
     except Exception as e:
         raise HTTPException(

@@ -49,7 +49,7 @@ class PlantSummarizer:
             str: Summary of the plant
         """
         # Search for plant information using Tavily
-        search_query = f"{plant} plant information"
+        search_query = f"{plant} plant information for fun and learning purposes"
         search_results = self.tavily_client.search(
             query=search_query,
             search_depth="advanced",
@@ -190,23 +190,3 @@ class PlantSummarizer:
         
         result = response.json()
         return result['choices'][0]['message']['content']
-
-
-# Example usage
-if __name__ == "__main__":
-    # Initialize the summarizer
-    summarizer = PlantSummarizer()
-    
-    # Get a summary of a plant
-    plant_name = "Monstera Deliciosa"
-    summary = summarizer.summarize(plant_name)
-    
-    print(f"Summary of {plant_name}:")
-    print(summary)
-    
-    # Ask a follow-up question
-    question = "How often should I water it?"
-    answer = summarizer.follow_up_question(plant_name, question)
-    
-    print(f"\nQuestion: {question}")
-    print(f"Answer: {answer}")
