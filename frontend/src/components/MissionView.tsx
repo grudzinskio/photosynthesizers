@@ -2,9 +2,11 @@ import type { GameState, DomeName } from '@/types';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Camera, ArrowLeft } from 'lucide-react';
+import { Camera, ArrowLeft, ExternalLink } from 'lucide-react';
 import insideDomeImg from "@/assets/inside_dome.webp";
 import ReactMarkdown from 'react-markdown';
+import { useEffect, useState } from 'react';
+import { getWikipediaPlantData, type WikipediaPlantData } from '@/api/wikipediaApi';
 
 interface MissionViewProps {
   gameState: GameState;
@@ -14,10 +16,42 @@ interface MissionViewProps {
 }
 
 export function MissionView({ gameState, domeName, onFoundIt, onChangeDome }: MissionViewProps) {
+  const [wikiData, setWikiData] = useState<WikipediaPlantData | null>(null);
+  const [loadingWiki, setLoadingWiki] = useState(false);
+
+  // Fetch Wikipedia data when plant name changes
+  useEffect(() => {
+    if (!gameState.plantName) return;
+
+    let cancelled = false;
+
+    const fetchData = async () => {
+      setLoadingWiki(true);
+      try {
+        const data = await getWikipediaPlantData(gameState.plantName);
+        if (!cancelled) {
+          setWikiData(data);
+          setLoadingWiki(false);
+        }
+      } catch (error) {
+        if (!cancelled) {
+          console.error('Failed to fetch Wikipedia data:', error);
+          setLoadingWiki(false);
+        }
+      }
+    };
+
+    void fetchData();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [gameState.plantName]);
+
   return (
     <div className="relative flex flex-col min-h-svh p-4 sm:p-6 lg:p-8 overflow-hidden">
       {/* Background image with overlay */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-bottom opacity-60"
         style={{ backgroundImage: `url(${insideDomeImg})` }}
         role="presentation"
@@ -60,16 +94,16 @@ export function MissionView({ gameState, domeName, onFoundIt, onChangeDome }: Mi
             {gameState.plantDescription ? (
               <ReactMarkdown
                 components={{
-                  h1: ({node, ...props}) => <h1 className="text-2xl font-bold mb-4 text-amber-900 dark:text-amber-100" {...props} />,
-                  h2: ({node, ...props}) => <h2 className="text-xl font-bold mb-3 text-amber-900 dark:text-amber-100" {...props} />,
-                  h3: ({node, ...props}) => <h3 className="text-lg font-bold mb-2 text-amber-900 dark:text-amber-100" {...props} />,
-                  h4: ({node, ...props}) => <h4 className="text-base font-bold mb-2 text-amber-900 dark:text-amber-100" {...props} />,
-                  p: ({node, ...props}) => <p className="mb-3 text-amber-950 dark:text-amber-50" {...props} />,
-                  strong: ({node, ...props}) => <strong className="font-bold text-amber-900 dark:text-amber-100" {...props} />,
-                  em: ({node, ...props}) => <em className="italic" {...props} />,
-                  ul: ({node, ...props}) => <ul className="list-disc list-inside mb-3 space-y-1" {...props} />,
-                  ol: ({node, ...props}) => <ol className="list-decimal list-inside mb-3 space-y-1" {...props} />,
-                  li: ({node, ...props}) => <li className="text-amber-950 dark:text-amber-50" {...props} />,
+                  h1: (props) => <h1 className="text-2xl font-bold mb-4 text-amber-900 dark:text-amber-100" {...props} />,
+                  h2: (props) => <h2 className="text-xl font-bold mb-3 text-amber-900 dark:text-amber-100" {...props} />,
+                  h3: (props) => <h3 className="text-lg font-bold mb-2 text-amber-900 dark:text-amber-100" {...props} />,
+                  h4: (props) => <h4 className="text-base font-bold mb-2 text-amber-900 dark:text-amber-100" {...props} />,
+                  p: (props) => <p className="mb-3 text-amber-950 dark:text-amber-50" {...props} />,
+                  strong: (props) => <strong className="font-bold text-amber-900 dark:text-amber-100" {...props} />,
+                  em: (props) => <em className="italic" {...props} />,
+                  ul: (props) => <ul className="list-disc list-inside mb-3 space-y-1" {...props} />,
+                  ol: (props) => <ol className="list-decimal list-inside mb-3 space-y-1" {...props} />,
+                  li: (props) => <li className="text-amber-950 dark:text-amber-50" {...props} />,
                 }}
               >
                 {gameState.plantDescription}
@@ -79,23 +113,60 @@ export function MissionView({ gameState, domeName, onFoundIt, onChangeDome }: Mi
             )}
           </div>
 
-          {/* Plant Image */}
-          {gameState.plantImage && (
-            <div className="flex flex-col gap-4">
-              <p className="text-sm sm:text-base text-muted-foreground font-bold uppercase tracking-wide">
-                Reference Image:
-              </p>
-              <div className="relative group">
-                <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-                <img
-                  src={gameState.plantImage}
-                  alt="Plant reference"
-                  className="relative w-full rounded-xl object-cover max-h-[350px] sm:max-h-[450px] shadow-xl border-4 border-green-200 dark:border-green-800"
-                  onError={(e) => {
-                    e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23f0f0f0" width="400" height="300"/%3E%3Ctext fill="%23999" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3EImage unavailable%3C/text%3E%3C/svg%3E';
-                  }}
-                />
+          {/* Reference Image from Wikipedia */}
+          {wikiData && wikiData.found && (
+            <div className="flex flex-col gap-4 p-6 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 rounded-xl border-2 border-green-200 dark:border-green-800 shadow-md">
+              <div className="flex items-center justify-between">
+                <p className="text-sm sm:text-base text-muted-foreground font-bold uppercase tracking-wide">
+                  Reference Image:
+                </p>
+                {wikiData.url && (
+                  <a
+                    href={wikiData.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-xs sm:text-sm text-green-600 dark:text-green-400 hover:underline"
+                  >
+                    <ExternalLink className="size-3 sm:size-4" />
+                    View on Wikipedia
+                  </a>
+                )}
               </div>
+
+              {wikiData.thumbnail && (
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+                  <img
+                    src={wikiData.thumbnail}
+                    alt={`${wikiData.title} from Wikipedia`}
+                    className="relative w-full rounded-xl object-cover max-h-[350px] sm:max-h-[450px] shadow-xl border-4 border-green-200 dark:border-green-800"
+                  />
+                </div>
+              )}
+
+              {wikiData.description && (
+                <p className="text-sm text-green-900 dark:text-green-100 italic">
+                  {wikiData.description}
+                </p>
+              )}
+
+              {wikiData.extract && (
+                <p className="text-sm text-green-950 dark:text-green-50 line-clamp-3">
+                  {wikiData.extract}
+                </p>
+              )}
+
+              <p className="text-xs text-green-600 dark:text-green-400">
+                Source: Wikipedia ({wikiData.source === 'species' ? 'Species page' : wikiData.source === 'genus' ? 'Genus page' : 'Genus image'})
+              </p>
+            </div>
+          )}
+
+          {loadingWiki && (
+            <div className="flex items-center justify-center p-6 bg-green-50 dark:bg-green-950 rounded-xl border-2 border-green-200 dark:border-green-800">
+              <p className="text-sm text-green-600 dark:text-green-400 animate-pulse">
+                Loading reference image...
+              </p>
             </div>
           )}
         </CardContent>

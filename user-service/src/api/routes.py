@@ -18,11 +18,11 @@ async def create_game(dome_type: str):
     try:
         game = PlantGame(dome_type=dome_type) # plant_name is None at this point
         plant_name = game.get_random_plant()
-        plant_image = game.database_handler.get_reference_plant_image(plant_name)
+        # No longer using database images, using Wikipedia instead
         return {
             "success": True,
             "plant_name": plant_name,
-            "plant_image": plant_image
+            "plant_image": ""
         }
     except Exception as e:
         raise HTTPException(

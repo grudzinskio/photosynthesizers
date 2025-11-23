@@ -31,17 +31,6 @@ class DatabaseHandler:
         response = self.supabase.table("plants").select("*").order("scientific_name", desc=False).execute()
         return response.data if response.data else []
 
-    # MAIN_PLANT_IMAGES TABLE - USED FOR ADDING AND GETTING PLANT IMAGES
-
-    def get_reference_plant_image(self, scientific_name: str) -> str:
-        """
-        Get the image URL of a plant by its scientific name.
-        Returns a placeholder image URL since images are stored separately.
-        """
-        # For now, return a placeholder image URL
-        # In the future, this could query user_plant_images table or a separate images table
-        return f"https://via.placeholder.com/400x300?text={scientific_name.replace(' ', '+')}"
-
     # USER_PLANT_IMAGES TABLE - USED FOR ADDING AND GETTING ALL USER PLANT IMAGES BY SCIENTIFIC NAME
 
     def upload_user_plant_image(self, scientific_name: str, image: bytes) -> dict:
