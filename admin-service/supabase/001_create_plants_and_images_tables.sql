@@ -87,6 +87,10 @@ CREATE TABLE IF NOT EXISTS user_plant_images (
     uploaded_by TEXT, -- Optional: user ID or identifier who uploaded the image
     uploaded_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    health_status TEXT, -- Overall status: 'healthy', 'watch', 'declining', 'critical', 'unknown'
+    health_score INTEGER, -- Health score from 0-100
+    health_confidence FLOAT, -- Confidence in health assessment (0.0-1.0)
+    health_assessment JSONB, -- Full health assessment data (observations, issues, recommendations, etc.)
     
     -- Ensure image_url is not empty
     CONSTRAINT plant_images_image_url_not_empty CHECK (length(trim(image_url)) > 0)
@@ -168,3 +172,8 @@ $$ LANGUAGE plpgsql STABLE;
 -- WHERE tablename IN ('plants', 'user_plant_images')
 -- ORDER BY tablename, indexname;
 
+
+-- Add index for health status queries
+CREATE INDEX IF NOT EXISTS idx_plant_images_health_status ON user_plant_images(health_status);
+CREATE INDEX IF NOT EXISTS idx_plant_images_health_score ON user_plant_images(health_score);
+CREATE INDEX IF NOT EXISTS idx_plant_images_plant_id_health_status ON user_plant_images(plant_id, health_status);
