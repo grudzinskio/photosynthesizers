@@ -13,7 +13,7 @@ class DatabaseHandler:
         """
         Initialize the database handler.
         """
-        self.supabase = create_client(os.getenv("VITE_SUPABASE_URL"), os.getenv("VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY"))
+        self.supabase = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_KEY"))
 
     """
     PLANTS TABLE
