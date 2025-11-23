@@ -126,11 +126,12 @@ export interface RecentImagesResponse {
 
 export async function getRecentImages(
   limit: number = 50,
+  offset: number = 0,
   apiBaseUrl?: string
 ): Promise<RecentImagesResponse> {
   const baseUrl = apiBaseUrl || getApiBaseUrl();
   return apiRequest<RecentImagesResponse>(
-    `${baseUrl}/api/images/recent?limit=${limit}`,
+    `${baseUrl}/api/images/recent?limit=${limit}&offset=${offset}`,
     { method: 'GET' },
     'Failed to get recent images'
   );

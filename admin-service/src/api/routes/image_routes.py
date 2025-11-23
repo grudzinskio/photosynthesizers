@@ -11,7 +11,8 @@ image_service = ImageService()
 
 @router.get("/recent", response_model=RecentImagesResponse)
 async def get_recent_images(
-    limit: int = Query(default=50, ge=1, le=200, description="Maximum number of images to return")
+    limit: int = Query(default=50, ge=1, le=200, description="Maximum number of images to return"),
+    offset: int = Query(default=0, ge=0, description="Number of images to skip (for pagination)")
 ):
     """
     Get recent images uploaded by users, ordered by uploaded_at descending.
@@ -19,12 +20,13 @@ async def get_recent_images(
     
     Args:
         limit: Maximum number of images to return (1-200)
+        offset: Number of images to skip (for pagination)
     
     Returns:
         Dictionary with recent images and count
     """
     try:
-        images = image_service.get_recent_images(limit=limit)
+        images = image_service.get_recent_images(limit=limit, offset=offset)
         
         return RecentImagesResponse(
             success=True,

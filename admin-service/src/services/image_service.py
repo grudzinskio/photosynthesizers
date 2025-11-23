@@ -15,13 +15,14 @@ class ImageService:
         self.client = get_client()
         self.table = "user_plant_images"
     
-    def get_recent_images(self, limit: int = 50) -> List[Dict]:
+    def get_recent_images(self, limit: int = 50, offset: int = 0) -> List[Dict]:
         """
         Get recent images uploaded by users, ordered by uploaded_at descending.
         Includes plant information via join.
         
         Args:
             limit: Maximum number of images to return
+            offset: Number of images to skip (for pagination)
             
         Returns:
             List of image dictionaries with plant information
@@ -30,7 +31,7 @@ class ImageService:
             self.client.table(self.table)
             .select("*, plants(*)")
             .order("uploaded_at", desc=True)
-            .limit(limit)
+            .range(offset, offset + limit - 1)
             .execute()
         )
         return response.data if response.data else []
