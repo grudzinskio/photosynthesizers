@@ -123,10 +123,8 @@ export async function submitImage(
 
     const data: SubmitImageResponse = await response.json();
     
-    if (!data.success) {
-      throw new Error('Image submission was not successful');
-    }
-
+    // Return the data even if success is false - mismatches are expected responses
+    // The backend provides helpful messages that should be displayed to the user
     return data;
   } catch (error) {
     if (error instanceof Error) {

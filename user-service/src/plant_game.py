@@ -132,9 +132,10 @@ class PlantGame:
                 }
             
             # Step 4: Return success with upload confirmation
+            target_plant_display = self.current_plant.rstrip("? ").strip() if self.current_plant else None
             return {
                 "success": True,
-                "message": f"Success! Your {self.current_plant} image has been verified and uploaded.",
+                "message": f"Success! Your {target_plant_display} image has been verified and uploaded.",
                 "classified_plant": classified_plant,
                 "confidence": confidence,
                 "target_plant": self.current_plant,
