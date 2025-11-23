@@ -72,6 +72,28 @@ class ExcelLoaderService:
             # Create a dictionary to store DataFrames for each dome
             dome_dataframes = {}
             
+            # Check if there are plants before the first dome header
+            # If so, add them to a "Unknown Dome" or the first dome
+            first_dome_start = dome_rows[0][0] if dome_rows else len(df_raw)
+            if first_dome_start > header_row_idx + 2:  # There's data between header and first dome
+                # Check if there's actual plant data (not just empty rows)
+                pre_dome_data = df_raw.iloc[header_row_idx + 2:first_dome_start].copy()
+                pre_dome_data.columns = final_columns
+                pre_dome_data = pre_dome_data.dropna(how='all')
+                has_common_name = pre_dome_data['Common Name'].notna() & (pre_dome_data['Common Name'].astype(str).str.strip() != '')
+                has_scientific_name = pre_dome_data['Scientific Name'].notna() & (pre_dome_data['Scientific Name'].astype(str).str.strip() != '')
+                pre_dome_data = pre_dome_data[has_common_name | has_scientific_name]
+                
+                if len(pre_dome_data) > 0:
+                    # Add these plants to the first dome (or create a default dome)
+                    if dome_rows:
+                        # Adjust the first dome to include these plants
+                        first_dome_idx = dome_rows[0][0]
+                        dome_rows[0] = (header_row_idx + 2, dome_rows[0][1])  # Start from after header
+                    else:
+                        # No domes found, create a default one
+                        dome_rows.append((header_row_idx + 2, "All Plants"))
+            
             # Process each dome section
             for i, (dome_start_idx, dome_name) in enumerate(dome_rows):
                 # Determine the end of this section (start of next dome, or end of file)
@@ -89,8 +111,11 @@ class ExcelLoaderService:
                 # Remove rows that are all NaN or empty
                 dome_data = dome_data.dropna(how='all')
                 
-                # Remove rows where Common Name is NaN (these are likely empty separator rows)
-                dome_data = dome_data[dome_data['Common Name'].notna()]
+                # Remove rows where BOTH Common Name AND Scientific Name are NaN (these are empty separator rows)
+                # Keep rows that have at least one of these fields
+                has_common_name = dome_data['Common Name'].notna() & (dome_data['Common Name'].astype(str).str.strip() != '')
+                has_scientific_name = dome_data['Scientific Name'].notna() & (dome_data['Scientific Name'].astype(str).str.strip() != '')
+                dome_data = dome_data[has_common_name | has_scientific_name]
                 
                 # Reset index and set to match Excel row numbers (1-indexed)
                 dome_data = dome_data.reset_index(drop=True)
@@ -155,6 +180,16 @@ class ExcelLoaderService:
             # Calculate statistics
             dome_counts = {name: len(df) for name, df in dome_dataframes.items()}
             total_plants = sum(count for name, count in dome_counts.items() if name != 'All')
+            
+            # Debug: Print counts for each dome
+            print(f"Excel parsing complete:")
+            print(f"  Total domes found: {len([k for k in dome_dataframes.keys() if k != 'All'])}")
+            for name, count in dome_counts.items():
+                if name != 'All':
+                    print(f"  {name}: {count} plants")
+            print(f"  Total plants (excluding 'All'): {total_plants}")
+            if 'All' in dome_counts:
+                print(f"  'All' combined: {dome_counts['All']} plants")
             
             return {
                 "success": True,

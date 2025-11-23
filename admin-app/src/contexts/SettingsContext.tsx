@@ -32,8 +32,16 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   });
 
   useEffect(() => {
-    // Save to localStorage whenever settings change
-    localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(settings));
+    // Only save to localStorage if settings differ from defaults
+    // This prevents unnecessary writes when settings haven't changed
+    const settingsString = JSON.stringify(settings);
+    const defaultString = JSON.stringify(defaultSettings);
+    if (settingsString !== defaultString) {
+      localStorage.setItem(SETTINGS_STORAGE_KEY, settingsString);
+    } else {
+      // Remove from localStorage if it matches defaults
+      localStorage.removeItem(SETTINGS_STORAGE_KEY);
+    }
   }, [settings]);
 
   const updateSettings = (newSettings: Partial<Settings>) => {

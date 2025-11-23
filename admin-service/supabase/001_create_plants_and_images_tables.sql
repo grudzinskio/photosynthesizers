@@ -45,8 +45,9 @@ CREATE TABLE IF NOT EXISTS plants (
     stop TEXT,
     dome TEXT NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-    UNIQUE(scientific_name, dome) -- Ensure unique plant per dome
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+    -- No unique constraint - allows multiple identical records (e.g., multiple "Mammillaria sp." 
+    -- entries when the exhibit doesn't know the specific species)
 );
 
 -- Indexes for plants table
@@ -71,7 +72,7 @@ CREATE TRIGGER update_plants_updated_at
     EXECUTE FUNCTION update_updated_at_column();
 
 -- Add table comment
-COMMENT ON TABLE plants IS 'Stores plant data from Excel file uploads. Each plant is uniquely identified by scientific_name and dome.';
+COMMENT ON TABLE plants IS 'Stores plant data from Excel file uploads. Multiple identical records are allowed (e.g., multiple "Mammillaria sp." entries when specific species are unknown).';
 
 -- ============================================================================
 -- PLANT_IMAGES TABLE

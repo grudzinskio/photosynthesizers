@@ -271,7 +271,7 @@ async def search_plants(
 @router.get("/database/plants")
 async def get_plants_from_database(
     dome: str = Query(default=None, description="Filter by dome name"),
-    limit: int = Query(default=100, ge=1, le=1000, description="Maximum number of plants to return"),
+    limit: int = Query(default=100, ge=1, le=50000, description="Maximum number of plants to return"),
     offset: int = Query(default=0, ge=0, description="Number of plants to skip")
 ):
     """
@@ -321,9 +321,7 @@ async def get_domes_from_database():
         Dictionary with list of dome names
     """
     try:
-        all_plants = plant_service.get_all_plants()
-        domes = list(set(plant.get("dome") for plant in all_plants if plant.get("dome")))
-        domes.sort()
+        domes = plant_service.get_all_domes()
         
         return {
             "success": True,
