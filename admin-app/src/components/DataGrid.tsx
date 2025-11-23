@@ -1,9 +1,14 @@
 import { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Loader2, AlertCircle, RefreshCw } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Loader2, AlertCircle, RefreshCw, Database } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { getPlantsByDome, getAvailableDomes, type PlantsResponse, type DomesResponse } from '@/lib/api';
+import { 
+  getPlantsFromDatabase, 
+  getDomesFromDatabase, 
+  type DatabasePlantsResponse, 
+  type DatabaseDomesResponse 
+} from '@/lib/api';
 import { useSettings } from '@/contexts/SettingsContext';
 import { cn } from '@/lib/utils';
 
@@ -26,16 +31,14 @@ export function DataGrid() {
   }, [settings.apiBaseUrl]);
 
   useEffect(() => {
-    if (selectedDome) {
-      loadPlants();
-    }
+    loadPlants();
   }, [selectedDome, currentPage, settings.apiBaseUrl]);
 
   const loadDomes = async () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response: DomesResponse = await getAvailableDomes(settings.apiBaseUrl);
+      const response: DatabaseDomesResponse = await getDomesFromDatabase(settings.apiBaseUrl);
       if (response.success && response.domes.length > 0) {
         setDomes(response.domes);
         setSelectedDome(response.domes[0]);
@@ -44,20 +47,18 @@ export function DataGrid() {
         setSelectedDome('');
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load domes');
+      setError(err instanceof Error ? err.message : 'Failed to load domes from database');
     } finally {
       setIsLoading(false);
     }
   };
 
   const loadPlants = async () => {
-    if (!selectedDome) return;
-    
     setIsLoadingPlants(true);
     setError(null);
     try {
-      const response: PlantsResponse = await getPlantsByDome(
-        selectedDome,
+      const response: DatabasePlantsResponse = await getPlantsFromDatabase(
+        selectedDome || null,
         ITEMS_PER_PAGE,
         currentPage * ITEMS_PER_PAGE,
         settings.apiBaseUrl
@@ -66,13 +67,14 @@ export function DataGrid() {
         setPlants(response.plants);
         setTotal(response.total);
         
-        // Extract column names from first plant if available
+        // Extract column names from first plant if available, excluding 'id'
         if (response.plants.length > 0) {
-          setColumns(Object.keys(response.plants[0]));
+          const allColumns = Object.keys(response.plants[0]);
+          setColumns(allColumns.filter(col => col !== 'id'));
         }
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load plants');
+      setError(err instanceof Error ? err.message : 'Failed to load plants from database');
     } finally {
       setIsLoadingPlants(false);
     }
@@ -127,8 +129,9 @@ export function DataGrid() {
         </CardHeader>
         <CardContent>
           <div className="text-center py-8 text-muted-foreground">
-            <p>No Excel file loaded.</p>
-            <p className="text-sm mt-2">Upload a file in Settings to view data.</p>
+            <Database className="h-12 w-12 mx-auto mb-4 opacity-50" />
+            <p>No plants found in database.</p>
+            <p className="text-sm mt-2">Upload an Excel file in Settings to add plants to the database.</p>
           </div>
         </CardContent>
       </Card>
@@ -152,7 +155,7 @@ export function DataGrid() {
         {/* Dome Selector */}
         <div className="flex items-center gap-4">
           <label htmlFor="dome-select" className="text-sm font-medium">
-            Select Dome:
+            Filter by Dome:
           </label>
           <select
             id="dome-select"
@@ -163,6 +166,7 @@ export function DataGrid() {
             }}
             className="flex h-9 w-[200px] rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
           >
+            <option value="">All Domes</option>
             {domes.map((dome) => (
               <option key={dome} value={dome}>
                 {dome}
@@ -171,6 +175,7 @@ export function DataGrid() {
           </select>
           <div className="text-sm text-muted-foreground">
             Showing {plants.length} of {total} plants
+            {selectedDome && ` in ${selectedDome}`}
           </div>
         </div>
 
