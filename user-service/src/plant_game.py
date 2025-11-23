@@ -3,6 +3,17 @@ from game_utils.supabase_handler import SupabaseHandler
 from game_utils.plant_summarizer import PlantSummarizer
 from game_utils.plant_classifier import PlantClassifier
 
+
+_plant_classifier = None
+
+def get_plant_classifier():
+    """Get the shared PlantClassifier instance"""
+    global _plant_classifier
+    if _plant_classifier is None:
+        _plant_classifier = PlantClassifier()
+    return _plant_classifier
+
+
 class PlantGame:
     """
     This class is used to manage the plant game.
@@ -48,9 +59,8 @@ class PlantGame:
         Always uploads the image regardless of classification match.
         """
         try:
-            self.plant_classifier = PlantClassifier()
-            # Verify the image
-            result = self.plant_classifier.classify_image(image)
+            plant_classifier = get_plant_classifier() # load the global plant classifier
+            result = plant_classifier.classify_image(image)
             if not result.get("success"):
                 return {
                     "success": False,

@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from api import routes as game_routes
+from game_utils.plant_classifier import PlantClassifier
+
 import uvicorn
 
 # Create FastAPI app
@@ -18,6 +20,19 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Startup event - Load BioCLIP model once
+@app.on_event("startup")
+async def startup_event():
+    """Load the plant classifier model on startup"""
+    print("Starting up application...")
+    print("Loading BioCLIP model and plant database...")
+    
+    # This triggers the model loading and caching
+    # The first instance loads everything, subsequent instances use the cache
+    classifier = PlantClassifier()
+    
+    print("Application startup complete!")
 
 # Include routers
 app.include_router(game_routes.router)
