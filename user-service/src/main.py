@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from api import routes as game_routes
 from game_utils.plant_classifier import PlantClassifier
+from game_utils.plant_health_assesor import get_plant_health_assessor
 from dotenv import load_dotenv
 
 import uvicorn
@@ -83,6 +84,10 @@ async def startup_event():
     # This triggers the model loading and caching
     # The first instance loads everything, subsequent instances use the cache
     classifier = PlantClassifier()
+    
+    # Load health assessor (will share model with classifier if already loaded)
+    print("Loading plant health assessor...")
+    health_assessor = get_plant_health_assessor()
     
     print("Application startup complete!")
 

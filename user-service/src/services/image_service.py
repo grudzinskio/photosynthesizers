@@ -16,19 +16,20 @@ class ImageService:
         self.table = "user_plant_images"
         self.storage_bucket = "plant-images"
     
-    def upload_user_plant_image(self, plant_id: str, image: bytes, uploaded_by: Optional[str] = None) -> Dict:
+    def upload_user_plant_image(self, plant_id: str, image: bytes, uploaded_by: Optional[str] = None, health_assessment: Optional[Dict] = None) -> Dict:
         """
         Upload a user's plant image to Supabase storage and save the record to the database.
         
         Steps:
         1. Upload image to Supabase storage bucket "plant-images"
         2. Get the public URL for the uploaded image
-        3. Save the image URL to user_plant_images table
+        3. Save the image URL and health assessment to user_plant_images table
         
         Args:
             plant_id: UUID of the plant
             image: Image bytes to upload
             uploaded_by: Optional identifier for who uploaded the image
+            health_assessment: Optional health assessment dictionary from PlantHealthAssessor
             
         Returns:
             Dictionary with success status and image data or error message
@@ -49,12 +50,20 @@ class ImageService:
             # Step 2: Get the public URL for the uploaded image
             image_url = self.client.storage.from_(self.storage_bucket).get_public_url(filename)
             
-            # Step 3: Save image record to user_plant_images table
+            # Step 3: Prepare image record with health assessment data
             image_record = {
                 "plant_id": plant_id,
                 "image_url": image_url,
                 "uploaded_by": uploaded_by
             }
+            
+            # Add health assessment data if provided
+            if health_assessment and health_assessment.get("success"):
+                image_record["health_status"] = health_assessment.get("overall_status", "unknown")
+                image_record["health_score"] = health_assessment.get("health_score", 0)
+                image_record["health_confidence"] = health_assessment.get("confidence", 0.0)
+                # Store full assessment as JSONB
+                image_record["health_assessment"] = health_assessment
             
             db_response = self.client.table(self.table).insert(image_record).execute()
             
@@ -62,7 +71,8 @@ class ImageService:
                 "success": True,
                 "image_id": db_response.data[0]["id"] if db_response.data else None,
                 "image_url": image_url,
-                "plant_id": plant_id
+                "plant_id": plant_id,
+                "health_assessed": health_assessment is not None and health_assessment.get("success", False)
             }
             
         except Exception as e:

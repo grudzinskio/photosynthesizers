@@ -3,6 +3,7 @@ import traceback
 from game_utils.supabase_handler import SupabaseHandler
 from game_utils.plant_summarizer import PlantSummarizer
 from game_utils.plant_classifier import PlantClassifier
+from game_utils.plant_health_assesor import get_plant_health_assessor
 
 
 _plant_classifier = None
@@ -106,15 +107,38 @@ class PlantGame:
                     "target_plant": self.current_plant
                 }
             
-            # Step 3: Upload image only if match is successful
+            # Step 3: Assess plant health after match is confirmed
             print("Match status: SUCCESS")
+            print("Assessing plant health...")
+            
+            health_assessment = None
+            try:
+                health_assessor = get_plant_health_assessor()
+                health_assessment = health_assessor.assess_plant_health(
+                    image=image,
+                    plant_name=self.current_plant,
+                    location=self.dome_type
+                )
+                
+                if health_assessment.get("success"):
+                    print(f"Health assessment completed: {health_assessment.get('overall_status')} (score: {health_assessment.get('health_score')}/100)")
+                else:
+                    print(f"Health assessment failed: {health_assessment.get('error', 'Unknown error')}")
+                    # Continue with upload even if health assessment fails
+            except Exception as e:
+                print(f"Error during health assessment: {str(e)}")
+                # Continue with upload even if health assessment fails
+                health_assessment = None
+            
+            # Step 4: Upload image with health assessment data
             print("Upload initiated")
             
             self.supabase_handler = SupabaseHandler()
             upload_result = self.supabase_handler.upload_user_plant_image(
                 scientific_name=self.current_plant,
                 dome=self.dome_type,
-                image=image
+                image=image,
+                health_assessment=health_assessment
             )
             
             # Log the upload result for debugging
@@ -131,8 +155,8 @@ class PlantGame:
                     "target_plant": self.current_plant
                 }
             
-            # Step 4: Return success with upload confirmation
-            return {
+            # Step 5: Return success with upload confirmation and health assessment
+            response = {
                 "success": True,
                 "message": f"Success! Your {self.current_plant} image has been verified and uploaded.",
                 "classified_plant": classified_plant,
@@ -140,6 +164,16 @@ class PlantGame:
                 "target_plant": self.current_plant,
                 "image_url": upload_result.get("image_url")
             }
+            
+            # Include health assessment in response if available
+            if health_assessment and health_assessment.get("success"):
+                response["health_assessment"] = {
+                    "status": health_assessment.get("overall_status"),
+                    "score": health_assessment.get("health_score"),
+                    "confidence": health_assessment.get("confidence")
+                }
+            
+            return response
             
         except Exception as e:
             # Log full error details including traceback
