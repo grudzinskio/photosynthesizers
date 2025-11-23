@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
-import { ChevronLeft, ChevronRight, Loader2, AlertCircle, RefreshCw, Database, Search, ArrowUpDown, ArrowUp, ArrowDown, X, Image as ImageIcon, Calendar, User, Leaf } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { ChevronLeft, ChevronRight, Loader2, AlertCircle, RefreshCw, Database, Search, ArrowUpDown, ArrowUp, ArrowDown, X, Image as ImageIcon, Calendar, User } from 'lucide-react';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
@@ -328,10 +328,6 @@ export function DataGrid() {
   if (isLoading) {
     return (
       <Card>
-        <CardHeader>
-          <CardTitle>Data Grid</CardTitle>
-          <CardDescription>View plant data in a table format</CardDescription>
-        </CardHeader>
         <CardContent>
           <div className="flex items-center justify-center py-8">
             <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
@@ -344,10 +340,6 @@ export function DataGrid() {
   if (error && !domes.length) {
     return (
       <Card>
-        <CardHeader>
-          <CardTitle>Data Grid</CardTitle>
-          <CardDescription>View plant data in a table format</CardDescription>
-        </CardHeader>
         <CardContent>
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
@@ -366,10 +358,6 @@ export function DataGrid() {
   if (domes.length === 0) {
     return (
       <Card>
-        <CardHeader>
-          <CardTitle>Data Grid</CardTitle>
-          <CardDescription>View plant data in a table format</CardDescription>
-        </CardHeader>
         <CardContent>
           <div className="text-center py-8 text-muted-foreground">
             <Database className="h-12 w-12 mx-auto mb-4 opacity-50" />
@@ -382,19 +370,10 @@ export function DataGrid() {
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <div className="flex items-center justify-between">
-          <div>
-            <CardTitle>Data Grid</CardTitle>
-            <CardDescription>View plant data in a table format</CardDescription>
-          </div>
+    <Card className="pt-2">
+      <CardHeader className="pb-2">
+        <div className="flex items-center justify-end">
           <div className="flex items-center gap-2">
-            <ColumnVisibilityToggle
-              columns={columns}
-              visibleColumns={visibleColumns}
-              onToggleColumn={toggleColumn}
-            />
             {(searchQuery || Object.keys(columnFilters).length > 0 || sortConfig || (visibleColumns.size < columns.length)) && (
               <Button
                 variant="outline"
@@ -406,13 +385,10 @@ export function DataGrid() {
                 Reset All
               </Button>
             )}
-            <Button onClick={loadDomes} variant="outline" size="sm">
-              <RefreshCw className="h-4 w-4" />
-            </Button>
           </div>
         </div>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-4 pt-2">
         {/* Dome Selector and Search */}
         <div className="flex items-center gap-4 flex-wrap">
           <label htmlFor="dome-select" className="text-sm font-medium">
@@ -460,6 +436,44 @@ export function DataGrid() {
           </Alert>
         )}
 
+        {/* Top Pagination */}
+        {!isLoadingPlants && totalPages > 1 && (
+          <div className="flex items-center justify-between">
+            <div className="text-sm text-muted-foreground">
+              Page {currentPage + 1} of {totalPages} • Showing {paginatedPlants.length} of {displayTotal} plants
+              {displayTotal !== total && ` (${total} total in database)`}
+            </div>
+            <div className="flex gap-2">
+              <ColumnVisibilityToggle
+                columns={columns}
+                visibleColumns={visibleColumns}
+                onToggleColumn={toggleColumn}
+              />
+              <Button onClick={loadDomes} variant="outline" size="sm">
+                <RefreshCw className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setCurrentPage((prev) => Math.max(0, prev - 1))}
+                disabled={currentPage === 0 || isLoadingPlants}
+              >
+                <ChevronLeft className="h-4 w-4" />
+                Previous
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setCurrentPage((prev) => Math.min(totalPages - 1, prev + 1))}
+                disabled={currentPage >= totalPages - 1 || isLoadingPlants}
+              >
+                Next
+                <ChevronRight className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        )}
+
         {/* Data Table */}
         {isLoadingPlants ? (
           <div className="flex items-center justify-center py-8">
@@ -473,10 +487,6 @@ export function DataGrid() {
           </div>
         ) : (
           <>
-            <div className="text-sm text-muted-foreground mb-2">
-              Showing {paginatedPlants.length} of {displayTotal} plants
-              {displayTotal !== total && ` (${total} total in database)`}
-            </div>
             <div className="overflow-x-auto border rounded-lg">
               <table className="w-full">
                 <thead className="bg-muted">
@@ -561,9 +571,18 @@ export function DataGrid() {
             {totalPages > 1 && (
               <div className="flex items-center justify-between">
                 <div className="text-sm text-muted-foreground">
-                  Page {currentPage + 1} of {totalPages} ({displayTotal} {displayTotal === 1 ? 'plant' : 'plants'} shown)
+                  Page {currentPage + 1} of {totalPages} • Showing {paginatedPlants.length} of {displayTotal} plants
+                  {displayTotal !== total && ` (${total} total in database)`}
                 </div>
                 <div className="flex gap-2">
+                  <ColumnVisibilityToggle
+                    columns={columns}
+                    visibleColumns={visibleColumns}
+                    onToggleColumn={toggleColumn}
+                  />
+                  <Button onClick={loadDomes} variant="outline" size="sm">
+                    <RefreshCw className="h-4 w-4" />
+                  </Button>
                   <Button
                     variant="outline"
                     size="sm"
@@ -593,7 +612,7 @@ export function DataGrid() {
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogHeader>
           <DialogTitle>
-            {selectedPlant && (
+            {selectedPlant ? (
               <>
                 Images for {selectedPlant.common_name as string || selectedPlant.scientific_name as string || 'Plant'}
                 {selectedPlant.scientific_name && selectedPlant.common_name && (
@@ -602,6 +621,8 @@ export function DataGrid() {
                   </span>
                 )}
               </>
+            ) : (
+              'Plant Images'
             )}
           </DialogTitle>
           <DialogDescription>
