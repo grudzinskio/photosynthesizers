@@ -190,6 +190,10 @@ class PlantGame:
                 "error": "No current plant to ask about"
             }
         
+        # Initialize plant_summarizer if not already initialized
+        if self.plant_summarizer is None:
+            self.plant_summarizer = PlantSummarizer()
+        
         print(f"Answering question about {self.current_plant}: {question}")
         answer = self.plant_summarizer.follow_up_question(self.current_plant, question)
         

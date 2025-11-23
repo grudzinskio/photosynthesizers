@@ -1,6 +1,6 @@
 // Application state types for Dome Defender
 
-export type AppState = 'dome-select' | 'mission' | 'photo-upload' | 'feedback';
+export type AppState = 'dome-select' | 'mission' | 'photo-upload' | 'feedback' | 'plant-details';
 
 export type DomeName = 'Tropical Dome' | 'Desert Dome' | 'Show Dome';
 
@@ -20,4 +20,11 @@ export interface PlantData {
 export interface FeedbackData {
   success: boolean;
   message: string;
+}
+
+export interface ChatMessage {
+  id: string;
+  role: 'user' | 'assistant';
+  content: string;
+  timestamp: Date;
 }

@@ -4,7 +4,9 @@ import { DomeSelector } from "@/components/DomeSelector";
 import { MissionView } from "@/components/MissionView";
 import { PhotoCapture } from "@/components/PhotoCapture";
 import { FeedbackView } from "@/components/FeedbackView";
+import { PlantDetailsView } from "@/components/PlantDetailsView";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { startGame, summarizePlant, submitImage } from "@/api/gameApi";
 
 function App() {
@@ -36,27 +38,35 @@ function App() {
       };
       setGameState(newGameState);
 
-      // Update loading message for description generation
-      setLoadingMessage("Generating description...");
-
-      // Immediately call summarizePlant to get LLM description
-      const summarizeResponse = await summarizePlant(dome, startGameResponse.plant_name);
-      
-      // Update game state with description
-      setGameState({
-        ...newGameState,
-        plantDescription: summarizeResponse.summary,
-      });
-
+      // Show mission view immediately
       setAppState("mission");
+      setIsLoading(false);
+
+      // Generate description in background (don't await)
+      summarizePlant(dome, startGameResponse.plant_name)
+        .then((summarizeResponse) => {
+          // Update game state with description when ready
+          setGameState((prevState) => {
+            if (prevState?.plantName === startGameResponse.plant_name) {
+              return {
+                ...prevState,
+                plantDescription: summarizeResponse.summary,
+              };
+            }
+            return prevState;
+          });
+        })
+        .catch((error) => {
+          console.error("Error generating plant description:", error);
+          // Description will remain null, PlantDetailsView will handle this
+        });
     } catch (error) {
       console.error("Error starting game:", error);
       // Reset state on error
       setSelectedDome(null);
       setGameState(null);
-      alert("Failed to start game. Please try again.");
-    } finally {
       setIsLoading(false);
+      alert("Failed to start game. Please try again.");
     }
   };
 
@@ -140,24 +150,32 @@ function App() {
       };
       setGameState(newGameState);
 
-      // Update loading message for description generation
-      setLoadingMessage("Generating description...");
-
-      // Get LLM description
-      const summarizeResponse = await summarizePlant(selectedDome, startGameResponse.plant_name);
-      
-      // Update game state with description
-      setGameState({
-        ...newGameState,
-        plantDescription: summarizeResponse.summary,
-      });
-
+      // Show mission view immediately
       setAppState("mission");
+      setIsLoading(false);
+
+      // Generate description in background (don't await)
+      summarizePlant(selectedDome, startGameResponse.plant_name)
+        .then((summarizeResponse) => {
+          // Update game state with description when ready
+          setGameState((prevState) => {
+            if (prevState?.plantName === startGameResponse.plant_name) {
+              return {
+                ...prevState,
+                plantDescription: summarizeResponse.summary,
+              };
+            }
+            return prevState;
+          });
+        })
+        .catch((error) => {
+          console.error("Error generating plant description:", error);
+          // Description will remain null, PlantDetailsView will handle this
+        });
     } catch (error) {
       console.error("Error loading next mission:", error);
-      alert("Failed to load next mission. Please try again.");
-    } finally {
       setIsLoading(false);
+      alert("Failed to load next mission. Please try again.");
     }
   };
 
@@ -175,6 +193,31 @@ function App() {
     setCapturedImage(null);
     setFeedbackData(null);
     setAppState("dome-select");
+  };
+
+  // Handler: View plant details
+  const handleViewDetails = () => {
+    setAppState("plant-details");
+  };
+
+  // Handler: Back from plant details
+  const handleBackFromDetails = () => {
+    setAppState("feedback");
+  };
+
+  // Handler: Update plant description after retry
+  const handleDescriptionUpdate = (description: string) => {
+    if (gameState) {
+      setGameState({
+        ...gameState,
+        plantDescription: description,
+      });
+    }
+  };
+
+  // Handler: Reset error boundary for plant details
+  const handlePlantDetailsError = () => {
+    setAppState("feedback");
   };
 
   // Conditional rendering based on app state
@@ -204,9 +247,21 @@ function App() {
         <FeedbackView
           feedback={feedbackData}
           capturedImage={capturedImage}
+          plantDescription={gameState?.plantDescription ?? null}
           onNextMission={handleNextMission}
           onTryAgain={handleTryAgain}
+          onViewDetails={handleViewDetails}
         />
+      )}
+
+      {appState === "plant-details" && gameState && (
+        <ErrorBoundary onReset={handlePlantDetailsError}>
+          <PlantDetailsView
+            gameState={gameState}
+            onBack={handleBackFromDetails}
+            onDescriptionUpdate={handleDescriptionUpdate}
+          />
+        </ErrorBoundary>
       )}
 
       {isLoading && <LoadingSpinner message={loadingMessage} />}

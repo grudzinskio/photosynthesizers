@@ -19,6 +19,13 @@ export interface SubmitImageResponse {
   message: string;
 }
 
+export interface AskQuestionResponse {
+  success: boolean;
+  plant_name: string;
+  question: string;
+  answer: string;
+}
+
 /**
  * Start a new game by selecting a dome type
  * @param domeType - The type of dome (e.g., "Tropical Dome", "Desert Dome", "Show Dome")
@@ -131,5 +138,69 @@ export async function submitImage(
       throw new Error(`Error submitting image: ${error.message}`);
     }
     throw new Error('An unknown error occurred while submitting the image');
+  }
+}
+
+/**
+ * Ask a question about a plant with timeout handling
+ * @param question - The user's question about the plant
+ * @param domeType - The type of dome
+ * @param plantName - The scientific name of the plant
+ * @param timeoutMs - Timeout in milliseconds (default: 30000)
+ * @returns Promise with the AI-generated answer
+ */
+export async function askPlantQuestion(
+  question: string,
+  domeType: string,
+  plantName: string,
+  timeoutMs: number = 30000
+): Promise<AskQuestionResponse> {
+  try {
+    const formData = new FormData();
+    formData.append('question', question);
+    formData.append('dome_type', domeType);
+    formData.append('plant_name', plantName);
+
+    // Create abort controller for timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/game/ask-question`, {
+        method: 'POST',
+        body: formData,
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        throw new Error(`Failed to ask question: ${response.status} ${response.statusText}`);
+      }
+
+      const data: AskQuestionResponse = await response.json();
+      
+      if (!data.success) {
+        throw new Error('Question was not processed successfully');
+      }
+
+      return data;
+    } catch (fetchError) {
+      clearTimeout(timeoutId);
+      
+      if (fetchError instanceof Error && fetchError.name === 'AbortError') {
+        throw new Error('Request timed out. Please try again.');
+      }
+      throw fetchError;
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      // Check for network errors
+      if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+        throw new Error('Network error. Please check your connection and try again.');
+      }
+      throw new Error(`Error asking question: ${error.message}`);
+    }
+    throw new Error('An unknown error occurred while asking the question');
   }
 }

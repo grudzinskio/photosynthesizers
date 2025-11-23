@@ -4,7 +4,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Camera, ArrowLeft, ExternalLink } from 'lucide-react';
 import insideDomeImg from "@/assets/inside_dome.webp";
-import ReactMarkdown from 'react-markdown';
 import { useEffect, useState } from 'react';
 import { getWikipediaPlantData, type WikipediaPlantData } from '@/api/wikipediaApi';
 
@@ -87,30 +86,6 @@ export function MissionView({ gameState, domeName, onFoundIt, onChangeDome }: Mi
             <h3 className="text-xl sm:text-2xl font-bold text-green-800 dark:text-green-200 text-center">
               {gameState.plantName}
             </h3>
-          </div>
-
-          {/* Plant Description with Markdown */}
-          <div className="text-base sm:text-lg leading-relaxed text-foreground p-6 bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-950 dark:to-yellow-950 rounded-xl border-2 border-amber-200 dark:border-amber-800 shadow-md prose prose-sm sm:prose-base dark:prose-invert max-w-none">
-            {gameState.plantDescription ? (
-              <ReactMarkdown
-                components={{
-                  h1: (props) => <h1 className="text-2xl font-bold mb-4 text-amber-900 dark:text-amber-100" {...props} />,
-                  h2: (props) => <h2 className="text-xl font-bold mb-3 text-amber-900 dark:text-amber-100" {...props} />,
-                  h3: (props) => <h3 className="text-lg font-bold mb-2 text-amber-900 dark:text-amber-100" {...props} />,
-                  h4: (props) => <h4 className="text-base font-bold mb-2 text-amber-900 dark:text-amber-100" {...props} />,
-                  p: (props) => <p className="mb-3 text-amber-950 dark:text-amber-50" {...props} />,
-                  strong: (props) => <strong className="font-bold text-amber-900 dark:text-amber-100" {...props} />,
-                  em: (props) => <em className="italic" {...props} />,
-                  ul: (props) => <ul className="list-disc list-inside mb-3 space-y-1" {...props} />,
-                  ol: (props) => <ol className="list-decimal list-inside mb-3 space-y-1" {...props} />,
-                  li: (props) => <li className="text-amber-950 dark:text-amber-50" {...props} />,
-                }}
-              >
-                {gameState.plantDescription}
-              </ReactMarkdown>
-            ) : (
-              <p className="italic font-medium text-center">Loading plant description...</p>
-            )}
           </div>
 
           {/* Reference Image from Wikipedia */}
