@@ -143,7 +143,7 @@ export function MissionView({ gameState, domeName, onFoundIt, onChangeDome }: Mi
             <div className="flex-1 lg:w-[40%] flex flex-col gap-4 lg:gap-6">
               {wikiData && wikiData.found && (
                 <>
-                  {wikiData.description && (
+                  {wikiData.description && wikiData.description !== 'Species of plant' && (
                     <div className="p-4 sm:p-6 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 rounded-xl border-2 border-green-200 dark:border-green-800 shadow-md">
                       <h4 className="text-base sm:text-lg font-semibold text-green-800 dark:text-green-200 mb-2 sm:mb-3">Description</h4>
                       <p className="text-sm sm:text-base text-green-900 dark:text-green-100 italic leading-relaxed">
