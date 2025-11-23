@@ -1,5 +1,5 @@
 import random
-from game_utils.database_handler import DatabaseHandler
+from game_utils.supabase_handler import SupabaseHandler
 from game_utils.plant_summarizer import PlantSummarizer
 from game_utils.plant_classifier import PlantClassifier
 
@@ -12,7 +12,7 @@ class PlantGame:
         self.dome_type = dome_type
         self.current_plant = plant_name
 
-        self.database_handler = None # used to get the plants from the database and upload user images
+        self.supabase_handler = None # used to get the plants from the database and upload user images
         self.plant_classifier = None # used to classify the user's image 
         self.plant_summarizer = None # used to summarize the plant
 
@@ -26,7 +26,7 @@ class PlantGame:
 
         Return the random plant name to the user.
         """
-        self.database_handler = DatabaseHandler()
+        self.supabase_handler = SupabaseHandler()
         dome_plants = self._load_plants_in_dome()
         self.current_plant = random.choice(dome_plants)
         print(f"Random plant: {self.current_plant}")
@@ -36,7 +36,7 @@ class PlantGame:
         """
         Load the plants from the database that are in the dome type.
         """
-        all_plants = self.database_handler.get_all_plants_by_scientific_name()
+        all_plants = self.supabase_handler.get_all_plants_by_scientific_name()
 
         dome_plants = [plant["scientific_name"] for plant in all_plants if plant.get("dome") == self.dome_type]
         return dome_plants
@@ -45,6 +45,7 @@ class PlantGame:
     def verify_and_upload_image(self, image: bytes) -> dict:
         """
         Verify an image and upload it to the database.
+        Always uploads the image regardless of classification match.
         """
         try:
             self.plant_classifier = PlantClassifier()
@@ -55,16 +56,28 @@ class PlantGame:
                     "success": False,
                     "message": "Failed to classify image"
                 }
-            # Does the image match the user's current_plant?
+            
+            # Always upload the image
+            self.supabase_handler = SupabaseHandler()
+            upload_result = self.supabase_handler.upload_user_plant_image(
+                scientific_name=self.current_plant,
+                dome=self.dome_type,
+                image=image
+            )
+            
+            if not upload_result.get("success"):
+                return {
+                    "success": False,
+                    "message": upload_result.get("error", "Failed to upload image")
+                }
+            
+            # Check if the image matches the user's current_plant
             if result.get("plant_name") != self.current_plant:
                 return {
                     "success": False,
-                    "message": "Oops! The image does not match the plant! Try again."
+                    "message": "Oops! The image does not match the plant! Try again. (Image was uploaded)"
                 }
             else:
-                self.database_handler = DatabaseHandler()
-                # Upload the user's image to the user_plant_images table in the database
-                self.database_handler.upload_user_plant_image(self.current_plant, image)
                 return {
                     "success": True,
                     "message": "Image verified and uploaded successfully"

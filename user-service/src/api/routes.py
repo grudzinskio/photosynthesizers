@@ -1,12 +1,12 @@
 from fastapi import APIRouter, HTTPException, UploadFile, File, Form
 from plant_game import PlantGame
-from game_utils.database_handler import DatabaseHandler
+from game_utils.supabase_handler import SupabaseHandler
 
 # Create router
 router = APIRouter(prefix="/api/game", tags=["plant-game"])
 
 # Initialize the game service
-database_handler = DatabaseHandler()
+supabase_handler = SupabaseHandler()
 
 @router.get("/start-game")
 async def create_game(dome_type: str):
