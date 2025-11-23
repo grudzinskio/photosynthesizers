@@ -8,7 +8,8 @@ class PlantGame:
     This class is used to manage the plant game.
     """
 
-    def __init__(self):
+    def __init__(self, dome_type: str):
+        self.dome_type = dome_type
         self.database_handler = DatabaseHandler()
         self.all_plants = self.load_plant_scientific_names()
         self.current_plant = None
