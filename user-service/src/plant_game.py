@@ -41,8 +41,7 @@ class PlantGame:
         all_plants = self.database_handler.get_all_plants_by_scientific_name()
 
         dome_plants = [plant for plant in all_plants if plant.get("dome_type") == self.dome_type]
-        random_plant = random.choice(dome_plants)
-        return random_plant
+        return dome_plants
 
 
     def verify_and_upload_image(self, image: bytes) -> dict:
