@@ -214,44 +214,34 @@ export function ExcelUpload() {
             <Alert variant="success">
               <CheckCircle2 className="h-4 w-4" />
               <AlertTitle>Upload Successful!</AlertTitle>
-              <AlertDescription className="space-y-2 mt-2">
-                <p>{uploadResult.message}</p>
-                {uploadResult.total_plants !== undefined && (
-                  <p className="font-medium">
-                    Total Plants: {uploadResult.total_plants.toLocaleString()}
-                  </p>
-                )}
-                {uploadResult.dome_counts && Object.keys(uploadResult.dome_counts).length > 0 && (
-                  <div className="mt-3">
-                    <p className="font-medium mb-2">Plants by Dome:</p>
-                    <div className="grid grid-cols-2 gap-2 mt-2">
+              <AlertDescription className="mt-2">
+                <div className="space-y-3">
+                  {uploadResult.total_plants !== undefined && (
+                    <div className="flex items-center gap-2">
+                      <span className="font-semibold text-base">
+                        {uploadResult.total_plants.toLocaleString()}
+                      </span>
+                      <span className="text-sm">
+                        {uploadResult.total_plants === 1 ? 'plant' : 'plants'} processed
+                      </span>
+                    </div>
+                  )}
+                  {uploadResult.dome_counts && Object.keys(uploadResult.dome_counts).length > 0 && (
+                    <div className="flex flex-wrap gap-3 pt-1">
                       {Object.entries(uploadResult.dome_counts).map(([dome, count]) => (
-                        <div
-                          key={dome}
-                          className="flex justify-between items-center p-2 bg-background rounded border"
-                        >
-                          <span className="text-sm">{dome}</span>
-                          <span className="text-sm font-medium">{count.toLocaleString()}</span>
+                        <div key={dome} className="flex items-center gap-1.5">
+                          <span className="text-sm font-medium">{dome}:</span>
+                          <span className="text-sm">{count.toLocaleString()}</span>
                         </div>
                       ))}
                     </div>
-                  </div>
-                )}
-                {uploadResult.domes && uploadResult.domes.length > 0 && (
-                  <div className="mt-3">
-                    <p className="font-medium mb-2">Available Domes:</p>
-                    <div className="flex flex-wrap gap-2">
-                      {uploadResult.domes.map((dome) => (
-                        <span
-                          key={dome}
-                          className="px-2 py-1 text-xs bg-primary/10 text-primary rounded border border-primary/20"
-                        >
-                          {dome}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
+                  )}
+                  {uploadResult.message && (
+                    <p className="text-xs text-muted-foreground pt-1 border-t">
+                      {uploadResult.message}
+                    </p>
+                  )}
+                </div>
               </AlertDescription>
             </Alert>
           )}

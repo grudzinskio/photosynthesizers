@@ -3,7 +3,7 @@ import { Settings, BarChart3, Image } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navigation = [
-  { name: 'Statistics', href: '/statistics', icon: BarChart3 },
+  { name: 'Plants', href: '/statistics', icon: BarChart3 },
   { name: 'Recent Images', href: '/recent-images', icon: Image },
   { name: 'Settings', href: '/settings', icon: Settings },
 ];

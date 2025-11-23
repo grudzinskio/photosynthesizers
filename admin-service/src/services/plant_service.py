@@ -141,6 +141,57 @@ class PlantService:
         except Exception:
             return 0
     
+    def _normalize_plant_data(self, plant: Dict) -> Optional[Dict]:
+        """
+        Normalize plant data from Excel format to database format.
+        Handles both Excel column names and direct field names.
+        
+        Args:
+            plant: Plant dictionary from Excel or other source
+            
+        Returns:
+            Normalized plant record dictionary, or None if invalid
+        """
+        try:
+            # Clean NaN values from plant data
+            scientific_name_raw = clean_nan_values(plant.get("Scientific Name")) or clean_nan_values(plant.get("scientific_name"))
+            scientific_name = str(scientific_name_raw).strip() if scientific_name_raw else ""
+            dome_raw = clean_nan_values(plant.get("Dome")) or clean_nan_values(plant.get("dome"))
+            dome = str(dome_raw).strip() if dome_raw else ""
+            
+            if not scientific_name or not dome:
+                return None
+            
+            # Store qty as text (can be values like "6+", "10+", etc.)
+            qty_raw = clean_nan_values(plant.get("Qty")) or clean_nan_values(plant.get("qty"))
+            qty = str(qty_raw).strip() if qty_raw is not None and str(qty_raw).lower() != 'nan' else None
+            
+            # Clean all values before creating plant_record
+            common_name_raw = clean_nan_values(plant.get("Common Name")) or clean_nan_values(plant.get("common_name"))
+            common_name = str(common_name_raw).strip() if common_name_raw and str(common_name_raw).lower() != 'nan' else None
+            
+            notes_raw = clean_nan_values(plant.get("Notes")) or clean_nan_values(plant.get("notes"))
+            notes = str(notes_raw).strip() if notes_raw and str(notes_raw).lower() != 'nan' else ""
+            
+            stop_raw = clean_nan_values(plant.get("Stop")) or clean_nan_values(plant.get("stop"))
+            stop = str(stop_raw).strip() if stop_raw and str(stop_raw).lower() != 'nan' else "N/A"
+            
+            return {
+                "common_name": common_name,
+                "scientific_name": scientific_name,
+                "qty": qty,
+                "buy_new_wont_survive": bool(plant.get("Buy New - Won't Survive/Not Worth Moving") or plant.get("buy_new_wont_survive", False)),
+                "buy_new_readily_available": bool(plant.get("Buy New - Readily Available") or plant.get("buy_new_readily_available", False)),
+                "move_it_staff_can_do": bool(plant.get("Move It - Can be done by Domes staff") or plant.get("move_it_staff_can_do", False)),
+                "move_it_requires_consult": bool(plant.get("Move It - Requires consult - might not survive move") or plant.get("move_it_requires_consult", False)),
+                "notes": notes,
+                "display": bool(plant.get("Display") or plant.get("display", False)),
+                "stop": stop,
+                "dome": dome
+            }
+        except Exception:
+            return None
+    
     def _get_all_image_counts(self, plant_ids: List[str]) -> Dict[str, int]:
         """
         Get image counts for multiple plants in a single query.
@@ -257,54 +308,15 @@ class PlantService:
         # Step 1: Clean and normalize all plant data
         normalized_plants = []
         for plant in plants:
-            try:
-                # Clean NaN values from plant data
-                scientific_name_raw = clean_nan_values(plant.get("Scientific Name")) or clean_nan_values(plant.get("scientific_name"))
-                scientific_name = str(scientific_name_raw).strip() if scientific_name_raw else ""
-                dome_raw = clean_nan_values(plant.get("Dome")) or clean_nan_values(plant.get("dome"))
-                dome = str(dome_raw).strip() if dome_raw else ""
-                
-                if not scientific_name or not dome:
-                    errors.append(f"Plant missing scientific_name or dome: {plant.get('Scientific Name', 'Unknown')}")
-                    continue
-                
-                # Store qty as text (can be values like "6+", "10+", etc.)
-                qty_raw = clean_nan_values(plant.get("Qty")) or clean_nan_values(plant.get("qty"))
-                qty = str(qty_raw).strip() if qty_raw is not None and str(qty_raw).lower() != 'nan' else None
-                
-                # Clean all values before creating plant_record
-                common_name_raw = clean_nan_values(plant.get("Common Name")) or clean_nan_values(plant.get("common_name"))
-                common_name = str(common_name_raw).strip() if common_name_raw and str(common_name_raw).lower() != 'nan' else None
-                
-                notes_raw = clean_nan_values(plant.get("Notes")) or clean_nan_values(plant.get("notes"))
-                notes = str(notes_raw).strip() if notes_raw and str(notes_raw).lower() != 'nan' else ""
-                
-                stop_raw = clean_nan_values(plant.get("Stop")) or clean_nan_values(plant.get("stop"))
-                stop = str(stop_raw).strip() if stop_raw and str(stop_raw).lower() != 'nan' else "N/A"
-                
-                plant_record = {
-                    "common_name": common_name,
-                    "scientific_name": scientific_name,
-                    "qty": qty,
-                    "buy_new_wont_survive": bool(plant.get("Buy New - Won't Survive/Not Worth Moving") or plant.get("buy_new_wont_survive", False)),
-                    "buy_new_readily_available": bool(plant.get("Buy New - Readily Available") or plant.get("buy_new_readily_available", False)),
-                    "move_it_staff_can_do": bool(plant.get("Move It - Can be done by Domes staff") or plant.get("move_it_staff_can_do", False)),
-                    "move_it_requires_consult": bool(plant.get("Move It - Requires consult - might not survive move") or plant.get("move_it_requires_consult", False)),
-                    "notes": notes,
-                    "display": bool(plant.get("Display") or plant.get("display", False)),
-                    "stop": stop,
-                    "dome": dome
-                }
-                
-                normalized_plants.append({
-                    "record": plant_record,
-                    "key": (common_name or "", scientific_name, dome)  # Match on common_name + scientific_name + dome
-                })
-            except Exception as e:
-                error_msg = f"Error processing plant {plant.get('Scientific Name', 'Unknown')}: {str(e)}"
-                errors.append(error_msg)
-                if len(errors) <= 10:
-                    print(f"  {error_msg}")
+            plant_record = self._normalize_plant_data(plant)
+            if not plant_record:
+                errors.append(f"Plant missing scientific_name or dome: {plant.get('Scientific Name', 'Unknown')}")
+                continue
+            
+            normalized_plants.append({
+                "record": plant_record,
+                "key": (plant_record.get("common_name") or "", plant_record["scientific_name"], plant_record["dome"])
+            })
         
         if not normalized_plants:
             return {
@@ -320,12 +332,13 @@ class PlantService:
         try:
             all_existing = await async_execute(
                 lambda: self.client.table(self.table)
-                .select("id, common_name, scientific_name, dome")
+                .select("id, common_name, scientific_name, dome, qty, buy_new_wont_survive, buy_new_readily_available, move_it_staff_can_do, move_it_requires_consult, notes, display, stop")
             )
             
-            # Create lookup map: (common_name, scientific_name, dome) -> id
+            # Create lookup map: (common_name, scientific_name, dome) -> full record
             # This allows multiple records with same scientific_name in same dome if common_name differs
             existing_map = {}
+            existing_records = {}  # Store full records for comparison
             for existing in (all_existing.data or []):
                 key = (
                     existing.get("common_name") or "", 
@@ -333,6 +346,7 @@ class PlantService:
                     existing.get("dome") or ""
                 )
                 existing_map[key] = existing.get("id")
+                existing_records[existing.get("id")] = existing
             
             print(f"Found {len(existing_map)} existing plants in database")
             
@@ -347,23 +361,104 @@ class PlantService:
                 "errors": errors
             }
         
-        # Step 3: Separate into inserts and updates
+        # Step 3: Separate into inserts and updates, only updating if data changed
         plants_to_insert = []
-        plants_to_update = []
+        plants_to_update_dict = {}  # Use dict to deduplicate by ID
+        
+        def records_differ(new_record: Dict, existing_record: Dict, plant_key: tuple) -> bool:
+            """Compare two plant records to see if they differ (excluding id, created_at, updated_at)."""
+            # Fields to compare with their types
+            boolean_fields = {
+                "buy_new_wont_survive", "buy_new_readily_available",
+                "move_it_staff_can_do", "move_it_requires_consult",
+                "display"
+            }
+            string_fields = {
+                "common_name", "scientific_name", "dome", "qty", "notes", "stop"
+            }
+            
+            def normalize_boolean(value) -> bool:
+                """Normalize a value to a boolean."""
+                if value is None:
+                    return False
+                if isinstance(value, bool):
+                    return value
+                if isinstance(value, str):
+                    # Handle string booleans
+                    value_lower = value.strip().lower()
+                    if value_lower in ('true', '1', 'yes', 'y'):
+                        return True
+                    if value_lower in ('false', '0', 'no', 'n', ''):
+                        return False
+                # For other types, use truthiness
+                return bool(value)
+            
+            def normalize_string(value) -> Optional[str]:
+                """Normalize a value to a string or None."""
+                if value is None:
+                    return None
+                if isinstance(value, str):
+                    normalized = value.strip()
+                    return normalized if normalized else None
+                return str(value).strip() if str(value).strip() else None
+            
+            differences = []
+            for field in boolean_fields:
+                new_val = normalize_boolean(new_record.get(field))
+                existing_val = normalize_boolean(existing_record.get(field))
+                
+                if new_val != existing_val:
+                    differences.append({
+                        "field": field,
+                        "new": new_val,
+                        "existing": existing_val,
+                        "new_type": type(new_val).__name__,
+                        "existing_type": type(existing_val).__name__
+                    })
+            
+            for field in string_fields:
+                new_val = normalize_string(new_record.get(field))
+                existing_val = normalize_string(existing_record.get(field))
+                
+                if new_val != existing_val:
+                    differences.append({
+                        "field": field,
+                        "new": new_val,
+                        "existing": existing_val,
+                        "new_type": type(new_val).__name__,
+                        "existing_type": type(existing_val).__name__
+                    })
+            
+            if differences:
+                print(f"  Found differences for plant {plant_key}:")
+                for diff in differences:
+                    print(f"    {diff['field']}: '{diff['existing']}' ({diff['existing_type']}) -> '{diff['new']}' ({diff['new_type']})")
+                return True
+            
+            return False
         
         for item in normalized_plants:
             plant_record = item["record"]
             key = item["key"]
             
             if key in existing_map:
-                # Add id for update
-                plant_record["id"] = existing_map[key]
-                plants_to_update.append(plant_record)
+                # Check if we need to update (data changed)
+                plant_id = existing_map[key]
+                existing_record = existing_records.get(plant_id)
+                
+                if existing_record and records_differ(plant_record, existing_record, key):
+                    # Data has changed, add to update list
+                    plant_record["id"] = plant_id
+                    plants_to_update_dict[plant_id] = plant_record
+                # If data hasn't changed, skip the update
             else:
                 plants_to_insert.append(plant_record)
         
+        # Convert dict to list (deduplicated by ID)
+        plants_to_update = list(plants_to_update_dict.values())
+        
         print(f"  {len(plants_to_insert)} new plants to insert")
-        print(f"  {len(plants_to_update)} existing plants to update")
+        print(f"  {len(plants_to_update)} existing plants to update (with changes, deduplicated by ID)")
         
         # Step 4: Batch insert/upsert all new plants
         # Use upsert to handle duplicates gracefully (will update if (scientific_name, dome) exists)
@@ -400,23 +495,63 @@ class PlantService:
                             if len(errors) <= 15:
                                 print(f"    Individual error: {plant.get('scientific_name', 'Unknown')}")
         
-        # Step 5: Batch update existing plants
+        # Step 5: Update existing plants in batches
+        # Use smaller batches and verify no duplicate IDs to avoid conflicts
         if plants_to_update:
             try:
-                # Update in batches of 100
-                batch_size = 100
+                batch_size = 50  # Smaller batches to reduce conflict risk
+                total_to_update = len(plants_to_update)
+                
                 for i in range(0, len(plants_to_update), batch_size):
                     batch = plants_to_update[i:i + batch_size]
-                    # Supabase doesn't support batch update directly, so we use upsert
-                    # Upsert will update if exists (by id) or insert if not
-                    await async_execute(
-                        lambda b=batch: self.client.table(self.table).upsert(b)
-                    )
-                    updated_count += len(batch)
-                    if (i + batch_size) % 200 == 0 or i + batch_size >= len(plants_to_update):
-                        print(f"  Updated {min(i + batch_size, len(plants_to_update))}/{len(plants_to_update)} existing plants...")
+                    
+                    # Verify no duplicate IDs in this batch
+                    batch_ids = [p.get("id") for p in batch if p.get("id")]
+                    if len(batch_ids) != len(set(batch_ids)):
+                        # If duplicates found, process individually
+                        print(f"  Found duplicate IDs in batch, processing individually...")
+                        for plant in batch:
+                            try:
+                                plant_id = plant.get("id")
+                                if not plant_id:
+                                    continue
+                                update_data = {k: v for k, v in plant.items() if k != "id"}
+                                await async_execute(
+                                    lambda p_id=plant_id, data=update_data: self.client.table(self.table).update(data).eq("id", p_id)
+                                )
+                                updated_count += 1
+                            except Exception as individual_error:
+                                errors.append(f"Error updating plant {plant.get('scientific_name', 'Unknown')}: {str(individual_error)}")
+                    else:
+                        # No duplicates, use batch upsert
+                        try:
+                            await async_execute(
+                                lambda b=batch: self.client.table(self.table).upsert(b)
+                            )
+                            updated_count += len(batch)
+                        except Exception as batch_error:
+                            # If batch fails, fall back to individual updates
+                            print(f"  Batch update failed, falling back to individual updates...")
+                            for plant in batch:
+                                try:
+                                    plant_id = plant.get("id")
+                                    if not plant_id:
+                                        continue
+                                    update_data = {k: v for k, v in plant.items() if k != "id"}
+                                    await async_execute(
+                                        lambda p_id=plant_id, data=update_data: self.client.table(self.table).update(data).eq("id", p_id)
+                                    )
+                                    updated_count += 1
+                                except Exception as individual_error:
+                                    errors.append(f"Error updating plant {plant.get('scientific_name', 'Unknown')}: {str(individual_error)}")
+                    
+                    # Log progress
+                    processed = min(i + batch_size, total_to_update)
+                    if processed % 200 == 0 or processed == total_to_update:
+                        print(f"  Updated {processed}/{total_to_update} existing plants...")
+                        
             except Exception as e:
-                error_msg = f"Error batch updating plants: {str(e)}"
+                error_msg = f"Error updating plants: {str(e)}"
                 errors.append(error_msg)
                 print(f"  {error_msg}")
         
@@ -452,46 +587,17 @@ class PlantService:
                 if (idx + 1) % 50 == 0 or (idx + 1) == total:
                     print(f"Progress: {idx + 1}/{total} plants processed...")
                 
-                # Clean NaN values from plant data
-                scientific_name_raw = clean_nan_values(plant.get("Scientific Name")) or clean_nan_values(plant.get("scientific_name"))
-                scientific_name = str(scientific_name_raw).strip() if scientific_name_raw else ""
-                dome_raw = clean_nan_values(plant.get("Dome")) or clean_nan_values(plant.get("dome"))
-                dome = str(dome_raw).strip() if dome_raw else ""
-                
-                if not scientific_name or not dome:
+                # Normalize plant data
+                plant_record = self._normalize_plant_data(plant)
+                if not plant_record:
                     errors.append(f"Plant missing scientific_name or dome: {plant.get('Scientific Name', 'Unknown')}")
                     continue
                 
+                scientific_name = plant_record["scientific_name"]
+                dome = plant_record["dome"]
+                
                 # Check if plant exists
                 existing = self.client.table(self.table).select("id").eq("scientific_name", scientific_name).eq("dome", dome).execute()
-                
-                # Store qty as text (can be values like "6+", "10+", etc.)
-                qty_raw = clean_nan_values(plant.get("Qty")) or clean_nan_values(plant.get("qty"))
-                qty = str(qty_raw).strip() if qty_raw is not None and str(qty_raw).lower() != 'nan' else None
-                
-                # Clean all values before creating plant_record
-                common_name_raw = clean_nan_values(plant.get("Common Name")) or clean_nan_values(plant.get("common_name"))
-                common_name = str(common_name_raw).strip() if common_name_raw and str(common_name_raw).lower() != 'nan' else None
-                
-                notes_raw = clean_nan_values(plant.get("Notes")) or clean_nan_values(plant.get("notes"))
-                notes = str(notes_raw).strip() if notes_raw and str(notes_raw).lower() != 'nan' else ""
-                
-                stop_raw = clean_nan_values(plant.get("Stop")) or clean_nan_values(plant.get("stop"))
-                stop = str(stop_raw).strip() if stop_raw and str(stop_raw).lower() != 'nan' else "N/A"
-                
-                plant_record = {
-                    "common_name": common_name,
-                    "scientific_name": scientific_name,
-                    "qty": qty,
-                    "buy_new_wont_survive": bool(plant.get("Buy New - Won't Survive/Not Worth Moving") or plant.get("buy_new_wont_survive", False)),
-                    "buy_new_readily_available": bool(plant.get("Buy New - Readily Available") or plant.get("buy_new_readily_available", False)),
-                    "move_it_staff_can_do": bool(plant.get("Move It - Can be done by Domes staff") or plant.get("move_it_staff_can_do", False)),
-                    "move_it_requires_consult": bool(plant.get("Move It - Requires consult - might not survive move") or plant.get("move_it_requires_consult", False)),
-                    "notes": notes,
-                    "display": bool(plant.get("Display") or plant.get("display", False)),
-                    "stop": stop,
-                    "dome": dome
-                }
                 
                 if existing.data:
                     # Update existing plant
