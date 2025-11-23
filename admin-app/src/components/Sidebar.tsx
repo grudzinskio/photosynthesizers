@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import logoImage from '@/assets/milwaukee-domes-logo.png';
 
 const navigation = [
-  { name: 'Plants', href: '/statistics', icon: BarChart3 },
+  { name: 'Plants', href: '/plants', icon: BarChart3 },
   { name: 'Recent Images', href: '/recent-images', icon: Image },
   { name: 'Settings', href: '/settings', icon: Settings },
 ];
