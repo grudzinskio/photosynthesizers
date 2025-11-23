@@ -32,7 +32,7 @@ export function FeedbackView({
   }, []);
 
   return (
-    <div className="relative flex min-h-svh flex-col items-center justify-center px-4 sm:px-6 py-8 overflow-hidden">
+    <div className="relative flex min-h-svh flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-6 sm:py-8 overflow-hidden">
       {/* Background image with overlay */}
       <div 
         className="absolute inset-0 bg-cover bg-bottom opacity-60"
@@ -42,7 +42,7 @@ export function FeedbackView({
       />
       <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/30 to-background/40" aria-hidden="true" />
       <Card 
-        className={`relative z-10 w-full max-w-lg shadow-2xl bg-card/95 backdrop-blur-sm ${
+        className={`relative z-10 w-full max-w-lg max-w-ultra shadow-2xl bg-card/95 backdrop-blur-sm ${
           isSuccess 
             ? 'border-4 border-green-400 dark:border-green-600' 
             : 'border-4 border-red-400 dark:border-red-600'
@@ -50,7 +50,7 @@ export function FeedbackView({
         role="main"
         aria-label="Plant identification result"
       >
-        <CardHeader className="space-y-6 pb-6 pt-8">
+        <CardHeader className="space-y-4 lg:space-y-6 pb-4 sm:pb-6 pt-6 sm:pt-8 px-4 sm:px-6">
           <div className="flex items-center justify-center">
             <div className="relative">
               <div className={`absolute inset-0 rounded-full blur-2xl opacity-40 ${
@@ -85,7 +85,7 @@ export function FeedbackView({
           </div>
         </CardHeader>
 
-        <CardContent className="space-y-8 px-6 sm:px-8">
+        <CardContent className="space-y-6 lg:space-y-8 px-4 sm:px-6 lg:px-8">
           {/* Captured photo thumbnail */}
           <div className="relative group">
             <div className={`absolute inset-0 rounded-xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 ${
@@ -106,7 +106,7 @@ export function FeedbackView({
 
           {/* Feedback message */}
           <div 
-            className={`text-center rounded-xl p-6 border-2 shadow-md ${
+            className={`text-center rounded-xl p-4 sm:p-6 border-2 shadow-md ${
               isSuccess
                 ? 'bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 border-green-300 dark:border-green-700'
                 : 'bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-950 dark:to-orange-950 border-red-300 dark:border-red-700'
@@ -114,15 +114,15 @@ export function FeedbackView({
             role="region"
             aria-label="Feedback message"
           >
-            <p className="text-base sm:text-lg leading-relaxed text-foreground font-medium">
+            <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-foreground font-medium">
               {feedback.message}
             </p>
           </div>
         </CardContent>
 
-        <CardFooter className="pt-6 px-6 sm:px-8 pb-8">
+        <CardFooter className="pt-4 sm:pt-6 px-4 sm:px-6 lg:px-8 pb-6 sm:pb-8">
           {isSuccess ? (
-            <div className="w-full space-y-4">
+            <div className="w-full space-y-3 sm:space-y-4">
               <Button
                 size="lg"
                 variant="outline"

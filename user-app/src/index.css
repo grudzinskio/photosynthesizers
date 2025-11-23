@@ -159,4 +159,11 @@
       max-width: 320px;
     }
   }
+  
+  /* Custom breakpoint for ultra-wide displays (>1920px) */
+  @media (min-width: 1920px) {
+    .max-w-ultra {
+      max-width: 1920px;
+    }
+  }
 }
