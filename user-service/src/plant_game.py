@@ -59,7 +59,7 @@ class PlantGame:
             if result.get("plant_name") != self.current_plant:
                 return {
                     "success": False,
-                    "message": "Oops! The image does not match the plant"
+                    "message": "Oops! The image does not match the plant! Try again."
                 }
             else:
                 self.database_handler = DatabaseHandler()
