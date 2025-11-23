@@ -7,7 +7,8 @@ SCHEMAS FOR SUMMARIZING A PLANT
 """
 
 class SummaryRequest(BaseModel):
-    plant_name: Optional[str] = None
+    dome_type: str
+    plant_name: str
 
 class SummaryResponse(BaseModel):
     plant_name: str

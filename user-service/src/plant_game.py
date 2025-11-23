@@ -8,33 +8,50 @@ class PlantGame:
     This class is used to manage the plant game.
     """
 
-    def __init__(self, dome_type: str):
+    def __init__(self, dome_type: str, plant_name: str = None):
         self.dome_type = dome_type
         self.database_handler = DatabaseHandler()
-        self.all_plants = self.load_plant_scientific_names()
-        self.current_plant = None
+        self.dome_plants = self.load_plants_in_dome()
+        self.current_plant = plant_name
         self.summarizer = PlantSummarizer()
         self.plant_classifier = PlantClassifier()
 
-    def load_plant_scientific_names(self) -> list[str]:
+
+    def _load_plant_scientific_names(self) -> list[str]:
         """
         Load the names of the plants from the database.
         """
         return [plant["scientific_name"] for plant in self.database_handler.get_all_plants_by_scientific_name()]
 
+    def load_plants_in_dome(self) -> list[str]:
+        """
+        Load the plants from the database that are in the dome type.
+        """
+        all_plants = self._load_plant_scientific_names()
+        dome_plants = [plant for plant in all_plants if plant.get("dome_type") == self.dome_type]
+        return dome_plants
+
+
     def get_random_plant(self) -> str:
         """
         Get a random plant from the list of all plants.
         Set the current plant to the random plant.
+
+        Get the plants from the database that are in the dome type.
+
         Return the random plant name to the user.
         """
-        plant = random.choice(self.all_plants)
+        plant = random.choice(self.dome_plants)
         print(f"Random plant: {plant}")
         self.current_plant = plant
         return plant
 
 
-    def verify_and_upload_image(self, image):
+
+
+
+
+    def verify_and_upload_image(self, image=:
         """
         Verify an image and upload it to the database.
         """
@@ -65,7 +82,8 @@ class PlantGame:
                 "message": f"Error verifying and uploading image: {str(e)}"
             }
 
-    def summarize_plant(self, plant_name=None):
+
+    def summarize_plant(self):
         """
         Summarize a plant based on its name.
         If no plant_name is provided, use the current plant.
