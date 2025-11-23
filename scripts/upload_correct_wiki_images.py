@@ -180,7 +180,6 @@ def upload_correct_images(
                 scientific_name=plant_name,
                 dome=dome,
                 image=image_bytes,
-                uploaded_by="wiki_eval_script",
                 health_assessment=health_assessment
             )
             

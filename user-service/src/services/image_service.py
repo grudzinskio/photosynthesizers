@@ -16,7 +16,7 @@ class ImageService:
         self.table = "user_plant_images"
         self.storage_bucket = "plant-images"
     
-    def upload_user_plant_image(self, plant_id: str, image: bytes, uploaded_by: Optional[str] = None, health_assessment: Optional[Dict] = None) -> Dict:
+    def upload_user_plant_image(self, plant_id: str, image: bytes, health_assessment: Optional[Dict] = None) -> Dict:
         """
         Upload a user's plant image to Supabase storage and save the record to the database.
         
@@ -28,7 +28,6 @@ class ImageService:
         Args:
             plant_id: UUID of the plant
             image: Image bytes to upload
-            uploaded_by: Optional identifier for who uploaded the image
             health_assessment: Optional health assessment dictionary from PlantHealthAssessor
             
         Returns:
@@ -53,8 +52,7 @@ class ImageService:
             # Step 3: Prepare image record with health assessment data
             image_record = {
                 "plant_id": plant_id,
-                "image_url": image_url,
-                "uploaded_by": uploaded_by
+                "image_url": image_url
             }
             
             # Add health assessment data if provided

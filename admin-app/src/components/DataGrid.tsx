@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { ChevronLeft, ChevronRight, Loader2, AlertCircle, RefreshCw, Database, Search, ArrowUpDown, ArrowUp, ArrowDown, X, Image as ImageIcon, Calendar, User, Heart, AlertTriangle, CheckCircle2, XCircle } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Loader2, AlertCircle, RefreshCw, Database, Search, ArrowUpDown, ArrowUp, ArrowDown, X, Image as ImageIcon, Calendar, Heart, AlertTriangle, CheckCircle2, XCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
@@ -880,12 +880,6 @@ export function DataGrid() {
                               <Calendar className="h-3 w-3" />
                               <span>{formatDate(image.uploaded_at)}</span>
                             </div>
-                            {image.uploaded_by && (
-                              <div className="flex items-center gap-1">
-                                <User className="h-3 w-3" />
-                                <span>{image.uploaded_by}</span>
-                              </div>
-                            )}
                           </div>
                         </div>
                       </Card>

@@ -56,7 +56,7 @@ class SupabaseHandler:
 
     # USER_PLANT_IMAGES TABLE - USED FOR ADDING AND GETTING ALL USER PLANT IMAGES
 
-    def upload_user_plant_image(self, scientific_name: str, dome: str, image: bytes, uploaded_by: Optional[str] = None, health_assessment: Optional[Dict] = None) -> Dict:
+    def upload_user_plant_image(self, scientific_name: str, dome: str, image: bytes, health_assessment: Optional[Dict] = None) -> Dict:
         """
         Upload a user's plant image to Supabase storage and save the record to the database.
         
@@ -69,7 +69,6 @@ class SupabaseHandler:
             scientific_name: Scientific name of the plant
             dome: Dome name where the plant is located
             image: Image bytes to upload
-            uploaded_by: Optional identifier for who uploaded the image
             health_assessment: Optional health assessment dictionary from PlantHealthAssessor
             
         Returns:
@@ -84,4 +83,4 @@ class SupabaseHandler:
             }
         
         # Step 2 & 3: Upload image and save to database (handled by image_service)
-        return self.image_service.upload_user_plant_image(plant_id, image, uploaded_by, health_assessment)
+        return self.image_service.upload_user_plant_image(plant_id, image, health_assessment)

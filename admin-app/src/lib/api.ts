@@ -104,7 +104,6 @@ export interface RecentImagesResponse {
     id: string;
     plant_id: string;
     image_url: string;
-    uploaded_by?: string;
     uploaded_at: string;
     is_main_image: boolean;
     metadata?: Record<string, unknown>;

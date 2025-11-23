@@ -84,7 +84,6 @@ CREATE TABLE IF NOT EXISTS user_plant_images (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     plant_id UUID NOT NULL REFERENCES plants(id) ON DELETE CASCADE,
     image_url TEXT NOT NULL, -- URL to image in Supabase storage bucket
-    uploaded_by TEXT, -- Optional: user ID or identifier who uploaded the image
     uploaded_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     health_status TEXT, -- Overall status: 'healthy', 'watch', 'declining', 'critical', 'unknown'
