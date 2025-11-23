@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from api import excel_routes
+from api.routes import excel_routes
 import uvicorn
 
 # Create FastAPI app
