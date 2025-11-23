@@ -67,20 +67,6 @@ const getHealthStatusIcon = (healthStatus: string | null | undefined) => {
   }
 };
 
-const getLatestHealthStatus = (images: PlantImagesResponse['images']): string | null => {
-  if (!images || images.length === 0) return null;
-  
-  // Find the most recent image with health status
-  const imagesWithHealth = images
-    .filter(img => img.health_status)
-    .sort((a, b) => {
-      const dateA = new Date(a.uploaded_at || 0).getTime();
-      const dateB = new Date(b.uploaded_at || 0).getTime();
-      return dateB - dateA; // Most recent first
-    });
-  
-  return imagesWithHealth.length > 0 ? imagesWithHealth[0].health_status : null;
-};
 
 export function DataGrid() {
   const { settings } = useSettings();
@@ -149,11 +135,15 @@ export function DataGrid() {
         setAllPlants(response.plants);
         setTotal(response.total);
         
-        // Extract column names from first plant if available, excluding 'id' and 'updated_at'
+        // Extract column names from first plant if available, excluding 'id', 'updated_at', and 'latest_health_confidence'
         if (response.plants.length > 0) {
           const allColumns = Object.keys(response.plants[0]);
-          // Filter out 'id' and 'updated_at', ensure image_count is included
-          const filteredColumns = allColumns.filter(col => col !== 'id' && col !== 'updated_at');
+          // Filter out 'id', 'updated_at', and 'latest_health_confidence', ensure image_count is included
+          const filteredColumns = allColumns.filter(col => 
+            col !== 'id' && 
+            col !== 'updated_at' && 
+            col !== 'latest_health_confidence'
+          );
           if (!filteredColumns.includes('image_count')) {
             filteredColumns.push('image_count');
           }
