@@ -69,7 +69,6 @@ async def summarize_plant(dome_type: str = Form(...), plant_name: str = Form(...
                 status_code=400, 
                 detail=result.get("error", "Failed to summarize plant")
             )
-        
         return {
             "plant_name": result["plant_name"],
             "summary": result["summary"],
@@ -85,7 +84,7 @@ async def summarize_plant(dome_type: str = Form(...), plant_name: str = Form(...
 
 
 @router.post("/ask-question")
-async def ask_plant_question(dome_type: str = Form(...), plant_name: str = Form(...), question: str = Form(...)):
+async def ask_plant_question(question: str = Form(...), dome_type: str = Form(...), plant_name: str = Form(...)):
     """
     Ask a follow-up question about the current plant.
     The game must have a current plant set (from get_random_plant).

@@ -10,26 +10,11 @@ class PlantGame:
 
     def __init__(self, dome_type: str, plant_name: str = None):
         self.dome_type = dome_type
-        self.database_handler = DatabaseHandler()
-        self.dome_plants = self.load_plants_in_dome()
         self.current_plant = plant_name
-        self.summarizer = PlantSummarizer()
-        self.plant_classifier = PlantClassifier()
 
-
-    def _load_plant_scientific_names(self) -> list[str]:
-        """
-        Load the names of the plants from the database.
-        """
-        return [plant["scientific_name"] for plant in self.database_handler.get_all_plants_by_scientific_name()]
-
-    def load_plants_in_dome(self) -> list[str]:
-        """
-        Load the plants from the database that are in the dome type.
-        """
-        all_plants = self._load_plant_scientific_names()
-        dome_plants = [plant for plant in all_plants if plant.get("dome_type") == self.dome_type]
-        return dome_plants
+        self.database_handler = None # used to get the plants from the database and upload user images
+        self.plant_classifier = None # used to classify the user's image 
+        self.plant_summarizer = None # used to summarize the plant
 
 
     def get_random_plant(self) -> str:
@@ -41,21 +26,31 @@ class PlantGame:
 
         Return the random plant name to the user.
         """
-        plant = random.choice(self.dome_plants)
+        self.database_handler = DatabaseHandler()
+        dome_plants = self._load_plants_in_dome()
+        plant = random.choice(dome_plants)
         print(f"Random plant: {plant}")
         self.current_plant = plant
         return plant
 
 
+    def _load_plants_in_dome(self) -> list[str]:
+        """
+        Load the plants from the database that are in the dome type.
+        """
+        all_plants = self.database_handler.get_all_plants_by_scientific_name()
+
+        dome_plants = [plant for plant in all_plants if plant.get("dome_type") == self.dome_type]
+        random_plant = random.choice(dome_plants)
+        return random_plant
 
 
-
-
-    def verify_and_upload_image(self, image=:
+    def verify_and_upload_image(self, image: bytes) -> dict:
         """
         Verify an image and upload it to the database.
         """
         try:
+            self.plant_classifier = PlantClassifier()
             # Verify the image
             result = self.plant_classifier.classify_image(image)
             if not result.get("success"):
@@ -69,7 +64,9 @@ class PlantGame:
                     "success": False,
                     "message": "Oops! The image does not match the plant"
                 }
-        
+
+
+            self.database_handler = DatabaseHandler()
             # Upload the user's image to the user_plant_images table in the database
             self.database_handler.upload_user_plant_image(self.current_plant, image)
             return {
@@ -88,8 +85,9 @@ class PlantGame:
         Summarize a plant based on its name.
         If no plant_name is provided, use the current plant.
         """
+        self.plant_summarizer = PlantSummarizer()
         # Use current plant if no plant name provided
-        target_plant = plant_name or self.current_plant
+        target_plant = self.current_plant
         
         if not target_plant:
             return {
@@ -98,7 +96,7 @@ class PlantGame:
             }
         
         print(f"Summarizing plant: {target_plant}")
-        summary = self.summarizer.summarize(target_plant)
+        summary = self.plant_summarizer.summarize(target_plant)
         print(f"Summary: {summary}")
         
         return {
@@ -118,7 +116,7 @@ class PlantGame:
             }
         
         print(f"Answering question about {self.current_plant}: {question}")
-        answer = self.summarizer.follow_up_question(self.current_plant, question)
+        answer = self.plant_summarizer.follow_up_question(self.current_plant, question)
         
         return {
             "plant_name": self.current_plant,
