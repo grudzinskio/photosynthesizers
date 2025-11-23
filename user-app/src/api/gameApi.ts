@@ -66,16 +66,19 @@ export async function startGame(domeType: string): Promise<StartGameResponse> {
  * Get an LLM-generated summary/description of a plant
  * @param domeType - The type of dome
  * @param plantName - The scientific name of the plant
+ * @param language - The language for the response (default: 'en')
  * @returns Promise with plant summary
  */
 export async function summarizePlant(
   domeType: string,
-  plantName: string
+  plantName: string,
+  language: string = 'en'
 ): Promise<SummarizeResponse> {
   try {
     const formData = new FormData();
     formData.append('dome_type', domeType);
     formData.append('plant_name', plantName);
+    formData.append('language', language);
 
     const response = await fetch(`${API_BASE_URL}/api/game/summarize`, {
       method: 'POST',
@@ -146,6 +149,7 @@ export async function submitImage(
  * @param question - The user's question about the plant
  * @param domeType - The type of dome
  * @param plantName - The scientific name of the plant
+ * @param language - The language for the response (default: 'en')
  * @param timeoutMs - Timeout in milliseconds (default: 30000)
  * @returns Promise with the AI-generated answer
  */
@@ -153,6 +157,7 @@ export async function askPlantQuestion(
   question: string,
   domeType: string,
   plantName: string,
+  language: string = 'en',
   timeoutMs: number = 30000
 ): Promise<AskQuestionResponse> {
   try {
@@ -160,6 +165,7 @@ export async function askPlantQuestion(
     formData.append('question', question);
     formData.append('dome_type', domeType);
     formData.append('plant_name', plantName);
+    formData.append('language', language);
 
     // Create abort controller for timeout
     const controller = new AbortController();

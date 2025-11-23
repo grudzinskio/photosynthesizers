@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { CheckCircle2, XCircle, Leaf } from 'lucide-react';
 import insideDomeImg from "@/assets/inside_dome.webp";
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface FeedbackViewProps {
   feedback: FeedbackData;
@@ -23,6 +24,7 @@ export function FeedbackView({
   onTryAgain,
   onViewDetails
 }: FeedbackViewProps) {
+  const { t } = useTranslation();
   const isSuccess = feedback.success;
   const statusRef = useRef<HTMLDivElement>(null);
 
@@ -48,7 +50,7 @@ export function FeedbackView({
             : 'border-4 border-red-400 dark:border-red-600'
         }`}
         role="main"
-        aria-label="Plant identification result"
+        aria-label={t('feedback.ariaLabelResult')}
       >
         <CardHeader className="space-y-4 lg:space-y-6 pb-4 sm:pb-6 pt-6 sm:pt-8 px-4 sm:px-6">
           <div className="flex items-center justify-center">
@@ -67,17 +69,17 @@ export function FeedbackView({
                 tabIndex={-1}
                 role="status"
                 aria-live="polite"
-                aria-label={isSuccess ? "Success! Plant identified correctly" : "Not quite right, try again"}
+                aria-label={isSuccess ? t('feedback.ariaLabelSuccessStatus') : t('feedback.ariaLabelFailureStatus')}
               >
                 {isSuccess ? (
                   <>
                     <CheckCircle2 className="size-6 sm:size-7" aria-hidden="true" />
-                    Success!
+                    {t('feedback.success')}
                   </>
                 ) : (
                   <>
                     <XCircle className="size-6 sm:size-7" aria-hidden="true" />
-                    Not Quite
+                    {t('feedback.notQuite')}
                   </>
                 )}
               </Badge>
@@ -98,7 +100,7 @@ export function FeedbackView({
             }`}>
               <img
                 src={capturedImage}
-                alt="Your captured plant photo"
+                alt={t('feedback.ariaLabelCapturedPhoto')}
                 className="w-full max-h-[250px] sm:max-h-[300px] object-contain rounded-lg"
               />
             </div>
@@ -112,7 +114,7 @@ export function FeedbackView({
                 : 'bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-950 dark:to-orange-950 border-red-300 dark:border-red-700'
             }`}
             role="region"
-            aria-label="Feedback message"
+            aria-label={t('feedback.ariaLabelFeedbackMessage')}
           >
             <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-foreground font-medium">
               {feedback.message}
@@ -129,19 +131,19 @@ export function FeedbackView({
                 className="w-full min-h-[60px] text-base sm:text-lg font-bold border-2 border-green-500 text-green-700 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-950 shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 onClick={onViewDetails}
                 disabled={plantDescription === null}
-                aria-label={plantDescription === null ? "Loading plant details, please wait" : "View detailed plant information and ask questions"}
+                aria-label={plantDescription === null ? t('feedback.ariaLabelLoadingDetails') : t('feedback.ariaLabelViewDetails')}
                 aria-disabled={plantDescription === null}
               >
                 <Leaf className="size-5 sm:size-6 mr-2" aria-hidden="true" />
-                {plantDescription === null ? 'Loading Plant Details...' : 'View Plant Details'}
+                {plantDescription === null ? t('feedback.loadingDetails') : t('feedback.viewDetails')}
               </Button>
               <Button
                 size="lg"
                 className="w-full min-h-[60px] text-base sm:text-lg font-bold bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-200"
                 onClick={onNextMission}
-                aria-label="Start next plant identification mission"
+                aria-label={t('feedback.ariaLabelNextMission')}
               >
-                Next Mission
+                {t('feedback.nextMission')}
               </Button>
             </div>
           ) : (
@@ -149,9 +151,9 @@ export function FeedbackView({
               size="lg"
               className="w-full min-h-[60px] text-base sm:text-lg font-bold bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-200"
               onClick={onTryAgain}
-              aria-label="Try taking another photo of the plant"
+              aria-label={t('feedback.ariaLabelTryAgain')}
             >
-              Try Again
+              {t('feedback.retry')}
             </Button>
           )}
         </CardFooter>

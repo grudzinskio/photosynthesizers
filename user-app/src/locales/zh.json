@@ -1,0 +1,119 @@
+{
+  "app": {
+    "title": "光合作用挑战",
+    "subtitle": "踏上穿越温室圆顶的植物探险之旅"
+  },
+  "domes": {
+    "tropical": {
+      "name": "热带圆顶",
+      "description": "郁郁葱葱的热带雨林环境"
+    },
+    "desert": {
+      "name": "沙漠圆顶",
+      "description": "干旱的沙漠景观"
+    },
+    "show": {
+      "name": "展览圆顶",
+      "description": "季节性展览"
+    }
+  },
+  "mission": {
+    "title": "你的任务",
+    "foundIt": "找到了！",
+    "changeDome": "更换圆顶",
+    "change": "更换",
+    "loading": "正在加载植物...",
+    "referenceImage": "参考图片：",
+    "viewOnWikipedia": "在维基百科上查看",
+    "loadingReferenceImage": "正在加载参考图片...",
+    "sourceWikipedia": "来源：维基百科",
+    "speciesPage": "物种页面",
+    "genusPage": "属页面",
+    "genusImage": "属图片",
+    "description": "描述",
+    "about": "关于"
+  },
+  "chat": {
+    "title": "询问关于这株植物",
+    "subtitle": "获取关于{{plantName}}的问题答案",
+    "placeholder": "询问关于这株植物的问题...",
+    "thinking": "思考中...",
+    "send": "发送",
+    "emptyState": "提出问题以了解更多关于这株植物的信息！",
+    "ariaLabelChatbot": "植物信息聊天机器人",
+    "ariaLabelHistory": "聊天消息历史",
+    "ariaLabelUserMessage": "你的问题",
+    "ariaLabelAiMessage": "AI回复",
+    "ariaLabelGenerating": "AI正在生成回复",
+    "ariaLabelAskQuestion": "询问关于植物的问题",
+    "ariaLabelQuestionInput": "问题输入"
+  },
+  "feedback": {
+    "success": "成功！",
+    "notQuite": "不太对",
+    "successMessage": "做得好！你找到了这株植物！",
+    "tryAgainMessage": "不太对。再试一次！",
+    "nextMission": "下一个任务",
+    "viewDetails": "查看植物详情",
+    "loadingDetails": "正在加载植物详情...",
+    "retry": "重试",
+    "ariaLabelResult": "植物识别结果",
+    "ariaLabelSuccessStatus": "成功！植物识别正确",
+    "ariaLabelFailureStatus": "不太对，再试一次",
+    "ariaLabelFeedbackMessage": "反馈消息",
+    "ariaLabelCapturedPhoto": "您拍摄的植物照片",
+    "ariaLabelLoadingDetails": "正在加载植物详情，请稍候",
+    "ariaLabelViewDetails": "查看详细植物信息并提问",
+    "ariaLabelNextMission": "开始下一个植物识别任务",
+    "ariaLabelTryAgain": "尝试再拍一张植物照片"
+  },
+  "photo": {
+    "capture": "拍照",
+    "retake": "重拍",
+    "submit": "提交照片",
+    "cancel": "取消",
+    "uploadTitle": "上传您的照片",
+    "uploadDescription": "拍摄您找到的植物照片",
+    "uploadButton": "上传照片",
+    "previewTitle": "照片预览",
+    "chooseDifferent": "选择其他照片",
+    "invalidFileType": "请选择有效的图片文件（JPG、PNG等）",
+    "ariaLabelUpload": "上传植物照片",
+    "ariaLabelClickToUpload": "点击上传照片",
+    "ariaLabelCapturedPlant": "拍摄的植物"
+  },
+  "loading": {
+    "default": "加载中...",
+    "analyzing": "分析中...",
+    "submitting": "提交图片中...",
+    "loadingPlant": "正在加载植物..."
+  },
+  "errors": {
+    "networkError": "网络错误。请检查您的连接并重试。",
+    "timeout": "请求超时。请重试。",
+    "generic": "发生错误。请重试。"
+  },
+  "plantDetails": {
+    "close": "关闭植物详情",
+    "retrying": "重试中...",
+    "retry": "重试",
+    "retryLoading": "重试加载植物描述",
+    "loadingDetails": "正在加载植物详情...",
+    "loadingMayTakeMoment": "这可能需要一点时间",
+    "failedToLoad": "无法加载植物描述。请重试。",
+    "collapse": "折叠",
+    "expand": "展开",
+    "showLess": "显示更少",
+    "showLessSections": "显示更少部分",
+    "readMore": "阅读更多",
+    "readMoreSections": "显示{{count}}个更多部分",
+    "moreSection": "{{count}}个更多部分",
+    "moreSections": "{{count}}个更多部分",
+    "wikipediaReferenceImage": "维基百科参考图片",
+    "referenceImageAlt": "{{plantName}}的参考图片",
+    "plantInformation": "植物信息",
+    "errorLoadingDescription": "加载植物描述时出错",
+    "retryingToLoad": "正在重试加载植物描述",
+    "loadingDescription": "正在加载植物描述"
+  }
+}

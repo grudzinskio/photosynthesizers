@@ -15,11 +15,11 @@ interface FloatingChatPanelProps {
 // Maximum number of messages to keep in history
 const MAX_MESSAGES = 10;
 
-function FloatingChatPanelComponent({ 
-  plantName, 
-  domeType, 
-  isOpen, 
-  onClose 
+function FloatingChatPanelComponent({
+  plantName,
+  domeType,
+  isOpen,
+  onClose
 }: FloatingChatPanelProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputValue, setInputValue] = useState('');
@@ -33,7 +33,7 @@ function FloatingChatPanelComponent({
   // Auto-scroll to latest message with smooth animation
   useEffect(() => {
     if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ 
+      messagesEndRef.current.scrollIntoView({
         behavior: 'smooth',
         block: 'nearest',
         inline: 'nearest'
@@ -85,8 +85,8 @@ function FloatingChatPanelComponent({
     setMessages((prev) => {
       const updated = [...prev, userMessage];
       // Keep only the last MAX_MESSAGES messages
-      return updated.length > MAX_MESSAGES 
-        ? updated.slice(updated.length - MAX_MESSAGES) 
+      return updated.length > MAX_MESSAGES
+        ? updated.slice(updated.length - MAX_MESSAGES)
         : updated;
     });
     setInputValue('');
@@ -95,7 +95,7 @@ function FloatingChatPanelComponent({
 
     try {
       // Call API to get AI response with 30 second timeout
-      const response = await askPlantQuestion(trimmedInput, domeType, plantName, 30000);
+      const response = await askPlantQuestion(trimmedInput, domeType, plantName);
 
       // Create AI message
       const aiMessage: ChatMessage = {
@@ -108,16 +108,16 @@ function FloatingChatPanelComponent({
       setMessages((prev) => {
         const updated = [...prev, aiMessage];
         // Keep only the last MAX_MESSAGES messages
-        return updated.length > MAX_MESSAGES 
-          ? updated.slice(updated.length - MAX_MESSAGES) 
+        return updated.length > MAX_MESSAGES
+          ? updated.slice(updated.length - MAX_MESSAGES)
           : updated;
       });
     } catch (error) {
       // Create error message with specific error details
-      const errorContent = error instanceof Error 
-        ? error.message 
+      const errorContent = error instanceof Error
+        ? error.message
         : 'Failed to get response. Please try again.';
-      
+
       const errorMessage: ChatMessage = {
         id: `error-${Date.now()}`,
         role: 'assistant',
@@ -128,8 +128,8 @@ function FloatingChatPanelComponent({
       setMessages((prev) => {
         const updated = [...prev, errorMessage];
         // Keep only the last MAX_MESSAGES messages
-        return updated.length > MAX_MESSAGES 
-          ? updated.slice(updated.length - MAX_MESSAGES) 
+        return updated.length > MAX_MESSAGES
+          ? updated.slice(updated.length - MAX_MESSAGES)
           : updated;
       });
       setStatusMessage('Error occurred');
@@ -152,7 +152,7 @@ function FloatingChatPanelComponent({
   if (!isOpen) return null;
 
   return (
-    <div 
+    <div
       id="floating-chat-panel"
       className={`
         absolute bottom-24 right-6
@@ -171,9 +171,9 @@ function FloatingChatPanelComponent({
       aria-modal="true"
     >
       {/* Screen reader announcements for status changes */}
-      <div 
-        role="status" 
-        aria-live="polite" 
+      <div
+        role="status"
+        aria-live="polite"
         aria-atomic="true"
         className="sr-only"
       >
@@ -202,7 +202,7 @@ function FloatingChatPanelComponent({
       </div>
 
       {/* Messages container */}
-      <div 
+      <div
         ref={messagesContainerRef}
         className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4"
         role="log"
@@ -228,11 +228,10 @@ function FloatingChatPanelComponent({
             aria-label={`${message.role === 'user' ? 'Your question' : 'AI response'}`}
           >
             <div
-              className={`max-w-[80%] rounded-lg px-3 sm:px-4 py-2 sm:py-3 shadow-sm ${
-                message.role === 'user'
+              className={`max-w-[80%] rounded-lg px-3 sm:px-4 py-2 sm:py-3 shadow-sm ${message.role === 'user'
                   ? 'bg-gradient-to-r from-green-500 to-emerald-500 text-white'
                   : 'bg-gray-100 dark:bg-gray-800 text-foreground'
-              }`}
+                }`}
             >
               <p className="text-xs sm:text-sm leading-relaxed whitespace-pre-wrap break-words">
                 {message.content}
@@ -257,7 +256,7 @@ function FloatingChatPanelComponent({
 
       {/* Input area */}
       <div className="p-3 sm:p-4 border-t-2 border-green-200 dark:border-green-800 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 rounded-b-2xl">
-        <form 
+        <form
           onSubmit={(e) => {
             e.preventDefault();
             handleSendMessage();

@@ -5,6 +5,7 @@ import desertDomeImg from "@/assets/desert_dome.jpg";
 import showDomeImg from "@/assets/show_dome.webp";
 import outsideOfDomesImg from "@/assets/outside_of_domes.jpg";
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface DomeSelectorProps {
   onDomeSelect: (dome: DomeName) => void;
@@ -16,13 +17,15 @@ const domeImages: Record<DomeName, string> = {
   "Show Dome": showDomeImg,
 };
 
-const domeDescriptions: Record<DomeName, string> = {
-  "Tropical Dome": "Lush rainforest environment",
-  "Desert Dome": "Arid desert landscape",
-  "Show Dome": "Seasonal exhibitions",
+// Map dome names to translation keys
+const domeTranslationKeys: Record<DomeName, { name: string; description: string }> = {
+  "Tropical Dome": { name: "domes.tropical.name", description: "domes.tropical.description" },
+  "Desert Dome": { name: "domes.desert.name", description: "domes.desert.description" },
+  "Show Dome": { name: "domes.show.name", description: "domes.show.description" },
 };
 
 export function DomeSelector({ onDomeSelect }: DomeSelectorProps) {
+  const { t } = useTranslation();
   const [visibleCards, setVisibleCards] = useState<Set<string>>(new Set());
   const cardRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
 
@@ -99,10 +102,10 @@ export function DomeSelector({ onDomeSelect }: DomeSelectorProps) {
       <div className="relative z-10 w-full max-w-7xl space-y-8 sm:space-y-12">
         <div className="text-center space-y-3 sm:space-y-4 pb-6 overflow-visible">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-r from-green-700 via-emerald-600 to-teal-700 dark:from-green-400 dark:via-emerald-400 dark:to-teal-400 bg-clip-text text-transparent drop-shadow-lg pb-2 leading-tight overflow-visible">
-            Photosynthesizers Challenge
+            {t('app.title')}
           </h1>
           <p className="text-foreground font-bold text-lg sm:text-xl md:text-2xl px-2 sm:px-4 max-w-4xl mx-auto py-2 leading-relaxed overflow-visible text-shadow-glow whitespace-normal sm:whitespace-nowrap text-center">
-            Embark on a botanical adventure through our conservatory domes
+            {t('app.subtitle')}
           </p>
         </div>
 
@@ -123,7 +126,7 @@ export function DomeSelector({ onDomeSelect }: DomeSelectorProps) {
                 active:scale-[1.05] active:-translate-y-2 active:border-green-500 active:shadow-2xl
                 focus-visible:ring-4 focus-visible:ring-green-500 focus-visible:ring-offset-2`}
               onClick={() => onDomeSelect(domeName)}
-              aria-label={`Select ${domeName} - ${domeDescriptions[domeName]}`}
+              aria-label={`Select ${t(domeTranslationKeys[domeName].name)} - ${t(domeTranslationKeys[domeName].description)}`}
             >
               <div className="dome-image-container relative">
                 {/* Animated glow effect */}
@@ -161,12 +164,12 @@ export function DomeSelector({ onDomeSelect }: DomeSelectorProps) {
                 <span className={`text-lg sm:text-2xl md:text-3xl font-bold transition-colors duration-300
                   ${visibleCards.has(domeName) ? 'max-lg:text-green-700 dark:max-lg:text-green-400' : 'text-foreground'}
                   group-hover:text-green-700 dark:group-hover:text-green-400 group-active:text-green-700 dark:group-active:text-green-400`}>
-                  {domeName}
+                  {t(domeTranslationKeys[domeName].name)}
                 </span>
                 <p className={`text-xs sm:text-base transition-colors duration-300
                   ${visibleCards.has(domeName) ? 'max-lg:text-foreground' : 'text-muted-foreground'}
                   group-hover:text-foreground group-active:text-foreground`}>
-                  {domeDescriptions[domeName]}
+                  {t(domeTranslationKeys[domeName].description)}
                 </p>
               </div>
             </Button>

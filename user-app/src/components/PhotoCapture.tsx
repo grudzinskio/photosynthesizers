@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Upload, X } from "lucide-react";
 import insideDomeImg from "@/assets/inside_dome.webp";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface PhotoCaptureProps {
   onCapture: (imageBase64: string) => void;
@@ -10,6 +11,7 @@ interface PhotoCaptureProps {
 }
 
 export function PhotoCapture({ onCapture, onCancel }: PhotoCaptureProps) {
+  const { t } = useTranslation();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -19,7 +21,7 @@ export function PhotoCapture({ onCapture, onCancel }: PhotoCaptureProps) {
 
     // Validate file type
     if (!file.type.startsWith("image/")) {
-      alert("Please select a valid image file (JPG, PNG, etc.)");
+      alert(t("photo.invalidFileType"));
       return;
     }
 
@@ -62,7 +64,7 @@ export function PhotoCapture({ onCapture, onCancel }: PhotoCaptureProps) {
             onChange={handleFileSelect}
             className="hidden"
             id="plant-photo-upload"
-            aria-label="Upload plant photo"
+            aria-label={t("photo.ariaLabelUpload")}
           />
 
           {/* Upload area or image preview */}
@@ -79,7 +81,7 @@ export function PhotoCapture({ onCapture, onCancel }: PhotoCaptureProps) {
                     handleUploadClick();
                   }
                 }}
-                aria-label="Click to upload photo"
+                aria-label={t("photo.ariaLabelClickToUpload")}
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-green-400 via-emerald-400 to-teal-500 rounded-full blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-300" />
                 <div className="relative rounded-full bg-gradient-to-br from-green-100 via-emerald-100 to-teal-100 dark:from-green-900 dark:via-emerald-900 dark:to-teal-900 p-8 sm:p-10 shadow-xl border-4 border-green-200 dark:border-green-700 group-hover:border-green-300 dark:group-hover:border-green-600 transition-all duration-300 group-hover:scale-105">
@@ -87,9 +89,9 @@ export function PhotoCapture({ onCapture, onCancel }: PhotoCaptureProps) {
                 </div>
               </div>
               <div className="text-center space-y-3 sm:space-y-4 px-4">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-800 dark:text-green-200">Upload Your Photo</h2>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-800 dark:text-green-200">{t("photo.uploadTitle")}</h2>
                 <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                  Take a photo of the plant you found
+                  {t("photo.uploadDescription")}
                 </p>
               </div>
               <Button
@@ -98,13 +100,13 @@ export function PhotoCapture({ onCapture, onCancel }: PhotoCaptureProps) {
                 onClick={handleUploadClick}
               >
                 <Upload className="size-6 sm:size-7" />
-                Upload Photo
+                {t("photo.uploadButton")}
               </Button>
             </div>
           ) : (
             <div className="space-y-4 lg:space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
               <div className="text-center">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-800 dark:text-green-200">Photo Preview</h2>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-800 dark:text-green-200">{t("photo.previewTitle")}</h2>
               </div>
               <div className="relative group overflow-hidden rounded-xl">
                 <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
@@ -112,7 +114,7 @@ export function PhotoCapture({ onCapture, onCancel }: PhotoCaptureProps) {
                   <div className="overflow-hidden rounded-lg">
                     <img
                       src={selectedImage}
-                      alt="Captured plant"
+                      alt={t("photo.ariaLabelCapturedPlant")}
                       className="w-full max-h-[350px] sm:max-h-[450px] lg:max-h-[500px] object-contain rounded-lg transition-transform duration-300 ease-out group-hover:scale-105"
                     />
                   </div>
@@ -130,7 +132,7 @@ export function PhotoCapture({ onCapture, onCancel }: PhotoCaptureProps) {
                 className="w-full min-h-[60px] text-base sm:text-lg font-bold bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-200 animate-in slide-in-from-bottom-4 duration-500"
                 onClick={handleSubmit}
               >
-                Submit Photo
+                {t("photo.submit")}
               </Button>
               <Button
                 variant="outline"
@@ -138,7 +140,7 @@ export function PhotoCapture({ onCapture, onCancel }: PhotoCaptureProps) {
                 className="w-full min-h-[52px] text-base font-semibold border-2 border-green-300 dark:border-green-700 hover:bg-green-100 dark:hover:bg-green-900 animate-in slide-in-from-bottom-4 duration-500 delay-75"
                 onClick={handleUploadClick}
               >
-                Choose Different Photo
+                {t("photo.chooseDifferent")}
               </Button>
             </>
           ) : null}
@@ -149,7 +151,7 @@ export function PhotoCapture({ onCapture, onCancel }: PhotoCaptureProps) {
             onClick={onCancel}
           >
             <X className="size-5" />
-            Cancel
+            {t("photo.cancel")}
           </Button>
         </CardFooter>
       </Card>

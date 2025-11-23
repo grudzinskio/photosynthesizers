@@ -1,0 +1,119 @@
+{
+  "app": {
+    "title": "Photosynthesizers Challenge",
+    "subtitle": "Embark on a botanical adventure through our conservatory domes"
+  },
+  "domes": {
+    "tropical": {
+      "name": "Tropical Dome",
+      "description": "Lush rainforest environment"
+    },
+    "desert": {
+      "name": "Desert Dome",
+      "description": "Arid desert landscape"
+    },
+    "show": {
+      "name": "Show Dome",
+      "description": "Seasonal exhibitions"
+    }
+  },
+  "mission": {
+    "title": "Your Mission",
+    "foundIt": "Found it!",
+    "changeDome": "Change Dome",
+    "change": "Change",
+    "loading": "Loading plant...",
+    "referenceImage": "Reference Image:",
+    "viewOnWikipedia": "View on Wikipedia",
+    "loadingReferenceImage": "Loading reference image...",
+    "sourceWikipedia": "Source: Wikipedia",
+    "speciesPage": "Species page",
+    "genusPage": "Genus page",
+    "genusImage": "Genus image",
+    "description": "Description",
+    "about": "About"
+  },
+  "chat": {
+    "title": "Ask About This Plant",
+    "subtitle": "Get answers to your questions about {{plantName}}",
+    "placeholder": "Ask a question about this plant...",
+    "thinking": "Thinking...",
+    "send": "Send",
+    "emptyState": "Ask a question to learn more about this plant!",
+    "ariaLabelChatbot": "Plant information chatbot",
+    "ariaLabelHistory": "Chat message history",
+    "ariaLabelUserMessage": "Your question",
+    "ariaLabelAiMessage": "AI response",
+    "ariaLabelGenerating": "AI is generating a response",
+    "ariaLabelAskQuestion": "Ask a question about the plant",
+    "ariaLabelQuestionInput": "Question input"
+  },
+  "feedback": {
+    "success": "Success!",
+    "notQuite": "Not Quite",
+    "successMessage": "Great job! You found the plant!",
+    "tryAgainMessage": "Not quite right. Try again!",
+    "nextMission": "Next Mission",
+    "viewDetails": "View Plant Details",
+    "loadingDetails": "Loading Plant Details...",
+    "retry": "Try Again",
+    "ariaLabelResult": "Plant identification result",
+    "ariaLabelSuccessStatus": "Success! Plant identified correctly",
+    "ariaLabelFailureStatus": "Not quite right, try again",
+    "ariaLabelFeedbackMessage": "Feedback message",
+    "ariaLabelCapturedPhoto": "Your captured plant photo",
+    "ariaLabelLoadingDetails": "Loading plant details, please wait",
+    "ariaLabelViewDetails": "View detailed plant information and ask questions",
+    "ariaLabelNextMission": "Start next plant identification mission",
+    "ariaLabelTryAgain": "Try taking another photo of the plant"
+  },
+  "photo": {
+    "capture": "Capture Photo",
+    "retake": "Retake",
+    "submit": "Submit Photo",
+    "cancel": "Cancel",
+    "uploadTitle": "Upload Your Photo",
+    "uploadDescription": "Take a photo of the plant you found",
+    "uploadButton": "Upload Photo",
+    "previewTitle": "Photo Preview",
+    "chooseDifferent": "Choose Different Photo",
+    "invalidFileType": "Please select a valid image file (JPG, PNG, etc.)",
+    "ariaLabelUpload": "Upload plant photo",
+    "ariaLabelClickToUpload": "Click to upload photo",
+    "ariaLabelCapturedPlant": "Captured plant"
+  },
+  "loading": {
+    "default": "Loading...",
+    "analyzing": "Analyzing...",
+    "submitting": "Submitting image...",
+    "loadingPlant": "Loading plant..."
+  },
+  "errors": {
+    "networkError": "Network error. Please check your connection and try again.",
+    "timeout": "Request timed out. Please try again.",
+    "generic": "An error occurred. Please try again."
+  },
+  "plantDetails": {
+    "close": "Close plant details",
+    "retrying": "Retrying...",
+    "retry": "Retry",
+    "retryLoading": "Retry loading plant description",
+    "loadingDetails": "Loading plant details...",
+    "loadingMayTakeMoment": "This may take a moment",
+    "failedToLoad": "Failed to load plant description. Please try again.",
+    "collapse": "Collapse",
+    "expand": "Expand",
+    "showLess": "Show Less",
+    "showLessSections": "Show less sections",
+    "readMore": "Read More",
+    "readMoreSections": "Show {{count}} more sections",
+    "moreSection": "{{count}} more section",
+    "moreSections": "{{count}} more sections",
+    "wikipediaReferenceImage": "Wikipedia Reference Image",
+    "referenceImageAlt": "Reference image of {{plantName}}",
+    "plantInformation": "Plant information",
+    "errorLoadingDescription": "Error loading plant description",
+    "retryingToLoad": "Retrying to load plant description",
+    "loadingDescription": "Loading plant description"
+  }
+}

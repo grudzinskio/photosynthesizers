@@ -7,6 +7,7 @@ import ReactMarkdown from 'react-markdown';
 import { FloatingChatButton } from './FloatingChatButton';
 import { FloatingChatPanel } from './FloatingChatPanel';
 import { summarizePlant } from '@/api/gameApi';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface PlantDetailsViewProps {
   gameState: GameState;
@@ -16,6 +17,7 @@ interface PlantDetailsViewProps {
 
 export function PlantDetailsView({ gameState, onBack, onDescriptionUpdate }: PlantDetailsViewProps) {
   const { plantName, plantImage, plantDescription, domeType } = gameState;
+  const { t } = useTranslation();
   const [isRetrying, setIsRetrying] = useState(false);
   const [retryError, setRetryError] = useState<string | null>(null);
   const [expandedSections, setExpandedSections] = useState<Set<number>>(new Set([0, 1, 2]));
@@ -42,7 +44,7 @@ export function PlantDetailsView({ gameState, onBack, onDescriptionUpdate }: Pla
       setRetryError(
         error instanceof Error
           ? error.message
-          : 'Failed to load plant description. Please try again.'
+          : t('plantDetails.failedToLoad')
       );
     } finally {
       setIsRetrying(false);
@@ -115,7 +117,7 @@ export function PlantDetailsView({ gameState, onBack, onDescriptionUpdate }: Pla
               size="icon"
               onClick={onBack}
               className="h-11 w-11 shrink-0 text-green-700 hover:text-green-900 dark:text-green-300 dark:hover:text-green-100 hover:bg-green-100 dark:hover:bg-green-900"
-              aria-label="Close plant details"
+              aria-label={t('plantDetails.close')}
             >
               <ArrowLeft className="size-6" aria-hidden="true" />
             </Button>
@@ -134,13 +136,13 @@ export function PlantDetailsView({ gameState, onBack, onDescriptionUpdate }: Pla
                   className="flex flex-col items-center justify-center p-6 sm:p-8 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 rounded-xl border-2 border-green-200 dark:border-green-800"
                   role="status"
                   aria-live="polite"
-                  aria-label={isRetrying ? "Retrying to load plant description" : retryError ? "Error loading plant description" : "Loading plant description"}
+                  aria-label={isRetrying ? t('plantDetails.retryingToLoad') : retryError ? t('plantDetails.errorLoadingDescription') : t('plantDetails.loadingDescription')}
                 >
                   {isRetrying ? (
                     <>
                       <Loader2 className="size-8 animate-spin text-green-600 dark:text-green-400 mb-4" aria-hidden="true" />
                       <p className="text-sm sm:text-base text-green-700 dark:text-green-300 font-medium">
-                        Retrying...
+                        {t('plantDetails.retrying')}
                       </p>
                     </>
                   ) : retryError ? (
@@ -153,20 +155,20 @@ export function PlantDetailsView({ gameState, onBack, onDescriptionUpdate }: Pla
                         onClick={handleRetryDescription}
                         variant="outline"
                         className="border-red-300 hover:bg-red-50 dark:border-red-700 dark:hover:bg-red-950 min-h-[44px] min-w-[44px]"
-                        aria-label="Retry loading plant description"
+                        aria-label={t('plantDetails.retryLoading')}
                       >
                         <RefreshCw className="size-4 mr-2" aria-hidden="true" />
-                        Retry
+                        {t('plantDetails.retry')}
                       </Button>
                     </>
                   ) : (
                     <>
                       <Loader2 className="size-8 animate-spin text-green-600 dark:text-green-400 mb-4" aria-hidden="true" />
                       <p className="text-sm sm:text-base text-green-700 dark:text-green-300 font-medium mb-2">
-                        Loading plant details...
+                        {t('plantDetails.loadingDetails')}
                       </p>
                       <p className="text-xs sm:text-sm text-green-600 dark:text-green-400 text-center">
-                        This may take a moment
+                        {t('plantDetails.loadingMayTakeMoment')}
                       </p>
                     </>
                   )}
@@ -193,7 +195,7 @@ export function PlantDetailsView({ gameState, onBack, onDescriptionUpdate }: Pla
                                   className="w-full flex items-center justify-between p-3 sm:p-4 text-left hover:bg-green-100 dark:hover:bg-green-900 transition-colors duration-200 min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
                                   aria-expanded={expandedSections.has(index) ? 'true' : 'false'}
                                   aria-controls={`section-${index}`}
-                                  aria-label={`${expandedSections.has(index) ? 'Collapse' : 'Expand'} ${section.title} section`}
+                                  aria-label={`${expandedSections.has(index) ? t('plantDetails.collapse') : t('plantDetails.expand')} ${section.title} section`}
                                 >
                                   <h2 className="text-base sm:text-lg lg:text-xl font-bold text-green-800 dark:text-green-200">
                                     {section.title}
@@ -210,7 +212,7 @@ export function PlantDetailsView({ gameState, onBack, onDescriptionUpdate }: Pla
                                   id={`section-${index}`}
                                   className="prose prose-green max-w-none p-3 sm:p-4 pt-0"
                                   role="region"
-                                  aria-label={section.title || 'Plant information'}
+                                  aria-label={section.title || t('plantDetails.plantInformation')}
                                 >
                                   <ReactMarkdown
                                     components={{
@@ -271,16 +273,16 @@ export function PlantDetailsView({ gameState, onBack, onDescriptionUpdate }: Pla
                                 variant="outline"
                                 className="border-2 border-green-300 dark:border-green-700 hover:bg-green-50 dark:hover:bg-green-900 shadow-md text-sm sm:text-base min-h-[44px]"
                                 aria-expanded={showAllSections ? 'true' : 'false'}
-                                aria-label={showAllSections ? 'Show less sections' : `Show ${sections.length - 3} more sections`}
+                                aria-label={showAllSections ? t('plantDetails.showLessSections') : t('plantDetails.readMoreSections', '', { count: String(sections.length - 3) })}
                               >
                                 {showAllSections ? (
                                   <>
-                                    Show Less
+                                    {t('plantDetails.showLess')}
                                     <ChevronUp className="ml-2 size-4" aria-hidden="true" />
                                   </>
                                 ) : (
                                   <>
-                                    Read More ({sections.length - 3} more sections)
+                                    {t('plantDetails.readMore')} ({sections.length - 3} {sections.length - 3 === 1 ? t('plantDetails.moreSection', '', { count: String(sections.length - 3) }) : t('plantDetails.moreSections', '', { count: String(sections.length - 3) })})
                                     <ChevronDown className="ml-2 size-4" aria-hidden="true" />
                                   </>
                                 )}
@@ -298,10 +300,10 @@ export function PlantDetailsView({ gameState, onBack, onDescriptionUpdate }: Pla
                       <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" aria-hidden="true" />
                       <img
                         src={plantImage}
-                        alt={`Reference image of ${plantName}`}
+                        alt={t('plantDetails.referenceImageAlt', '', { plantName })}
                         className="relative w-full rounded-xl object-cover max-h-[400px] shadow-xl border-4 border-green-200 dark:border-green-800"
                       />
-                      <p className="text-sm text-center mt-3 text-green-700 dark:text-green-300 font-medium">Wikipedia Reference Image</p>
+                      <p className="text-sm text-center mt-3 text-green-700 dark:text-green-300 font-medium">{t('plantDetails.wikipediaReferenceImage')}</p>
                     </div>
                   )}
                 </>

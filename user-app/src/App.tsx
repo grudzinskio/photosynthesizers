@@ -7,9 +7,14 @@ import { FeedbackView } from "@/components/FeedbackView";
 import { PlantDetailsView } from "@/components/PlantDetailsView";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { LanguageSelector } from "@/components/LanguageSelector";
 import { startGame, summarizePlant, submitImage } from "@/api/gameApi";
+import { useTranslation } from "@/hooks/useTranslation";
 
 function App() {
+  // Translation hook
+  const { currentLanguage } = useTranslation();
+
   // State management
   const [selectedDome, setSelectedDome] = useState<DomeName | null>(null);
   const [gameState, setGameState] = useState<GameState | null>(null);
@@ -43,7 +48,7 @@ function App() {
       setIsLoading(false);
 
       // Generate description in background (don't await)
-      summarizePlant(dome, startGameResponse.plant_name)
+      summarizePlant(dome, startGameResponse.plant_name, currentLanguage)
         .then((summarizeResponse) => {
           // Update game state with description when ready
           setGameState((prevState) => {
@@ -155,7 +160,7 @@ function App() {
       setIsLoading(false);
 
       // Generate description in background (don't await)
-      summarizePlant(selectedDome, startGameResponse.plant_name)
+      summarizePlant(selectedDome, startGameResponse.plant_name, currentLanguage)
         .then((summarizeResponse) => {
           // Update game state with description when ready
           setGameState((prevState) => {
@@ -223,6 +228,9 @@ function App() {
   // Conditional rendering based on app state
   return (
     <>
+      {/* Language selector - always visible */}
+      <LanguageSelector variant="floating" position="top-right" />
+
       {appState === "dome-select" && (
         <DomeSelector onDomeSelect={handleDomeSelect} />
       )}

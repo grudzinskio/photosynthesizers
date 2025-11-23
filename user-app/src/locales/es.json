@@ -1,0 +1,119 @@
+{
+  "app": {
+    "title": "Desafío de Fotosintéticos",
+    "subtitle": "Embárcate en una aventura botánica a través de nuestros domos de conservatorio"
+  },
+  "domes": {
+    "tropical": {
+      "name": "Domo Tropical",
+      "description": "Ambiente exuberante de selva tropical"
+    },
+    "desert": {
+      "name": "Domo Desértico",
+      "description": "Paisaje árido del desierto"
+    },
+    "show": {
+      "name": "Domo de Exhibición",
+      "description": "Exhibiciones de temporada"
+    }
+  },
+  "mission": {
+    "title": "Tu Misión",
+    "foundIt": "¡Lo encontré!",
+    "changeDome": "Cambiar Domo",
+    "change": "Cambiar",
+    "loading": "Cargando planta...",
+    "referenceImage": "Imagen de Referencia:",
+    "viewOnWikipedia": "Ver en Wikipedia",
+    "loadingReferenceImage": "Cargando imagen de referencia...",
+    "sourceWikipedia": "Fuente: Wikipedia",
+    "speciesPage": "Página de especies",
+    "genusPage": "Página de género",
+    "genusImage": "Imagen de género",
+    "description": "Descripción",
+    "about": "Acerca de"
+  },
+  "chat": {
+    "title": "Pregunta Sobre Esta Planta",
+    "subtitle": "Obtén respuestas a tus preguntas sobre {{plantName}}",
+    "placeholder": "Haz una pregunta sobre esta planta...",
+    "thinking": "Pensando...",
+    "send": "Enviar",
+    "emptyState": "¡Haz una pregunta para aprender más sobre esta planta!",
+    "ariaLabelChatbot": "Chatbot de información de plantas",
+    "ariaLabelHistory": "Historial de mensajes del chat",
+    "ariaLabelUserMessage": "Tu pregunta",
+    "ariaLabelAiMessage": "Respuesta de IA",
+    "ariaLabelGenerating": "La IA está generando una respuesta",
+    "ariaLabelAskQuestion": "Haz una pregunta sobre la planta",
+    "ariaLabelQuestionInput": "Entrada de pregunta"
+  },
+  "feedback": {
+    "success": "¡Éxito!",
+    "notQuite": "No del Todo",
+    "successMessage": "¡Excelente trabajo! ¡Encontraste la planta!",
+    "tryAgainMessage": "No del todo correcto. ¡Inténtalo de nuevo!",
+    "nextMission": "Siguiente Misión",
+    "viewDetails": "Ver Detalles de la Planta",
+    "loadingDetails": "Cargando Detalles de la Planta...",
+    "retry": "Intentar de Nuevo",
+    "ariaLabelResult": "Resultado de identificación de planta",
+    "ariaLabelSuccessStatus": "¡Éxito! Planta identificada correctamente",
+    "ariaLabelFailureStatus": "No del todo correcto, inténtalo de nuevo",
+    "ariaLabelFeedbackMessage": "Mensaje de retroalimentación",
+    "ariaLabelCapturedPhoto": "Tu foto capturada de la planta",
+    "ariaLabelLoadingDetails": "Cargando detalles de la planta, por favor espera",
+    "ariaLabelViewDetails": "Ver información detallada de la planta y hacer preguntas",
+    "ariaLabelNextMission": "Comenzar siguiente misión de identificación de planta",
+    "ariaLabelTryAgain": "Intentar tomar otra foto de la planta"
+  },
+  "photo": {
+    "capture": "Capturar Foto",
+    "retake": "Volver a Tomar",
+    "submit": "Enviar Foto",
+    "cancel": "Cancelar",
+    "uploadTitle": "Sube Tu Foto",
+    "uploadDescription": "Toma una foto de la planta que encontraste",
+    "uploadButton": "Subir Foto",
+    "previewTitle": "Vista Previa de la Foto",
+    "chooseDifferent": "Elegir Foto Diferente",
+    "invalidFileType": "Por favor selecciona un archivo de imagen válido (JPG, PNG, etc.)",
+    "ariaLabelUpload": "Subir foto de planta",
+    "ariaLabelClickToUpload": "Haz clic para subir foto",
+    "ariaLabelCapturedPlant": "Planta capturada"
+  },
+  "loading": {
+    "default": "Cargando...",
+    "analyzing": "Analizando...",
+    "submitting": "Enviando imagen...",
+    "loadingPlant": "Cargando planta..."
+  },
+  "errors": {
+    "networkError": "Error de red. Por favor verifica tu conexión e inténtalo de nuevo.",
+    "timeout": "Se agotó el tiempo de espera. Por favor inténtalo de nuevo.",
+    "generic": "Ocurrió un error. Por favor inténtalo de nuevo."
+  },
+  "plantDetails": {
+    "close": "Cerrar detalles de la planta",
+    "retrying": "Reintentando...",
+    "retry": "Reintentar",
+    "retryLoading": "Reintentar carga de descripción de la planta",
+    "loadingDetails": "Cargando detalles de la planta...",
+    "loadingMayTakeMoment": "Esto puede tomar un momento",
+    "failedToLoad": "No se pudo cargar la descripción de la planta. Por favor inténtalo de nuevo.",
+    "collapse": "Contraer",
+    "expand": "Expandir",
+    "showLess": "Mostrar Menos",
+    "showLessSections": "Mostrar menos secciones",
+    "readMore": "Leer Más",
+    "readMoreSections": "Mostrar {{count}} secciones más",
+    "moreSection": "{{count}} sección más",
+    "moreSections": "{{count}} secciones más",
+    "wikipediaReferenceImage": "Imagen de Referencia de Wikipedia",
+    "referenceImageAlt": "Imagen de referencia de {{plantName}}",
+    "plantInformation": "Información de la planta",
+    "errorLoadingDescription": "Error al cargar la descripción de la planta",
+    "retryingToLoad": "Reintentando cargar la descripción de la planta",
+    "loadingDescription": "Cargando descripción de la planta"
+  }
+}

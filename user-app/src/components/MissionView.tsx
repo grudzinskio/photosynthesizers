@@ -6,6 +6,7 @@ import { Camera, ArrowLeft, ExternalLink } from 'lucide-react';
 import insideDomeImg from "@/assets/inside_dome.webp";
 import { useEffect, useState } from 'react';
 import { getWikipediaPlantData, type WikipediaPlantData } from '@/api/wikipediaApi';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface MissionViewProps {
   gameState: GameState;
@@ -15,6 +16,7 @@ interface MissionViewProps {
 }
 
 export function MissionView({ gameState, domeName, onFoundIt, onChangeDome }: MissionViewProps) {
+  const { t } = useTranslation();
   const [wikiData, setWikiData] = useState<WikipediaPlantData | null>(null);
   const [loadingWiki, setLoadingWiki] = useState(false);
 
@@ -69,15 +71,15 @@ export function MissionView({ gameState, domeName, onFoundIt, onChangeDome }: Mi
           className="gap-2 min-h-[44px] px-4 bg-white/90 dark:bg-gray-800/90 border-2 shadow-md hover:bg-green-50 dark:hover:bg-green-900"
         >
           <ArrowLeft className="size-4" />
-          <span className="hidden sm:inline">Change Dome</span>
-          <span className="sm:hidden">Change</span>
+          <span className="hidden sm:inline">{t('mission.changeDome')}</span>
+          <span className="sm:hidden">{t('mission.change')}</span>
         </Button>
       </div>
 
       {/* Mission Card */}
       <Card className="relative z-10 flex-1 flex flex-col max-w-5xl max-w-ultra mx-auto w-full shadow-2xl border-2 border-green-200 dark:border-green-800 bg-card/95 backdrop-blur-sm">
         <CardHeader className="pb-4 sm:pb-6 px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 border-b-2 border-green-200 dark:border-green-800">
-          <CardTitle className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-800 dark:text-green-200">Your Mission</CardTitle>
+          <CardTitle className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-800 dark:text-green-200">{t('mission.title')}</CardTitle>
         </CardHeader>
 
         <CardContent className="flex-1 flex flex-col gap-4 lg:gap-6 px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
@@ -97,7 +99,7 @@ export function MissionView({ gameState, domeName, onFoundIt, onChangeDome }: Mi
                 <div className="flex flex-col gap-3 sm:gap-4 p-4 sm:p-6 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 rounded-xl border-2 border-green-200 dark:border-green-800 shadow-md">
                   <div className="flex items-center justify-between gap-2">
                     <p className="text-sm sm:text-base text-muted-foreground font-bold uppercase tracking-wide">
-                      Reference Image:
+                      {t('mission.referenceImage')}
                     </p>
                     {wikiData.url && (
                       <a
@@ -105,10 +107,10 @@ export function MissionView({ gameState, domeName, onFoundIt, onChangeDome }: Mi
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-1 text-xs sm:text-sm text-green-600 dark:text-green-400 hover:underline min-h-[44px] min-w-[44px] justify-center"
-                        aria-label={`View ${wikiData.title} on Wikipedia (opens in new tab)`}
+                        aria-label={`${t('mission.viewOnWikipedia')} ${wikiData.title} (opens in new tab)`}
                       >
                         <ExternalLink className="size-3 sm:size-4" aria-hidden="true" />
-                        View on Wikipedia
+                        {t('mission.viewOnWikipedia')}
                       </a>
                     )}
                   </div>
@@ -125,7 +127,7 @@ export function MissionView({ gameState, domeName, onFoundIt, onChangeDome }: Mi
                   )}
 
                   <p className="text-xs sm:text-sm text-green-600 dark:text-green-400">
-                    Source: Wikipedia ({wikiData.source === 'species' ? 'Species page' : wikiData.source === 'genus' ? 'Genus page' : 'Genus image'})
+                    {t('mission.sourceWikipedia')} ({wikiData.source === 'species' ? t('mission.speciesPage') : wikiData.source === 'genus' ? t('mission.genusPage') : t('mission.genusImage')})
                   </p>
                 </div>
               )}
@@ -133,7 +135,7 @@ export function MissionView({ gameState, domeName, onFoundIt, onChangeDome }: Mi
               {loadingWiki && (
                 <div className="flex items-center justify-center p-4 sm:p-6 bg-green-50 dark:bg-green-950 rounded-xl border-2 border-green-200 dark:border-green-800">
                   <p className="text-sm sm:text-base text-green-600 dark:text-green-400 animate-pulse">
-                    Loading reference image...
+                    {t('mission.loadingReferenceImage')}
                   </p>
                 </div>
               )}
@@ -145,7 +147,7 @@ export function MissionView({ gameState, domeName, onFoundIt, onChangeDome }: Mi
                 <>
                   {wikiData.description && wikiData.description !== 'Species of plant' && (
                     <div className="p-4 sm:p-6 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 rounded-xl border-2 border-green-200 dark:border-green-800 shadow-md">
-                      <h4 className="text-base sm:text-lg font-semibold text-green-800 dark:text-green-200 mb-2 sm:mb-3">Description</h4>
+                      <h4 className="text-base sm:text-lg font-semibold text-green-800 dark:text-green-200 mb-2 sm:mb-3">{t('mission.description')}</h4>
                       <p className="text-sm sm:text-base text-green-900 dark:text-green-100 italic leading-relaxed">
                         {wikiData.description}
                       </p>
@@ -154,7 +156,7 @@ export function MissionView({ gameState, domeName, onFoundIt, onChangeDome }: Mi
 
                   {wikiData.extract && (
                     <div className="p-4 sm:p-6 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 rounded-xl border-2 border-green-200 dark:border-green-800 shadow-md">
-                      <h4 className="text-base sm:text-lg font-semibold text-green-800 dark:text-green-200 mb-2 sm:mb-3">About</h4>
+                      <h4 className="text-base sm:text-lg font-semibold text-green-800 dark:text-green-200 mb-2 sm:mb-3">{t('mission.about')}</h4>
                       <p className="text-sm sm:text-base text-green-950 dark:text-green-50 line-clamp-6 leading-relaxed">
                         {wikiData.extract}
                       </p>
@@ -174,7 +176,7 @@ export function MissionView({ gameState, domeName, onFoundIt, onChangeDome }: Mi
             className="w-full min-h-[60px] text-base sm:text-lg font-bold gap-3 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl hover:scale-[1.02] hover:animate-pulse active:scale-[0.98] transition-all duration-200"
           >
             <Camera className="size-6 sm:size-7" />
-            Found it!
+            {t('mission.foundIt')}
           </Button>
         </CardFooter>
       </Card>

@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Send, Loader2 } from 'lucide-react';
 import { askPlantQuestion } from '@/api/gameApi';
 import type { ChatMessage, DomeName } from '@/types';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface PlantChatbotProps {
   plantName: string;
@@ -14,6 +15,7 @@ interface PlantChatbotProps {
 const MAX_MESSAGES = 10;
 
 function PlantChatbotComponent({ plantName, domeType }: PlantChatbotProps) {
+  const { t, currentLanguage } = useTranslation();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -37,14 +39,14 @@ function PlantChatbotComponent({ plantName, domeType }: PlantChatbotProps) {
   // Announce loading state changes to screen readers
   useEffect(() => {
     if (isLoading) {
-      setStatusMessage('Generating response...');
+      setStatusMessage(t('chat.thinking'));
     } else if (messages.length > 0) {
       const lastMessage = messages[messages.length - 1];
       if (lastMessage.role === 'assistant') {
-        setStatusMessage('Response received');
+        setStatusMessage(t('chat.emptyState'));
       }
     }
-  }, [isLoading, messages]);
+  }, [isLoading, messages, t]);
 
   // Memoized send handler with debounce protection
   const handleSendMessage = useCallback(async () => {
@@ -77,11 +79,11 @@ function PlantChatbotComponent({ plantName, domeType }: PlantChatbotProps) {
     });
     setInputValue('');
     setIsLoading(true);
-    setStatusMessage('Sending question...');
+    setStatusMessage(t('chat.send'));
 
     try {
       // Call API to get AI response with 30 second timeout
-      const response = await askPlantQuestion(trimmedInput, domeType, plantName, 30000);
+      const response = await askPlantQuestion(trimmedInput, domeType, plantName, currentLanguage, 30000);
 
       // Create AI message
       const aiMessage: ChatMessage = {
@@ -102,7 +104,7 @@ function PlantChatbotComponent({ plantName, domeType }: PlantChatbotProps) {
       // Create error message with specific error details
       const errorContent = error instanceof Error 
         ? error.message 
-        : 'Failed to get response. Please try again.';
+        : t('errors.generic');
       
       const errorMessage: ChatMessage = {
         id: `error-${Date.now()}`,
@@ -118,14 +120,14 @@ function PlantChatbotComponent({ plantName, domeType }: PlantChatbotProps) {
           ? updated.slice(updated.length - MAX_MESSAGES) 
           : updated;
       });
-      setStatusMessage('Error occurred');
+      setStatusMessage(t('errors.generic'));
       console.error('Chatbot error:', error);
     } finally {
       setIsLoading(false);
       // Refocus input after sending
       inputRef.current?.focus();
     }
-  }, [inputValue, isLoading, domeType, plantName]);
+  }, [inputValue, isLoading, domeType, plantName, currentLanguage, t]);
 
   // Memoized keyboard handler
   const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -136,7 +138,7 @@ function PlantChatbotComponent({ plantName, domeType }: PlantChatbotProps) {
   }, [handleSendMessage]);
 
   return (
-    <div className="flex flex-col h-full" role="region" aria-label="Plant information chatbot">
+    <div className="flex flex-col h-full" role="region" aria-label={t('chat.ariaLabelChatbot')}>
       {/* Screen reader announcements for status changes */}
       <div 
         role="status" 
@@ -150,10 +152,10 @@ function PlantChatbotComponent({ plantName, domeType }: PlantChatbotProps) {
       {/* Chat header */}
       <div className="px-4 py-3 border-b border-green-200 dark:border-green-800 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950">
         <h3 className="text-lg font-semibold text-green-900 dark:text-green-100" id="chatbot-title">
-          Ask About This Plant
+          {t('chat.title')}
         </h3>
         <p className="text-sm text-green-700 dark:text-green-300">
-          Get answers to your questions about {plantName}
+          {t('chat.subtitle', '', { plantName })}
         </p>
       </div>
 
@@ -164,14 +166,14 @@ function PlantChatbotComponent({ plantName, domeType }: PlantChatbotProps) {
         role="log"
         aria-live="polite"
         aria-atomic="false"
-        aria-label="Chat message history"
+        aria-label={t('chat.ariaLabelHistory')}
         aria-describedby="chatbot-title"
         tabIndex={0}
       >
         {messages.length === 0 && (
           <div className="flex items-center justify-center h-full text-center">
             <p className="text-muted-foreground text-sm">
-              Ask a question to learn more about this plant!
+              {t('chat.emptyState')}
             </p>
           </div>
         )}
@@ -181,7 +183,7 @@ function PlantChatbotComponent({ plantName, domeType }: PlantChatbotProps) {
             key={message.id}
             className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
             role="article"
-            aria-label={`${message.role === 'user' ? 'Your question' : 'AI response'}`}
+            aria-label={message.role === 'user' ? t('chat.ariaLabelUserMessage') : t('chat.ariaLabelAiMessage')}
           >
             <div
               className={`max-w-[80%] rounded-lg px-4 py-3 shadow-sm ${
@@ -198,11 +200,11 @@ function PlantChatbotComponent({ plantName, domeType }: PlantChatbotProps) {
         ))}
 
         {isLoading && (
-          <div className="flex justify-start" role="status" aria-label="AI is generating a response">
+          <div className="flex justify-start" role="status" aria-label={t('chat.ariaLabelGenerating')}>
             <div className="bg-gray-100 dark:bg-gray-800 rounded-lg px-4 py-3 shadow-sm">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Loader2 className="size-4 animate-spin" aria-hidden="true" />
-                <span className="text-sm">Thinking...</span>
+                <span className="text-sm">{t('chat.thinking')}</span>
               </div>
             </div>
           </div>
@@ -220,18 +222,18 @@ function PlantChatbotComponent({ plantName, domeType }: PlantChatbotProps) {
           }}
           className="flex gap-2"
           role="search"
-          aria-label="Ask a question about the plant"
+          aria-label={t('chat.ariaLabelAskQuestion')}
         >
           <Input
             ref={inputRef}
             type="text"
-            placeholder="Ask a question about this plant..."
+            placeholder={t('chat.placeholder')}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={handleKeyDown}
             disabled={isLoading}
             className="flex-1 border-green-300 dark:border-green-700 focus-visible:ring-green-500"
-            aria-label="Question input"
+            aria-label={t('chat.ariaLabelQuestionInput')}
             aria-describedby="chatbot-title"
             autoComplete="off"
           />
@@ -240,14 +242,14 @@ function PlantChatbotComponent({ plantName, domeType }: PlantChatbotProps) {
             onClick={handleSendMessage}
             disabled={!inputValue.trim() || isLoading}
             className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-md disabled:opacity-50"
-            aria-label={isLoading ? "Sending message" : "Send message"}
+            aria-label={isLoading ? t('chat.send') : t('chat.send')}
           >
             {isLoading ? (
               <Loader2 className="size-5 animate-spin" aria-hidden="true" />
             ) : (
               <Send className="size-5" aria-hidden="true" />
             )}
-            <span className="sr-only">{isLoading ? "Sending" : "Send"}</span>
+            <span className="sr-only">{t('chat.send')}</span>
           </Button>
         </form>
       </div>
