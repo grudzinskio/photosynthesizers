@@ -12,7 +12,7 @@ interface ColumnVisibilityToggleProps {
   onToggleColumn: (column: string) => void;
 }
 
-const STORAGE_KEY = 'dataGrid_visibleColumns';
+const STORAGE_KEY = 'dataGrid_columnVisibility';
 
 export function ColumnVisibilityToggle({
   columns,
@@ -78,17 +78,31 @@ export function useColumnVisibility(columns: string[]): {
   resetToDefault: () => void;
 } {
   // Load persisted preferences on init (only once)
-  const storedVisibleRef = useRef<string[] | null>(null);
-  if (storedVisibleRef.current === null) {
+  // Store format: { [columnName]: boolean } - tracks visibility for all known columns
+  const storedVisibilityRef = useRef<Record<string, boolean> | null>(null);
+  if (storedVisibilityRef.current === null) {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
-        storedVisibleRef.current = JSON.parse(stored);
+        const parsed = JSON.parse(stored);
+        // Support both old format (array) and new format (object)
+        if (Array.isArray(parsed)) {
+          // Migrate from old format: convert array to object
+          const migrated: Record<string, boolean> = {};
+          parsed.forEach((col: string) => {
+            migrated[col] = true;
+          });
+          storedVisibilityRef.current = migrated;
+          // Save migrated format
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated));
+        } else {
+          storedVisibilityRef.current = parsed;
+        }
       } else {
-        storedVisibleRef.current = [];
+        storedVisibilityRef.current = {};
       }
     } catch {
-      storedVisibleRef.current = [];
+      storedVisibilityRef.current = {};
     }
   }
 
@@ -99,24 +113,18 @@ export function useColumnVisibility(columns: string[]): {
       return new Set<string>();
     }
 
-    // If we have stored preferences, use them
-    const stored = storedVisibleRef.current;
-    if (stored && stored.length > 0) {
-      // Filter stored to only include columns that still exist
-      const validStored = stored.filter(col => columns.includes(col));
-      if (validStored.length > 0) {
-        const visible = new Set(validStored);
-        // Add any new columns that weren't in stored (visible by default)
-        columns.forEach(col => {
-          if (!visible.has(col)) {
-            visible.add(col);
-          }
-        });
-        return visible;
+    const stored = storedVisibilityRef.current;
+    const visible = new Set<string>();
+
+    columns.forEach((col) => {
+      // If column has stored preference, use it; otherwise default to visible (true)
+      const isVisible = stored?.[col] !== false;
+      if (isVisible) {
+        visible.add(col);
       }
-    }
-    // Default: all columns visible
-    return new Set(columns);
+    });
+
+    return visible;
   });
 
   // Create a stable key for columns to use as dependency
@@ -130,42 +138,34 @@ export function useColumnVisibility(columns: string[]): {
       return;
     }
 
+    const stored = storedVisibilityRef.current || {};
+
     // On first load with columns, initialize from stored preferences
     if (!isInitializedRef.current) {
       isInitializedRef.current = true;
-      const stored = storedVisibleRef.current;
-      if (stored && stored.length > 0) {
-        const validStored = stored.filter(col => columns.includes(col));
-        if (validStored.length > 0) {
-          const visible = new Set(validStored);
-          // Add any new columns that weren't in stored
-          columns.forEach(col => {
-            if (!visible.has(col)) {
-              visible.add(col);
-            }
-          });
-          setVisibleColumnsState(visible);
-          // Save the updated set
-          try {
-            const visibleArray = Array.from(visible);
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(visibleArray));
-            storedVisibleRef.current = visibleArray;
-          } catch {
-            // Ignore storage errors
-          }
-          return;
+      const visible = new Set<string>();
+
+      columns.forEach((col) => {
+        // If column has stored preference, use it; otherwise default to visible (true)
+        const isVisible = stored[col] !== false;
+        if (isVisible) {
+          visible.add(col);
         }
-      }
-      // No stored preferences, use all columns
-      const allVisible = new Set(columns);
-      setVisibleColumnsState(allVisible);
+        // Ensure all current columns are in stored preferences
+        if (!(col in stored)) {
+          stored[col] = true;
+        }
+      });
+
+      setVisibleColumnsState(visible);
+      // Save the updated preferences
       try {
-        const visibleArray = Array.from(allVisible);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(visibleArray));
-        storedVisibleRef.current = visibleArray;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
+        storedVisibilityRef.current = stored;
       } catch {
         // Ignore storage errors
       }
+      prevColumnsRef.current = columnsKey;
       return;
     }
 
@@ -179,19 +179,30 @@ export function useColumnVisibility(columns: string[]): {
     setVisibleColumnsState((prev) => {
       const updated = new Set(prev);
       let hasChanges = false;
+      const updatedStored = { ...stored };
 
       // Remove columns that no longer exist
       prev.forEach((col) => {
         if (!columns.includes(col)) {
           updated.delete(col);
+          delete updatedStored[col];
           hasChanges = true;
         }
       });
-      // Add new columns (visible by default)
+
+      // Handle new columns (visible by default) and existing columns (use stored preference)
       columns.forEach((col) => {
-        if (!updated.has(col)) {
+        const isVisible = stored[col] !== false; // Default to true if not in stored
+        if (isVisible && !updated.has(col)) {
           updated.add(col);
           hasChanges = true;
+        } else if (!isVisible && updated.has(col)) {
+          updated.delete(col);
+          hasChanges = true;
+        }
+        // Ensure all current columns are in stored preferences
+        if (!(col in updatedStored)) {
+          updatedStored[col] = isVisible;
         }
       });
 
@@ -199,9 +210,8 @@ export function useColumnVisibility(columns: string[]): {
       if (hasChanges) {
         // Persist changes
         try {
-          const visibleArray = Array.from(updated);
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(visibleArray));
-          storedVisibleRef.current = visibleArray;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedStored));
+          storedVisibilityRef.current = updatedStored;
         } catch {
           // Ignore storage errors
         }
@@ -214,16 +224,20 @@ export function useColumnVisibility(columns: string[]): {
   const toggleColumn = (column: string) => {
     setVisibleColumnsState((prev) => {
       const updated = new Set(prev);
-      if (updated.has(column)) {
+      const isCurrentlyVisible = updated.has(column);
+      
+      if (isCurrentlyVisible) {
         updated.delete(column);
       } else {
         updated.add(column);
       }
+
       // Persist to localStorage
       try {
-        const visibleArray = Array.from(updated);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(visibleArray));
-        storedVisibleRef.current = visibleArray;
+        const stored = storedVisibilityRef.current || {};
+        stored[column] = !isCurrentlyVisible;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
+        storedVisibilityRef.current = stored;
       } catch {
         // Ignore storage errors
       }
@@ -234,9 +248,13 @@ export function useColumnVisibility(columns: string[]): {
   const setVisibleColumns = (newColumns: Set<string>) => {
     setVisibleColumnsState(newColumns);
     try {
-      const visibleArray = Array.from(newColumns);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(visibleArray));
-      storedVisibleRef.current = visibleArray;
+      const stored: Record<string, boolean> = {};
+      // Set visibility for all current columns
+      columns.forEach((col) => {
+        stored[col] = newColumns.has(col);
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
+      storedVisibilityRef.current = stored;
     } catch {
       // Ignore storage errors
     }
@@ -246,9 +264,12 @@ export function useColumnVisibility(columns: string[]): {
     const allVisible = new Set(columns);
     setVisibleColumnsState(allVisible);
     try {
-      const visibleArray = Array.from(allVisible);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(visibleArray));
-      storedVisibleRef.current = visibleArray;
+      const stored: Record<string, boolean> = {};
+      columns.forEach((col) => {
+        stored[col] = true;
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
+      storedVisibilityRef.current = stored;
     } catch {
       // Ignore storage errors
     }

@@ -1,14 +1,17 @@
 import { useState, useEffect, useMemo } from 'react';
-import { ChevronLeft, ChevronRight, Loader2, AlertCircle, RefreshCw, Database, Search, ArrowUpDown, ArrowUp, ArrowDown, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Loader2, AlertCircle, RefreshCw, Database, Search, ArrowUpDown, ArrowUp, ArrowDown, X, Image as ImageIcon, Calendar, User, Leaf } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogClose } from '@/components/ui/dialog';
 import { 
   getPlantsFromDatabase, 
   getDomesFromDatabase, 
+  getImagesByPlantId,
   type DatabasePlantsResponse, 
-  type DatabaseDomesResponse 
+  type DatabaseDomesResponse,
+  type PlantImagesResponse
 } from '@/lib/api';
 import { useSettings } from '@/contexts/SettingsContext';
 import { ColumnVisibilityToggle, useColumnVisibility } from './DataGrid/ColumnVisibilityToggle';
@@ -43,6 +46,11 @@ export function DataGrid() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortConfig, setSortConfig] = useState<SortConfig>(null);
   const [columnFilters, setColumnFilters] = useState<Record<string, string>>(() => loadColumnFilters());
+  const [selectedPlant, setSelectedPlant] = useState<Record<string, unknown> | null>(null);
+  const [plantImages, setPlantImages] = useState<PlantImagesResponse['images']>([]);
+  const [isLoadingImages, setIsLoadingImages] = useState(false);
+  const [imagesError, setImagesError] = useState<string | null>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   
   // Column visibility with localStorage persistence
   // Initialize with empty array, will be updated when columns are loaded
@@ -63,7 +71,7 @@ export function DataGrid() {
       const response: DatabaseDomesResponse = await getDomesFromDatabase(settings.apiBaseUrl);
       if (response.success && response.domes.length > 0) {
         setDomes(response.domes);
-        setSelectedDome(response.domes[0]);
+        setSelectedDome(''); // Default to "All Domes"
       } else {
         setDomes([]);
         setSelectedDome('');
@@ -250,6 +258,42 @@ export function DataGrid() {
   const resetEverything = () => {
     resetAllFilters();
     resetColumnVisibility();
+  };
+
+  const handleRowClick = async (plant: Record<string, unknown>) => {
+    const plantId = plant.id as string;
+    if (!plantId) return;
+
+    setSelectedPlant(plant);
+    setIsDialogOpen(true);
+    setIsLoadingImages(true);
+    setImagesError(null);
+    setPlantImages([]);
+
+    try {
+      const response = await getImagesByPlantId(plantId, settings.apiBaseUrl);
+      setPlantImages(response.images);
+    } catch (err) {
+      setImagesError(err instanceof Error ? err.message : 'Failed to load images');
+      console.error('Error fetching plant images:', err);
+    } finally {
+      setIsLoadingImages(false);
+    }
+  };
+
+  const formatDate = (dateString: string) => {
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+    } catch {
+      return dateString;
+    }
   };
 
   // Determine which columns are boolean
@@ -481,7 +525,8 @@ export function DataGrid() {
                   {paginatedPlants.map((plant, idx) => (
                     <tr
                       key={idx}
-                      className="border-b hover:bg-muted/50 transition-colors"
+                      className="border-b hover:bg-muted/50 transition-colors cursor-pointer"
+                      onClick={() => handleRowClick(plant)}
                     >
                       {visibleColumnsList.map((column) => {
                         const value = plant[column];
@@ -543,6 +588,102 @@ export function DataGrid() {
           </>
         )}
       </CardContent>
+
+      {/* Plant Images Dialog */}
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogHeader>
+          <DialogTitle>
+            {selectedPlant && (
+              <>
+                Images for {selectedPlant.common_name as string || selectedPlant.scientific_name as string || 'Plant'}
+                {selectedPlant.scientific_name && selectedPlant.common_name && (
+                  <span className="text-sm font-normal text-muted-foreground italic ml-2">
+                    ({selectedPlant.scientific_name})
+                  </span>
+                )}
+              </>
+            )}
+          </DialogTitle>
+          <DialogDescription>
+            {plantImages.length > 0 && `${plantImages.length} image${plantImages.length === 1 ? '' : 's'} uploaded by users`}
+          </DialogDescription>
+          <DialogClose onClose={() => setIsDialogOpen(false)} />
+        </DialogHeader>
+        <DialogContent>
+          {isLoadingImages ? (
+            <div className="flex items-center justify-center py-8">
+              <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+            </div>
+          ) : imagesError ? (
+            <Alert variant="destructive">
+              <AlertCircle className="h-4 w-4" />
+              <AlertTitle>Error</AlertTitle>
+              <AlertDescription>{imagesError}</AlertDescription>
+            </Alert>
+          ) : plantImages.length === 0 ? (
+            <div className="text-center py-8 text-muted-foreground">
+              <ImageIcon className="h-12 w-12 mx-auto mb-4 opacity-50" />
+              <p>No images found for this plant.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {plantImages.map((image) => {
+                const plant = image.plants;
+                return (
+                  <Card key={image.id} className="overflow-hidden">
+                    <div className="aspect-video bg-muted relative">
+                      {image.image_url ? (
+                        <img
+                          src={image.image_url}
+                          alt={plant?.common_name || plant?.scientific_name || 'Plant image'}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            const parent = target.parentElement;
+                            if (parent) {
+                              parent.innerHTML = `
+                                <div class="flex items-center justify-center h-full text-muted-foreground">
+                                  <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                  </svg>
+                                </div>
+                              `;
+                            }
+                          }}
+                        />
+                      ) : (
+                        <div className="flex items-center justify-center h-full text-muted-foreground">
+                          <ImageIcon className="h-8 w-8" />
+                        </div>
+                      )}
+                      {image.is_main_image && (
+                        <div className="absolute top-2 right-2 bg-primary text-primary-foreground text-xs px-2 py-1 rounded">
+                          Main
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-3 space-y-1">
+                      <div className="flex items-center gap-4 text-xs text-muted-foreground pt-2 border-t">
+                        <div className="flex items-center gap-1">
+                          <Calendar className="h-3 w-3" />
+                          <span>{formatDate(image.uploaded_at)}</span>
+                        </div>
+                        {image.uploaded_by && (
+                          <div className="flex items-center gap-1">
+                            <User className="h-3 w-3" />
+                            <span>{image.uploaded_by}</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </Card>
+                );
+              })}
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </Card>
   );
 }

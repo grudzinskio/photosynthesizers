@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { getRecentImages, type RecentImagesResponse } from '@/lib/api';
 import { Card } from '@/components/ui/card';
 import { useSettings } from '@/contexts/SettingsContext';
-import { Image as ImageIcon, Calendar, User, Leaf } from 'lucide-react';
+import { Image as ImageIcon } from 'lucide-react';
 
 export function RecentImagesPage() {
   const { settings } = useSettings();
@@ -84,12 +84,12 @@ export function RecentImagesPage() {
           </p>
         </Card>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3">
           {images.map((image) => {
             const plant = image.plants;
             return (
               <Card key={image.id} className="overflow-hidden">
-                <div className="aspect-video bg-muted relative">
+                <div className="aspect-square bg-muted relative">
                   {image.image_url ? (
                     <img
                       src={image.image_url}
@@ -119,36 +119,21 @@ export function RecentImagesPage() {
                     </div>
                   )}
                 </div>
-                <div className="p-4 space-y-2">
+                <div className="p-2 space-y-1">
                   {plant && (
-                    <>
-                      <div className="flex items-start gap-2">
-                        <Leaf className="h-4 w-4 mt-0.5 text-muted-foreground flex-shrink-0" />
-                        <div className="flex-1 min-w-0">
-                          <p className="font-medium truncate">
-                            {plant.common_name || 'Unknown'}
-                          </p>
-                          <p className="text-sm text-muted-foreground truncate italic">
-                            {plant.scientific_name}
-                          </p>
-                          <p className="text-xs text-muted-foreground mt-1">
-                            {plant.dome}
-                          </p>
-                        </div>
-                      </div>
-                    </>
-                  )}
-                  <div className="flex items-center gap-4 text-xs text-muted-foreground pt-2 border-t">
-                    <div className="flex items-center gap-1">
-                      <Calendar className="h-3 w-3" />
-                      <span>{formatDate(image.uploaded_at)}</span>
+                    <div className="min-w-0">
+                      <p className="text-xs font-medium truncate" title={plant.common_name || 'Unknown'}>
+                        {plant.common_name || 'Unknown'}
+                      </p>
+                      <p className="text-xs text-muted-foreground truncate italic" title={plant.scientific_name}>
+                        {plant.scientific_name}
+                      </p>
                     </div>
-                    {image.uploaded_by && (
-                      <div className="flex items-center gap-1">
-                        <User className="h-3 w-3" />
-                        <span>{image.uploaded_by}</span>
-                      </div>
-                    )}
+                  )}
+                  <div className="text-xs text-muted-foreground pt-1 border-t">
+                    <div className="truncate" title={formatDate(image.uploaded_at)}>
+                      {formatDate(image.uploaded_at)}
+                    </div>
                   </div>
                 </div>
               </Card>

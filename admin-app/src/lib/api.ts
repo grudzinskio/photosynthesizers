@@ -204,3 +204,27 @@ export async function getRecentImages(
   return response.json();
 }
 
+export interface PlantImagesResponse {
+  success: boolean;
+  plant_id: string;
+  images: RecentImagesResponse['images'];
+  count: number;
+}
+
+export async function getImagesByPlantId(
+  plantId: string,
+  apiBaseUrl?: string
+): Promise<PlantImagesResponse> {
+  const baseUrl = apiBaseUrl || getApiBaseUrl();
+  const response = await fetch(`${baseUrl}/api/images/plant/${encodeURIComponent(plantId)}`, {
+    method: 'GET',
+  });
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({ detail: 'Failed to get images for plant' }));
+    throw new Error(error.detail || `HTTP error! status: ${response.status}`);
+  }
+
+  return response.json();
+}
+
