@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from api.routes import excel_routes
+from api.routes import excel_routes, image_routes
 import uvicorn
 
 # Create FastAPI app
@@ -21,6 +21,7 @@ app.add_middleware(
 
 # Include routers
 app.include_router(excel_routes.router)
+app.include_router(image_routes.router)
 
 @app.get("/health")
 async def health_check():

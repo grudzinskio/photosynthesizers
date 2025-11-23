@@ -50,3 +50,11 @@ class PlantSearchResponse(BaseModel):
     success: bool
     plants: List[Dict]
     count: int
+
+"""
+SCHEMAS FOR PLANT IMAGES
+"""
+class RecentImagesResponse(BaseModel):
+    success: bool
+    images: List[Dict]
+    count: int

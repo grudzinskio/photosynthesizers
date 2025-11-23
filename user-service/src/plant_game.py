@@ -28,11 +28,9 @@ class PlantGame:
         """
         self.database_handler = DatabaseHandler()
         dome_plants = self._load_plants_in_dome()
-        plant = random.choice(dome_plants)
-        print(f"Random plant: {plant}")
-        self.current_plant = plant
-        return plant
-
+        self.current_plant = random.choice(dome_plants)
+        print(f"Random plant: {self.current_plant}")
+        return self.current_plant
 
     def _load_plants_in_dome(self) -> list[str]:
         """
@@ -61,17 +59,16 @@ class PlantGame:
             if result.get("plant_name") != self.current_plant:
                 return {
                     "success": False,
-                    "message": "Oops! The image does not match the plant"
+                    "message": "Oops! The image does not match the plant! Try again."
                 }
-
-
-            self.database_handler = DatabaseHandler()
-            # Upload the user's image to the user_plant_images table in the database
-            self.database_handler.upload_user_plant_image(self.current_plant, image)
-            return {
-                "success": True,
-                "message": "Image verified and uploaded successfully"
-            }
+            else:
+                self.database_handler = DatabaseHandler()
+                # Upload the user's image to the user_plant_images table in the database
+                self.database_handler.upload_user_plant_image(self.current_plant, image)
+                return {
+                    "success": True,
+                    "message": "Image verified and uploaded successfully"
+                }
         except Exception as e:
             return {
                 "success": False,

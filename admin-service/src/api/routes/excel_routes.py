@@ -6,12 +6,14 @@ from api.schemas import (
     PlantSearchResponse
 )
 from excel_loader_service import ExcelLoaderService
+from services.plant_service import PlantService
 
 # Create router
 router = APIRouter(prefix="/api/excel", tags=["excel-loader"])
 
 # Initialize the Excel loader service (singleton pattern)
 excel_loader = ExcelLoaderService()
+plant_service = PlantService()
 
 
 @router.post("/upload", response_model=ExcelUploadResponse)
@@ -29,10 +31,14 @@ async def upload_excel_file(file: UploadFile = File(...)):
             )
         
         # Read file content
+        print(f"Reading Excel file: {file.filename}")
         file_content = await file.read()
+        print(f"File read: {len(file_content)} bytes")
         
         # Load and parse the Excel file
+        print("Parsing Excel file...")
         result = excel_loader.load_excel_file(file_content)
+        print(f"Excel parsing result: {result.get('success')}")
         
         if not result.get("success"):
             raise HTTPException(
@@ -40,9 +46,46 @@ async def upload_excel_file(file: UploadFile = File(...)):
                 detail=result.get("error", "Failed to load Excel file")
             )
         
+        # Save plants to database (run in background to avoid blocking)
+        message = result.get("message", "Excel file loaded successfully")
+        try:
+            all_plants = []
+            for dome_name, df in excel_loader.dome_dataframes.items():
+                if dome_name != 'All':  # Skip the combined "All" dataframe
+                    plants = df.to_dict('records')
+                    for plant in plants:
+                        plant['Dome'] = dome_name
+                        all_plants.append(plant)
+            
+            # Save to database in batch (async to avoid blocking)
+            if all_plants:
+                print(f"Starting database save for {len(all_plants)} plants...")
+                db_result = await plant_service.save_plants_batch_async(all_plants)
+                print(f"Database save completed: {db_result.get('saved', 0)} saved, {db_result.get('updated', 0)} updated")
+                
+                # Add database save info to response
+                if db_result.get("success"):
+                    message += f" | Saved {db_result.get('saved', 0)} new plants, updated {db_result.get('updated', 0)} existing plants"
+                else:
+                    error_count = len(db_result.get('errors', []))
+                    message += f" | Database save completed with {error_count} errors"
+                    if error_count > 0 and error_count <= 5:
+                        # Show first few errors for debugging
+                        for error in db_result.get('errors', [])[:5]:
+                            print(f"  - {error}")
+            else:
+                message += " | No plants to save to database"
+        
+        except Exception as db_error:
+            # Log error but don't fail the upload
+            import traceback
+            print(f"Database save error: {str(db_error)}")
+            print(traceback.format_exc())
+            message = result.get("message", "Excel file loaded successfully") + " | Warning: Database save failed"
+        
         return ExcelUploadResponse(
             success=True,
-            message=result.get("message"),
+            message=message,
             dome_counts=result.get("dome_counts"),
             total_plants=result.get("total_plants"),
             domes=result.get("domes")
@@ -222,5 +265,74 @@ async def search_plants(
         raise HTTPException(
             status_code=500,
             detail=f"Error searching plants: {str(e)}"
+        )
+
+
+@router.get("/database/plants")
+async def get_plants_from_database(
+    dome: str = Query(default=None, description="Filter by dome name"),
+    limit: int = Query(default=100, ge=1, le=1000, description="Maximum number of plants to return"),
+    offset: int = Query(default=0, ge=0, description="Number of plants to skip")
+):
+    """
+    Get plants from the database (Supabase), not from the in-memory Excel data.
+    This route fetches plants that have been saved to the database.
+    
+    Args:
+        dome: Optional dome name to filter by
+        limit: Maximum number of plants to return
+        offset: Number of plants to skip (for pagination)
+    
+    Returns:
+        Dictionary with plants data and pagination info
+    """
+    try:
+        if dome:
+            plants = plant_service.get_plants_by_dome(dome)
+        else:
+            plants = plant_service.get_all_plants()
+        
+        # Apply pagination
+        total = len(plants)
+        paginated_plants = plants[offset:offset + limit]
+        
+        return {
+            "success": True,
+            "plants": paginated_plants,
+            "count": len(paginated_plants),
+            "total": total,
+            "limit": limit,
+            "offset": offset,
+            "dome": dome
+        }
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error fetching plants from database: {str(e)}"
+        )
+
+
+@router.get("/database/domes")
+async def get_domes_from_database():
+    """
+    Get list of all unique dome names from the database.
+    
+    Returns:
+        Dictionary with list of dome names
+    """
+    try:
+        all_plants = plant_service.get_all_plants()
+        domes = list(set(plant.get("dome") for plant in all_plants if plant.get("dome")))
+        domes.sort()
+        
+        return {
+            "success": True,
+            "domes": domes,
+            "count": len(domes)
+        }
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error fetching domes from database: {str(e)}"
         )
 

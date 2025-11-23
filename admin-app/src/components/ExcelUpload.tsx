@@ -91,7 +91,7 @@ export function ExcelUpload() {
     } finally {
       setIsUploading(false);
     }
-  }, [file]);
+  }, [file, settings.apiBaseUrl]);
 
   const handleReset = useCallback(() => {
     setFile(null);

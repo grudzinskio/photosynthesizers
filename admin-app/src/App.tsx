@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { Sidebar } from './components/Sidebar'
 import { StatisticsPage } from './pages/StatisticsPage'
 import { SettingsPage } from './pages/SettingsPage'
+import { RecentImagesPage } from './pages/RecentImagesPage'
 import './App.css'
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/statistics" replace />} />
           <Route path="/statistics" element={<StatisticsPage />} />
+          <Route path="/recent-images" element={<RecentImagesPage />} />
           <Route path="/settings" element={<SettingsPage />} />
         </Routes>
       </main>
