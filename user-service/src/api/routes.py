@@ -18,7 +18,7 @@ async def create_game(dome_type: str):
     try:
         game = PlantGame(dome_type=dome_type) # plant_name is None at this point
         plant_name = game.get_random_plant()
-        plant_image = game.database_handler.get_main_plant_image(plant_name)
+        plant_image = game.database_handler.get_reference_plant_image(plant_name)
         return {
             "success": True,
             "plant_name": plant_name,
