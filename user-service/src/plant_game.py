@@ -43,7 +43,7 @@ class PlantGame:
         dome_plants = self._load_plants_in_dome()
         self.current_plant = random.choice(dome_plants)
         print(f"Random plant: {self.current_plant}")
-        self.current_plant = "Crinum asiaticum"
+        self.current_plant = "Adiantum peruvianum"
         return self.current_plant
 
     def _load_plants_in_dome(self) -> list[str]:
