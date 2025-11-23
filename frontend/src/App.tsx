@@ -1,56 +1,62 @@
 import { useState } from "react";
-import type { AppState, DomeName, Mission, FeedbackData } from "@/types";
-import { getMission, getMissionCount } from "@/data/missions";
+import type { AppState, DomeName, FeedbackData, GameState } from "@/types";
 import { DomeSelector } from "@/components/DomeSelector";
 import { MissionView } from "@/components/MissionView";
 import { PhotoCapture } from "@/components/PhotoCapture";
 import { FeedbackView } from "@/components/FeedbackView";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
+import { startGame, summarizePlant, submitImage } from "@/api/gameApi";
 
 function App() {
   // State management
   const [selectedDome, setSelectedDome] = useState<DomeName | null>(null);
-  const [currentMission, setCurrentMission] = useState<Mission | null>(null);
+  const [gameState, setGameState] = useState<GameState | null>(null);
   const [appState, setAppState] = useState<AppState>("dome-select");
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const [feedbackData, setFeedbackData] = useState<FeedbackData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [missionIndex, setMissionIndex] = useState(0);
-
-  // Helper function to fetch mission from static data
-  const fetchMission = (dome: DomeName, index: number): Mission | null => {
-    return getMission(dome, index);
-  };
-
-  // Helper function to simulate verification (mock success/failure)
-  const simulateVerification = async (): Promise<FeedbackData> => {
-    // Simulate API delay
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
-    // Random success/failure for now (70% success rate)
-    const isSuccess = Math.random() > 0.3;
-
-    if (isSuccess) {
-      return {
-        success: true,
-        message: "Great job! You found the correct plant. Your knowledge of botanical specimens is impressive!",
-      };
-    } else {
-      return {
-        success: false,
-        message: "Not quite right. Take another look at the riddle and reference image, then try again!",
-      };
-    }
-  };
+  const [loadingMessage, setLoadingMessage] = useState<string>("Loading...");
 
   // Handler: Dome selection
-  const handleDomeSelect = (dome: DomeName) => {
+  const handleDomeSelect = async (dome: DomeName) => {
     setSelectedDome(dome);
-    setMissionIndex(0);
-    const mission = fetchMission(dome, 0);
-    if (mission) {
-      setCurrentMission(mission);
+    setIsLoading(true);
+    setLoadingMessage("Loading plant...");
+
+    try {
+      // Call startGame API to get plant data
+      const startGameResponse = await startGame(dome);
+      
+      // Initialize game state with plant data
+      const newGameState: GameState = {
+        domeType: dome,
+        plantName: startGameResponse.plant_name,
+        plantImage: startGameResponse.plant_image,
+        plantDescription: null,
+      };
+      setGameState(newGameState);
+
+      // Update loading message for description generation
+      setLoadingMessage("Generating description...");
+
+      // Immediately call summarizePlant to get LLM description
+      const summarizeResponse = await summarizePlant(dome, startGameResponse.plant_name);
+      
+      // Update game state with description
+      setGameState({
+        ...newGameState,
+        plantDescription: summarizeResponse.summary,
+      });
+
       setAppState("mission");
+    } catch (error) {
+      console.error("Error starting game:", error);
+      // Reset state on error
+      setSelectedDome(null);
+      setGameState(null);
+      alert("Failed to start game. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -63,15 +69,49 @@ function App() {
   const handlePhotoCapture = async (imageBase64: string) => {
     setCapturedImage(imageBase64);
     setIsLoading(true);
+    setLoadingMessage("Submitting image...");
     setAppState("feedback");
 
-    try {
-      const feedback = await simulateVerification();
-      setFeedbackData(feedback);
-    } catch {
+    // Ensure we have game state before submitting
+    if (!gameState) {
       setFeedbackData({
         success: false,
-        message: "An error occurred during verification. Please try again.",
+        message: "Game state not found. Please restart the game.",
+      });
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+      // Convert base64 to Blob
+      const base64Data = imageBase64.split(',')[1];
+      const byteCharacters = atob(base64Data);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const imageBlob = new Blob([byteArray], { type: 'image/jpeg' });
+
+      // Call submitImage API with gameState data
+      const response = await submitImage(
+        imageBlob,
+        gameState.domeType,
+        gameState.plantName
+      );
+
+      // Update feedback with actual API response
+      setFeedbackData({
+        success: response.success,
+        message: response.message,
+      });
+    } catch (error) {
+      console.error("Error submitting image:", error);
+      setFeedbackData({
+        success: false,
+        message: error instanceof Error 
+          ? error.message 
+          : "An error occurred during verification. Please try again.",
       });
     } finally {
       setIsLoading(false);
@@ -79,27 +119,46 @@ function App() {
   };
 
   // Handler: Next mission after success
-  const handleNextMission = () => {
+  const handleNextMission = async () => {
     if (!selectedDome) return;
 
-    const nextIndex = missionIndex + 1;
-    const totalMissions = getMissionCount(selectedDome);
-
-    if (nextIndex >= totalMissions) {
-      // Wrap around to first mission
-      setMissionIndex(0);
-      const mission = fetchMission(selectedDome, 0);
-      setCurrentMission(mission);
-    } else {
-      setMissionIndex(nextIndex);
-      const mission = fetchMission(selectedDome, nextIndex);
-      setCurrentMission(mission);
-    }
-
-    // Reset state for new mission
+    setIsLoading(true);
+    setLoadingMessage("Loading plant...");
     setCapturedImage(null);
     setFeedbackData(null);
-    setAppState("mission");
+
+    try {
+      // Call startGame API for new mission
+      const startGameResponse = await startGame(selectedDome);
+      
+      // Initialize new game state
+      const newGameState: GameState = {
+        domeType: selectedDome,
+        plantName: startGameResponse.plant_name,
+        plantImage: startGameResponse.plant_image,
+        plantDescription: null,
+      };
+      setGameState(newGameState);
+
+      // Update loading message for description generation
+      setLoadingMessage("Generating description...");
+
+      // Get LLM description
+      const summarizeResponse = await summarizePlant(selectedDome, startGameResponse.plant_name);
+      
+      // Update game state with description
+      setGameState({
+        ...newGameState,
+        plantDescription: summarizeResponse.summary,
+      });
+
+      setAppState("mission");
+    } catch (error) {
+      console.error("Error loading next mission:", error);
+      alert("Failed to load next mission. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   // Handler: Try again after failure
@@ -112,8 +171,7 @@ function App() {
   // Handler: Change dome
   const handleChangeDome = () => {
     setSelectedDome(null);
-    setCurrentMission(null);
-    setMissionIndex(0);
+    setGameState(null);
     setCapturedImage(null);
     setFeedbackData(null);
     setAppState("dome-select");
@@ -126,10 +184,10 @@ function App() {
         <DomeSelector onDomeSelect={handleDomeSelect} />
       )}
 
-      {appState === "mission" && currentMission && selectedDome && (
+      {appState === "mission" && gameState && (
         <MissionView
-          mission={currentMission}
-          domeName={selectedDome}
+          gameState={gameState}
+          domeName={selectedDome!}
           onFoundIt={handleFoundIt}
           onChangeDome={handleChangeDome}
         />
@@ -151,7 +209,7 @@ function App() {
         />
       )}
 
-      {isLoading && <LoadingSpinner message="Analyzing..." />}
+      {isLoading && <LoadingSpinner message={loadingMessage} />}
     </>
   );
 }

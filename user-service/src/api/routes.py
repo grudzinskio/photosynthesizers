@@ -1,5 +1,4 @@
 from fastapi import APIRouter, HTTPException, UploadFile, File, Form
-from schemas import SummaryRequest, SummaryResponse, QuestionRequest, QuestionResponse
 from plant_game import PlantGame
 from game_utils.database_handler import DatabaseHandler
 

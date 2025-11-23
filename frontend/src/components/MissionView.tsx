@@ -1,4 +1,4 @@
-import type { Mission, DomeName } from '@/types';
+import type { GameState, DomeName } from '@/types';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -6,13 +6,13 @@ import { Camera, ArrowLeft } from 'lucide-react';
 import insideDomeImg from "@/assets/inside_dome.webp";
 
 interface MissionViewProps {
-  mission: Mission;
+  gameState: GameState;
   domeName: DomeName;
   onFoundIt: () => void;
   onChangeDome: () => void;
 }
 
-export function MissionView({ mission, domeName, onFoundIt, onChangeDome }: MissionViewProps) {
+export function MissionView({ gameState, domeName, onFoundIt, onChangeDome }: MissionViewProps) {
   return (
     <div className="relative flex flex-col min-h-svh p-4 sm:p-6 lg:p-8 overflow-hidden">
       {/* Background image with overlay */}
@@ -47,13 +47,13 @@ export function MissionView({ mission, domeName, onFoundIt, onChangeDome }: Miss
         </CardHeader>
 
         <CardContent className="flex-1 flex flex-col gap-8 px-6 sm:px-8 py-8">
-          {/* Riddle Text */}
+          {/* Plant Description */}
           <div className="text-base sm:text-lg leading-relaxed text-foreground p-6 bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-950 dark:to-yellow-950 rounded-xl border-2 border-amber-200 dark:border-amber-800 shadow-md">
-            <p className="italic font-medium">{mission.riddle}</p>
+            <p className="italic font-medium">{gameState.plantDescription || 'Loading plant description...'}</p>
           </div>
 
-          {/* Reference Image */}
-          {mission.referenceImage && (
+          {/* Plant Image */}
+          {gameState.plantImage && (
             <div className="flex flex-col gap-4">
               <p className="text-sm sm:text-base text-muted-foreground font-bold uppercase tracking-wide">
                 Reference Image:
@@ -61,7 +61,7 @@ export function MissionView({ mission, domeName, onFoundIt, onChangeDome }: Miss
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
                 <img
-                  src={mission.referenceImage}
+                  src={gameState.plantImage}
                   alt="Plant reference"
                   className="relative w-full rounded-xl object-cover max-h-[350px] sm:max-h-[450px] shadow-xl border-4 border-green-200 dark:border-green-800"
                   onError={(e) => {
