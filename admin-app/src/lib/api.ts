@@ -109,6 +109,10 @@ export interface RecentImagesResponse {
     is_main_image: boolean;
     metadata?: Record<string, unknown>;
     created_at: string;
+    health_status?: string | null;
+    health_score?: number | null;
+    health_confidence?: number | null;
+    health_assessment?: Record<string, unknown> | string | null;
     plants?: {
       id: string;
       common_name?: string;

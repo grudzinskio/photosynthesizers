@@ -83,33 +83,44 @@ class PlantService:
     
     def get_plants_by_dome(self, dome: str) -> List[Dict]:
         """
-        Get all plants in a specific dome with image counts.
+        Get all plants in a specific dome with image counts and latest health status.
         
         Args:
             dome: Name of the dome
             
         Returns:
-            List of plant dictionaries with image_count field
+            List of plant dictionaries with image_count and latest_health_status fields
         """
         response = self.client.table(self.table).select("*").eq("dome", dome).execute()
         plants = response.data if response.data else []
         
-        # Get all image counts in a single query
-        image_counts = self._get_all_image_counts([plant.get("id") for plant in plants if plant.get("id")])
+        plant_ids = [plant.get("id") for plant in plants if plant.get("id")]
         
-        # Add image counts to plants
+        # Get all image counts in a single query
+        image_counts = self._get_all_image_counts(plant_ids)
+        
+        # Get latest health status for all plants
+        latest_health = self._get_all_latest_health_status(plant_ids)
+        
+        # Add image counts and health status to plants
         for plant in plants:
             plant_id = plant.get("id")
-            plant["image_count"] = image_counts.get(plant_id, 0) if plant_id else 0
+            if plant_id:
+                plant["image_count"] = image_counts.get(plant_id, 0)
+                health_data = latest_health.get(plant_id)
+                if health_data:
+                    plant["latest_health_status"] = health_data.get("health_status")
+                    plant["latest_health_score"] = health_data.get("health_score")
+                    plant["latest_health_confidence"] = health_data.get("health_confidence")
         
         return plants
     
     def get_all_plants(self) -> List[Dict]:
         """
-        Get all plants from the database with image counts.
+        Get all plants from the database with image counts and latest health status.
         
         Returns:
-            List of plant dictionaries with image_count field
+            List of plant dictionaries with image_count and latest_health_status fields
         """
         response = self.client.table(self.table).select("*").execute()
         plants = response.data if response.data else []
@@ -118,10 +129,19 @@ class PlantService:
         plant_ids = [plant.get("id") for plant in plants if plant.get("id")]
         image_counts = self._get_all_image_counts(plant_ids)
         
-        # Add image counts to plants
+        # Get latest health status for all plants
+        latest_health = self._get_all_latest_health_status(plant_ids)
+        
+        # Add image counts and health status to plants
         for plant in plants:
             plant_id = plant.get("id")
-            plant["image_count"] = image_counts.get(plant_id, 0) if plant_id else 0
+            if plant_id:
+                plant["image_count"] = image_counts.get(plant_id, 0)
+                health_data = latest_health.get(plant_id)
+                if health_data:
+                    plant["latest_health_status"] = health_data.get("health_status")
+                    plant["latest_health_score"] = health_data.get("health_score")
+                    plant["latest_health_confidence"] = health_data.get("health_confidence")
         
         return plants
     
@@ -234,6 +254,65 @@ class PlantService:
             # If query fails completely, return zeros for all plants
             print(f"Error fetching image counts: {str(e)}")
             return {plant_id: 0 for plant_id in plant_ids}
+    
+    def _get_all_latest_health_status(self, plant_ids: List[str]) -> Dict[str, Dict]:
+        """
+        Get the latest health status for multiple plants in a single query.
+        Returns the most recent health assessment for each plant.
+        
+        Args:
+            plant_ids: List of plant UUIDs
+            
+        Returns:
+            Dictionary mapping plant_id to health data dict with:
+            - health_status
+            - health_score
+            - health_confidence
+        """
+        if not plant_ids:
+            return {}
+        
+        try:
+            # Process in batches to avoid query limits
+            batch_size = 100
+            health_data: Dict[str, Dict] = {}
+            
+            for i in range(0, len(plant_ids), batch_size):
+                batch_ids = plant_ids[i:i + batch_size]
+                try:
+                    # For each plant, get the most recent image with health data
+                    # We'll need to query all images with health_status and then pick the latest per plant
+                    response = (
+                        self.client.table("user_plant_images")
+                        .select("plant_id, health_status, health_score, health_confidence, uploaded_at")
+                        .in_("plant_id", batch_ids)
+                        .not_.is_("health_status", "null")
+                        .order("uploaded_at", desc=True)
+                        .execute()
+                    )
+                    
+                    # Group by plant_id and keep only the most recent (first) entry for each
+                    if response.data:
+                        seen_plants = set()
+                        for image in response.data:
+                            plant_id = image.get("plant_id")
+                            if plant_id and plant_id not in seen_plants and plant_id in batch_ids:
+                                health_data[plant_id] = {
+                                    "health_status": image.get("health_status"),
+                                    "health_score": image.get("health_score"),
+                                    "health_confidence": image.get("health_confidence")
+                                }
+                                seen_plants.add(plant_id)
+                except Exception as batch_error:
+                    # If batch fails, log but continue with other batches
+                    print(f"Error fetching health status for batch {i//batch_size + 1}: {str(batch_error)}")
+                    # Continue with next batch
+            
+            return health_data
+        except Exception as e:
+            # If query fails completely, return empty dict
+            print(f"Error fetching latest health status: {str(e)}")
+            return {}
     
     def save_plant(self, plant_data: Dict) -> Dict:
         """

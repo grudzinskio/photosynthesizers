@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
-import { ChevronLeft, ChevronRight, Loader2, AlertCircle, RefreshCw, Database, Search, ArrowUpDown, ArrowUp, ArrowDown, X, Image as ImageIcon, Calendar, User } from 'lucide-react';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { ChevronLeft, ChevronRight, Loader2, AlertCircle, RefreshCw, Database, Search, ArrowUpDown, ArrowUp, ArrowDown, X, Image as ImageIcon, Calendar, User, Heart, AlertTriangle, CheckCircle2, XCircle } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
@@ -31,6 +31,56 @@ type SortConfig = {
   column: string;
   direction: 'asc' | 'desc';
 } | null;
+
+// Health status helper functions
+const getHealthStatusColor = (healthStatus: string | null | undefined): string => {
+  if (!healthStatus) return 'bg-gray-100 hover:bg-gray-200';
+  
+  switch (healthStatus.toLowerCase()) {
+    case 'healthy':
+      return 'bg-green-50 hover:bg-green-100 border-l-4 border-green-500';
+    case 'watch':
+      return 'bg-yellow-50 hover:bg-yellow-100 border-l-4 border-yellow-500';
+    case 'declining':
+      return 'bg-orange-50 hover:bg-orange-100 border-l-4 border-orange-500';
+    case 'critical':
+      return 'bg-red-50 hover:bg-red-100 border-l-4 border-red-500';
+    default:
+      return 'bg-gray-100 hover:bg-gray-200';
+  }
+};
+
+const getHealthStatusIcon = (healthStatus: string | null | undefined) => {
+  if (!healthStatus) return null;
+  
+  switch (healthStatus.toLowerCase()) {
+    case 'healthy':
+      return <CheckCircle2 className="h-4 w-4 text-green-600" />;
+    case 'watch':
+      return <AlertTriangle className="h-4 w-4 text-yellow-600" />;
+    case 'declining':
+      return <AlertTriangle className="h-4 w-4 text-orange-600" />;
+    case 'critical':
+      return <XCircle className="h-4 w-4 text-red-600" />;
+    default:
+      return null;
+  }
+};
+
+const getLatestHealthStatus = (images: PlantImagesResponse['images']): string | null => {
+  if (!images || images.length === 0) return null;
+  
+  // Find the most recent image with health status
+  const imagesWithHealth = images
+    .filter(img => img.health_status)
+    .sort((a, b) => {
+      const dateA = new Date(a.uploaded_at || 0).getTime();
+      const dateB = new Date(b.uploaded_at || 0).getTime();
+      return dateB - dateA; // Most recent first
+    });
+  
+  return imagesWithHealth.length > 0 ? imagesWithHealth[0].health_status : null;
+};
 
 export function DataGrid() {
   const { settings } = useSettings();
@@ -532,10 +582,15 @@ export function DataGrid() {
                   </tr>
                 </thead>
                 <tbody>
-                  {paginatedPlants.map((plant, idx) => (
+                  {paginatedPlants.map((plant, idx) => {
+                    // Get health status from plant data (preloaded from API)
+                    const healthStatus = (plant.latest_health_status as string | null | undefined) || null;
+                    const rowColorClass = getHealthStatusColor(healthStatus);
+                    
+                    return (
                     <tr
                       key={idx}
-                      className="border-b hover:bg-muted/50 transition-colors cursor-pointer"
+                      className={`border-b transition-colors cursor-pointer ${rowColorClass}`}
                       onClick={() => handleRowClick(plant)}
                     >
                       {visibleColumnsList.map((column) => {
@@ -562,7 +617,8 @@ export function DataGrid() {
                         );
                       })}
                     </tr>
-                  ))}
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
@@ -639,60 +695,214 @@ export function DataGrid() {
               <p>No images found for this plant.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {plantImages.map((image) => {
-                const plant = image.plants;
-                return (
-                  <Card key={image.id} className="overflow-hidden">
-                    <div className="aspect-video bg-muted relative">
-                      {image.image_url ? (
-                        <img
-                          src={image.image_url}
-                          alt={plant?.common_name || plant?.scientific_name || 'Plant image'}
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.style.display = 'none';
-                            const parent = target.parentElement;
-                            if (parent) {
-                              parent.innerHTML = `
-                                <div class="flex items-center justify-center h-full text-muted-foreground">
-                                  <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                  </svg>
-                                </div>
-                              `;
-                            }
-                          }}
-                        />
-                      ) : (
-                        <div className="flex items-center justify-center h-full text-muted-foreground">
-                          <ImageIcon className="h-8 w-8" />
+            <div className="space-y-6">
+              {/* Latest Health Assessment Summary */}
+              {(() => {
+                const latestHealthImage = plantImages
+                  .filter(img => img.health_status && img.health_assessment)
+                  .sort((a, b) => {
+                    const dateA = new Date(a.uploaded_at || 0).getTime();
+                    const dateB = new Date(b.uploaded_at || 0).getTime();
+                    return dateB - dateA;
+                  })[0];
+                
+                if (latestHealthImage && latestHealthImage.health_assessment) {
+                  const assessment = typeof latestHealthImage.health_assessment === 'string' 
+                    ? JSON.parse(latestHealthImage.health_assessment)
+                    : latestHealthImage.health_assessment;
+                  
+                  return (
+                    <Card className="border-2">
+                      <CardHeader className="pb-3">
+                        <div className="flex items-center gap-2">
+                          <Heart className="h-5 w-5" />
+                          <CardTitle className="text-lg">Latest Health Assessment</CardTitle>
+                          {getHealthStatusIcon(latestHealthImage.health_status)}
+                          <span className={`text-sm font-semibold ${
+                            latestHealthImage.health_status === 'healthy' ? 'text-green-600' :
+                            latestHealthImage.health_status === 'watch' ? 'text-yellow-600' :
+                            latestHealthImage.health_status === 'declining' ? 'text-orange-600' :
+                            latestHealthImage.health_status === 'critical' ? 'text-red-600' :
+                            'text-gray-600'
+                          }`}>
+                            {latestHealthImage.health_status?.toUpperCase() || 'UNKNOWN'}
+                          </span>
+                          {latestHealthImage.health_score !== null && latestHealthImage.health_score !== undefined && (
+                            <span className="text-sm text-muted-foreground">
+                              (Score: {latestHealthImage.health_score}/100)
+                            </span>
+                          )}
                         </div>
-                      )}
-                      {image.is_main_image && (
-                        <div className="absolute top-2 right-2 bg-primary text-primary-foreground text-xs px-2 py-1 rounded">
-                          Main
-                        </div>
-                      )}
-                    </div>
-                    <div className="p-3 space-y-1">
-                      <div className="flex items-center gap-4 text-xs text-muted-foreground pt-2 border-t">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="h-3 w-3" />
-                          <span>{formatDate(image.uploaded_at)}</span>
-                        </div>
-                        {image.uploaded_by && (
-                          <div className="flex items-center gap-1">
-                            <User className="h-3 w-3" />
-                            <span>{image.uploaded_by}</span>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        {/* Visual Observations */}
+                        {assessment.visual_observations && assessment.visual_observations.length > 0 && (
+                          <div>
+                            <h4 className="text-sm font-semibold mb-2">Observations:</h4>
+                            <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                              {assessment.visual_observations.map((obs: string, idx: number) => (
+                                <li key={idx}>{obs}</li>
+                              ))}
+                            </ul>
                           </div>
                         )}
-                      </div>
-                    </div>
-                  </Card>
-                );
-              })}
+                        
+                        {/* Issues Detected */}
+                        {assessment.issues_detected && assessment.issues_detected.length > 0 && (
+                          <div>
+                            <h4 className="text-sm font-semibold mb-2 text-orange-600">Issues Detected:</h4>
+                            <ul className="list-disc list-inside space-y-1 text-sm">
+                              {assessment.issues_detected.map((issue: any, idx: number) => (
+                                <li key={idx} className="text-muted-foreground">
+                                  <span className="font-medium">{issue.issue}</span>
+                                  {issue.severity && ` (${issue.severity})`}
+                                  {issue.confidence && ` - ${Math.round(issue.confidence * 100)}% confidence`}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        
+                        {/* Recommended Actions */}
+                        {assessment.recommended_actions && assessment.recommended_actions.length > 0 && (
+                          <div>
+                            <h4 className="text-sm font-semibold mb-2 text-blue-600">Recommended Actions:</h4>
+                            <ul className="list-disc list-inside space-y-2 text-sm">
+                              {assessment.recommended_actions.map((action: any, idx: number) => (
+                                <li key={idx} className="text-muted-foreground">
+                                  <span className={`font-medium ${
+                                    action.urgency === 'immediate' ? 'text-red-600' :
+                                    action.urgency === 'within_week' ? 'text-orange-600' :
+                                    'text-blue-600'
+                                  }`}>
+                                    [{action.urgency?.replace('_', ' ').toUpperCase() || 'ROUTINE'}]
+                                  </span>
+                                  {' '}{action.action}
+                                  {action.reason && (
+                                    <span className="block text-xs text-muted-foreground ml-4 mt-1">
+                                      Reason: {action.reason}
+                                    </span>
+                                  )}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        
+                        {/* Monitoring Notes */}
+                        {assessment.monitoring_notes && (
+                          <div className="pt-2 border-t">
+                            <h4 className="text-sm font-semibold mb-1">Monitoring Notes:</h4>
+                            <p className="text-sm text-muted-foreground">{assessment.monitoring_notes}</p>
+                          </div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  );
+                }
+                return null;
+              })()}
+              
+              {/* Images Grid */}
+              <div>
+                <h3 className="text-lg font-semibold mb-4">All Images</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {plantImages.map((image) => {
+                    const plant = image.plants;
+                    const hasHealthData = image.health_status || image.health_assessment;
+                    const assessment = image.health_assessment 
+                      ? (typeof image.health_assessment === 'string' 
+                          ? JSON.parse(image.health_assessment)
+                          : image.health_assessment)
+                      : null;
+                    
+                    return (
+                      <Card key={image.id} className="overflow-hidden">
+                        <div className="aspect-video bg-muted relative">
+                          {image.image_url ? (
+                            <img
+                              src={image.image_url}
+                              alt={plant?.common_name || plant?.scientific_name || 'Plant image'}
+                              className="w-full h-full object-cover"
+                              onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                target.style.display = 'none';
+                                const parent = target.parentElement;
+                                if (parent) {
+                                  parent.innerHTML = `
+                                    <div class="flex items-center justify-center h-full text-muted-foreground">
+                                      <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                      </svg>
+                                    </div>
+                                  `;
+                                }
+                              }}
+                            />
+                          ) : (
+                            <div className="flex items-center justify-center h-full text-muted-foreground">
+                              <ImageIcon className="h-8 w-8" />
+                            </div>
+                          )}
+                          {image.is_main_image && (
+                            <div className="absolute top-2 right-2 bg-primary text-primary-foreground text-xs px-2 py-1 rounded">
+                              Main
+                            </div>
+                          )}
+                          {hasHealthData && (
+                            <div className="absolute top-2 left-2 flex items-center gap-1 bg-background/80 backdrop-blur-sm px-2 py-1 rounded text-xs">
+                              {getHealthStatusIcon(image.health_status)}
+                              <span className="font-medium">
+                                {image.health_status?.toUpperCase() || 'UNKNOWN'}
+                              </span>
+                              {image.health_score !== null && image.health_score !== undefined && (
+                                <span className="text-muted-foreground">
+                                  ({image.health_score})
+                                </span>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                        <div className="p-3 space-y-2">
+                          {hasHealthData && assessment && (
+                            <div className="pb-2 border-b space-y-1">
+                              {assessment.issues_detected && assessment.issues_detected.length > 0 && (
+                                <div className="text-xs">
+                                  <span className="font-semibold text-orange-600">Issues: </span>
+                                  <span className="text-muted-foreground">
+                                    {assessment.issues_detected.map((i: any) => i.issue).join(', ')}
+                                  </span>
+                                </div>
+                              )}
+                              {assessment.recommended_actions && assessment.recommended_actions.length > 0 && (
+                                <div className="text-xs">
+                                  <span className="font-semibold text-blue-600">Actions: </span>
+                                  <span className="text-muted-foreground">
+                                    {assessment.recommended_actions.slice(0, 2).map((a: any) => a.action).join('; ')}
+                                    {assessment.recommended_actions.length > 2 && '...'}
+                                  </span>
+                                </div>
+                              )}
+                            </div>
+                          )}
+                          <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                            <div className="flex items-center gap-1">
+                              <Calendar className="h-3 w-3" />
+                              <span>{formatDate(image.uploaded_at)}</span>
+                            </div>
+                            {image.uploaded_by && (
+                              <div className="flex items-center gap-1">
+                                <User className="h-3 w-3" />
+                                <span>{image.uploaded_by}</span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </Card>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           )}
         </DialogContent>
