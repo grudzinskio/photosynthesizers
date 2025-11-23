@@ -54,29 +54,4 @@ class ImageService:
         )
         return response.data if response.data else []
     
-    def get_images_by_plant_scientific_name(self, scientific_name: str, dome: str) -> List[Dict]:
-        """
-        Get all images for a plant by scientific name and dome.
-        
-        Args:
-            scientific_name: Scientific name of the plant
-            dome: Dome name
-            
-        Returns:
-            List of image dictionaries
-        """
-        # First get the plant ID
-        plant_response = (
-            self.client.table("plants")
-            .select("id")
-            .eq("scientific_name", scientific_name)
-            .eq("dome", dome)
-            .execute()
-        )
-        
-        if not plant_response.data:
-            return []
-        
-        plant_id = plant_response.data[0]["id"]
-        return self.get_images_by_plant_id(plant_id)
 

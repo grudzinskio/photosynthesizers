@@ -1,3 +1,5 @@
+import { apiRequest, handleApiResponse } from './api-utils';
+
 // API base URL will be provided by SettingsContext
 export function getApiBaseUrl(): string {
   return import.meta.env.VITE_API_BASE_URL || 'http://localhost:8004';
@@ -30,81 +32,22 @@ export async function uploadExcelFile(file: File, apiBaseUrl?: string): Promise<
   const response = await fetch(`${baseUrl}/api/excel/upload`, {
     method: 'POST',
     body: formData,
+    // Don't set Content-Type header for FormData - browser will set it with boundary
   });
 
-  if (!response.ok) {
-    const error = await response.json().catch(() => ({ detail: 'Failed to upload file' }));
-    throw new Error(error.detail || `HTTP error! status: ${response.status}`);
-  }
-
-  return response.json();
+  return handleApiResponse<ExcelUploadResponse>(response, 'Failed to upload file');
 }
 
 export async function getExcelStatistics(apiBaseUrl?: string): Promise<ExcelStatisticsResponse> {
   const baseUrl = apiBaseUrl || getApiBaseUrl();
-  const response = await fetch(`${baseUrl}/api/excel/statistics`, {
-    method: 'GET',
-  });
-
-  if (!response.ok) {
-    const error = await response.json().catch(() => ({ detail: 'Failed to get statistics' }));
-    throw new Error(error.detail || `HTTP error! status: ${response.status}`);
-  }
-
-  return response.json();
-}
-
-export interface PlantsResponse {
-  success: boolean;
-  dome: string;
-  plants: Record<string, unknown>[];
-  count: number;
-  total: number;
-  limit: number;
-  offset: number;
-}
-
-export async function getPlantsByDome(
-  domeName: string,
-  limit: number = 100,
-  offset: number = 0,
-  apiBaseUrl?: string
-): Promise<PlantsResponse> {
-  const baseUrl = apiBaseUrl || getApiBaseUrl();
-  const response = await fetch(
-    `${baseUrl}/api/excel/plants/${encodeURIComponent(domeName)}?limit=${limit}&offset=${offset}`,
-    {
-      method: 'GET',
-    }
+  return apiRequest<ExcelStatisticsResponse>(
+    `${baseUrl}/api/excel/statistics`,
+    { method: 'GET' },
+    'Failed to get statistics'
   );
-
-  if (!response.ok) {
-    const error = await response.json().catch(() => ({ detail: 'Failed to get plants' }));
-    throw new Error(error.detail || `HTTP error! status: ${response.status}`);
-  }
-
-  return response.json();
 }
 
-export interface DomesResponse {
-  success: boolean;
-  domes: string[];
-  count: number;
-}
 
-export async function getAvailableDomes(apiBaseUrl?: string): Promise<DomesResponse> {
-  const baseUrl = apiBaseUrl || getApiBaseUrl();
-  const response = await fetch(`${baseUrl}/api/excel/domes`, {
-    method: 'GET',
-  });
-
-  if (!response.ok) {
-    const error = await response.json().catch(() => ({ detail: 'Failed to get domes' }));
-    throw new Error(error.detail || `HTTP error! status: ${response.status}`);
-  }
-
-  return response.json();
-}
 
 // Database routes (fetch from Supabase, not from in-memory Excel data)
 export interface DatabasePlantsResponse {
@@ -132,16 +75,11 @@ export async function getPlantsFromDatabase(
     params.append('dome', dome);
   }
   
-  const response = await fetch(`${baseUrl}/api/excel/database/plants?${params.toString()}`, {
-    method: 'GET',
-  });
-
-  if (!response.ok) {
-    const error = await response.json().catch(() => ({ detail: 'Failed to get plants from database' }));
-    throw new Error(error.detail || `HTTP error! status: ${response.status}`);
-  }
-
-  return response.json();
+  return apiRequest<DatabasePlantsResponse>(
+    `${baseUrl}/api/excel/database/plants?${params.toString()}`,
+    { method: 'GET' },
+    'Failed to get plants from database'
+  );
 }
 
 export interface DatabaseDomesResponse {
@@ -152,16 +90,11 @@ export interface DatabaseDomesResponse {
 
 export async function getDomesFromDatabase(apiBaseUrl?: string): Promise<DatabaseDomesResponse> {
   const baseUrl = apiBaseUrl || getApiBaseUrl();
-  const response = await fetch(`${baseUrl}/api/excel/database/domes`, {
-    method: 'GET',
-  });
-
-  if (!response.ok) {
-    const error = await response.json().catch(() => ({ detail: 'Failed to get domes from database' }));
-    throw new Error(error.detail || `HTTP error! status: ${response.status}`);
-  }
-
-  return response.json();
+  return apiRequest<DatabaseDomesResponse>(
+    `${baseUrl}/api/excel/database/domes`,
+    { method: 'GET' },
+    'Failed to get domes from database'
+  );
 }
 
 // Image routes
@@ -192,16 +125,11 @@ export async function getRecentImages(
   apiBaseUrl?: string
 ): Promise<RecentImagesResponse> {
   const baseUrl = apiBaseUrl || getApiBaseUrl();
-  const response = await fetch(`${baseUrl}/api/images/recent?limit=${limit}`, {
-    method: 'GET',
-  });
-
-  if (!response.ok) {
-    const error = await response.json().catch(() => ({ detail: 'Failed to get recent images' }));
-    throw new Error(error.detail || `HTTP error! status: ${response.status}`);
-  }
-
-  return response.json();
+  return apiRequest<RecentImagesResponse>(
+    `${baseUrl}/api/images/recent?limit=${limit}`,
+    { method: 'GET' },
+    'Failed to get recent images'
+  );
 }
 
 export interface PlantImagesResponse {
@@ -216,15 +144,10 @@ export async function getImagesByPlantId(
   apiBaseUrl?: string
 ): Promise<PlantImagesResponse> {
   const baseUrl = apiBaseUrl || getApiBaseUrl();
-  const response = await fetch(`${baseUrl}/api/images/plant/${encodeURIComponent(plantId)}`, {
-    method: 'GET',
-  });
-
-  if (!response.ok) {
-    const error = await response.json().catch(() => ({ detail: 'Failed to get images for plant' }));
-    throw new Error(error.detail || `HTTP error! status: ${response.status}`);
-  }
-
-  return response.json();
+  return apiRequest<PlantImagesResponse>(
+    `${baseUrl}/api/images/plant/${encodeURIComponent(plantId)}`,
+    { method: 'GET' },
+    'Failed to get images for plant'
+  );
 }
 

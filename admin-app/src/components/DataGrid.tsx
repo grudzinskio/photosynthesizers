@@ -612,18 +612,10 @@ export function DataGrid() {
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogHeader>
           <DialogTitle>
-            {selectedPlant ? (
-              <>
-                Images for {selectedPlant.common_name as string || selectedPlant.scientific_name as string || 'Plant'}
-                {selectedPlant.scientific_name && selectedPlant.common_name && (
-                  <span className="text-sm font-normal text-muted-foreground italic ml-2">
-                    ({selectedPlant.scientific_name})
-                  </span>
-                )}
-              </>
-            ) : (
-              'Plant Images'
-            )}
+            {selectedPlant 
+              ? `Images for ${String(selectedPlant.common_name || selectedPlant.scientific_name || 'Plant')}${selectedPlant.scientific_name && selectedPlant.common_name ? ` (${String(selectedPlant.scientific_name)})` : ''}`
+              : 'Plant Images'
+            }
           </DialogTitle>
           <DialogDescription>
             {plantImages.length > 0 && `${plantImages.length} image${plantImages.length === 1 ? '' : 's'} uploaded by users`}
