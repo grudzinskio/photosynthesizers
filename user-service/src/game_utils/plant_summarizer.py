@@ -13,12 +13,22 @@ class PlantSummarizer:
         Args:
             tavily_api_key: Tavily API key (or set TAVILY_API_KEY env var)
             openai_api_key: OpenAI API key (or set OPENAI_API_KEY env var)
+            
+        Raises:
+            ValueError: If required environment variables are not set
         """
-        self.tavily_client = TavilyClient(
-            api_key=tavily_api_key or os.getenv("TAVILY_API_KEY")
-        )
+        # Get API keys from parameters or environment variables
+        tavily_key = tavily_api_key or os.getenv("TAVILY_API_KEY")
+        openai_key = openai_api_key or os.getenv("OPENAI_API_KEY")
         
-        self.api_key = openai_api_key or os.getenv("OPENAI_API_KEY")
+        # Validate required environment variables
+        if not tavily_key:
+            raise ValueError("TAVILY_API_KEY environment variable is not set. Please set it in your .env file.")
+        if not openai_key:
+            raise ValueError("OPENAI_API_KEY environment variable is not set. Please set it in your .env file.")
+        
+        self.tavily_client = TavilyClient(api_key=tavily_key)
+        self.api_key = openai_key
         self.api_url = "https://api.openai.com/v1/chat/completions"
 
 
