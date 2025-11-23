@@ -33,14 +33,7 @@ class DatabaseHandler:
 
     # MAIN_PLANT_IMAGES TABLE - USED FOR ADDING AND GETTING PLANT IMAGES
 
-    def set_main_plant_image(self, scientific_name: str, image: bytes) -> dict:
-        """
-        Update the image of a plant by its scientific name.
-        """
-        response = self.supabase.table("plants").update({"image": image}).eq("scientific_name", scientific_name).execute()
-        return response.data[0] if response.data else {}
-
-    def get_main_plant_image(self, scientific_name: str) -> str:
+    def get_reference_plant_image(self, scientific_name: str) -> str:
         """
         Get the image URL of a plant by its scientific name.
         Returns a placeholder image URL since images are stored separately.
@@ -57,10 +50,3 @@ class DatabaseHandler:
         """
         response = self.supabase.table("user_plant_images").insert({"scientific_name": scientific_name, "image": image}).execute()
         return response.data[0] if response.data else {}
-
-    def get_all_user_plant_images(self, scientific_name: str) -> bytes:
-        """
-        Get all user's plant images by its scientific name.
-        """
-        response = self.supabase.table("user_plant_images").select("image").eq("scientific_name", scientific_name).execute()
-        return response.data if response.data else []
